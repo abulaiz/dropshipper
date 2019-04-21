@@ -14,5 +14,6 @@ class DatabaseSeeder extends Seeder
     	// Seed Permission and Role
     	$this->command->info('Seeding Permission and Role ...');
         $this->call(AuthSeeder::class);
+        $this->call(UserAndAssignRoleSeeder::class);
     }
 }
