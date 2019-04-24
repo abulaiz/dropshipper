@@ -15,7 +15,7 @@
             <div class="card border-grey border-lighten-3 m-0">
                 <div class="card-header border-0">
                     <div class="card-title text-center">
-                        <div class="p-1"><img src="../../../img/logo.png" alt="branding logo" width="200"></div>
+                        <div class="p-1"><img src="../../../app-assets/images/logo/logo-dark.png" alt="branding logo"></div>
                     </div>
                     <h6 class="card-subtitle line-on-side text-muted text-center font-small-3 pt-2"><span>Login Dropshiper</span></h6>
                 </div>
@@ -43,7 +43,7 @@
                                 </div>
                                 <div class="col-md-6 col-12 text-center text-md-right"><a href="forgot-password" class="card-link">Forgot Password?</a></div>
                             </div>
-                            <button type="submit" class="btn btn-warning btn-lg btn-block"><i class="ft-unlock"></i>Login</button>
+                            <button type="submit" class="btn btn-danger btn-lg btn-block"><i class="ft-unlock"></i> Login</button>
                         </form>
                     </div>
                 </div>

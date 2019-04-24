@@ -15,7 +15,7 @@
 			<div class="card border-grey border-lighten-3 px-2 py-2 m-0">
 				<div class="card-header border-0">
 					<div class="card-title text-center">
-						<img src="../../../IMG/logo.png" alt="branding logo" width="200">
+						<img src="../../../app-assets/images/logo/logo-dark.png" alt="branding logo">
 					</div>
 					<h6 class="card-subtitle line-on-side text-muted text-center font-small-3 pt-2"><span>Create Account</span></h6>
 				</div>
@@ -40,10 +40,10 @@
 								    <i class="fa fa-key"></i>
 								</div>
 							</fieldset>
-							<button type="submit" class="btn btn-warning btn-lg btn-block"><i class="ft-unlock"></i> Register</button>
+							<button type="submit" class="btn btn-info btn-lg btn-block"><i class="ft-unlock"></i> Register</button>
 						</form>
 					</div>
-					<p class="text-center">Already have an account ? <a href="login" class="card-link">Login</a></p>
+					<p class="text-center">Already have an account ? <a href="Dr05hiPer" class="card-link">Login</a></p>
 				</div>
 			</div>
 		</div>
