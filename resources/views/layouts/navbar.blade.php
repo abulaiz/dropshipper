@@ -1,4 +1,3 @@
- <!-- fixed-top-->
     <nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-static-top navbar-dark navbar-border navbar-brand-center">
       <div class="navbar-wrapper">
         <div class="navbar-header">

@@ -22,7 +22,7 @@ Auth::routes();
 
 // Root Home
 Route::get('/home', function () {
-    return view('front_end/layout/home');
+    return view('front_end.layout.home');
 });
 
 // Root order
