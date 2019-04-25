@@ -11,8 +11,26 @@
 |
 */
 
+
+
+// Login
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
 });
 
 Auth::routes();
+
+// Root Home
+Route::get('/home', function () {
+    return view('front_end/layout/home');
+});
+
+// Root order
+Route::get('/order', function () {
+    return view('front_end/layout/order');
+});
+
+// Root Email
+Route::get('/email', function () {
+    return view('front_end/layout/email');
+});
