@@ -48,4 +48,4 @@
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css/core/menu/menu-types/vertical-menu.min.css">
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css/core/colors/palette-gradient.min.css">
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/login-register.min.css">
-        <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/email-application.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/email-application.css">
