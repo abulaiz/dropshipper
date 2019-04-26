@@ -13,24 +13,33 @@
 
 
 
-// Login
-Route::get('/', function () {
-    return view('auth/login');
-});
-
 Auth::routes();
 
-// Root Home
-Route::get('/home', function () {
-    return view('front_end.layout.home');
+// Route untuk semua jenis role yang telah login
+Route::group(['middleware' => ['role:member']], function () {
+	// Root Home
+	Route::get('/', function () {
+	    return view('front_end.layout.home');
+	})->middleware('auth');
+
+	include('web_mod/email.php');
 });
 
-// Root order
-Route::get('/order', function () {
-    return view('front_end/layout/order');
+
+// Route khusus untuk member
+Route::group(['middleware' => ['role:member']], function () {
+	include('web_mod/member.php');
 });
 
-// Root Email
-Route::get('/email', function () {
-    return view('front_end/layout/email');
+// Route khusus untuk admin dan superadmin
+Route::group(['middleware' => ['role:admin|superadmin']], function () {
+	// include('web_mod/admin.php');
 });
+
+// Route khusus untuk superadmin
+Route::group(['middleware' => ['role:superadmin']], function () {
+	// include('web_mod/superadmin.php');
+});
+
+
+

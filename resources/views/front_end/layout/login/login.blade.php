@@ -21,19 +21,32 @@
                 </div>
                 <div class="card-content">
                     <div class="card-body">
-                        <form class="form-horizontal form-simple" action="index.html" novalidate>
+                        <form class="form-horizontal form-simple" method="POST" action="{{ route('login') }}" novalidate>
+                            @csrf
                             <fieldset class="form-group position-relative has-icon-left mb-0">
-                                <input type="text" class="form-control form-control-lg input-lg" id="user-name" placeholder="Your Username" required>
+                                <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
                                 <div class="form-control-position">
                                     <i class="ft-user"></i>
                                 </div>
+                                @if ($errors->has('email'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif                                
                             </fieldset>
+
                             <fieldset class="form-group position-relative has-icon-left">
-                                <input type="password" class="form-control form-control-lg input-lg" id="user-password" placeholder="Enter Password" required>
+                                <input type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
                                 <div class="form-control-position">
                                     <i class="fa fa-key"></i>
                                 </div>
+                                @if ($errors->has('password'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif                                
                             </fieldset>
+
                             <div class="form-group row">
                                 <div class="col-md-6 col-12 text-center text-md-left">
                                     <fieldset>

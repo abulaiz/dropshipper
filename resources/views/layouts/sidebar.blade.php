@@ -2,7 +2,7 @@
       <div class="navbar-container main-menu-content container center-layout" data-menu="menu-container">
         <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation">
         	<!-- Dashboard -->
-            <li class="nav-item @yield('home')"><a class="nav-link" href="/home"><i class="icon-home"></i>Home</a>
+            <li class="nav-item @yield('home')"><a class="nav-link" href="/"><i class="icon-home"></i>Home</a>
             </li>
             <!-- Order -->
             <li class=" nav-item @yield('order')"><a class="nav-link" href="order"><i class="icon-basket-loaded"></i><span data-i18n="nav.templates.main">Order</span></a>
