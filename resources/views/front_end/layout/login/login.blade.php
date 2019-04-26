@@ -15,25 +15,38 @@
             <div class="card border-grey border-lighten-3 m-0">
                 <div class="card-header border-0">
                     <div class="card-title text-center">
-                        <div class="p-1"><img src="../../../app-assets/images/logo/logo-dark.png" alt="branding logo"></div>
+                       <div class="p-1"><img src="../../../img/logo.png" alt="branding logo" width="200"></div>
                     </div>
                     <h6 class="card-subtitle line-on-side text-muted text-center font-small-3 pt-2"><span>Login Dropshiper</span></h6>
                 </div>
                 <div class="card-content">
                     <div class="card-body">
-                        <form class="form-horizontal form-simple" action="index.html" novalidate>
+                        <form class="form-horizontal form-simple" method="POST" action="{{ route('login') }}" novalidate>
+                            @csrf
                             <fieldset class="form-group position-relative has-icon-left mb-0">
-                                <input type="text" class="form-control form-control-lg input-lg" id="user-name" placeholder="Your Username" required>
+                                <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="Your Username" required autofocus>
                                 <div class="form-control-position">
                                     <i class="ft-user"></i>
                                 </div>
+                                @if ($errors->has('email'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif                                
                             </fieldset>
+
                             <fieldset class="form-group position-relative has-icon-left">
-                                <input type="password" class="form-control form-control-lg input-lg" id="user-password" placeholder="Enter Password" required>
+                                <input type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password"  placeholder="Enter Password" required>
                                 <div class="form-control-position">
                                     <i class="fa fa-key"></i>
                                 </div>
+                                @if ($errors->has('password'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif                                
                             </fieldset>
+
                             <div class="form-group row">
                                 <div class="col-md-6 col-12 text-center text-md-left">
                                     <fieldset>
@@ -43,7 +56,7 @@
                                 </div>
                                 <div class="col-md-6 col-12 text-center text-md-right"><a href="forgot-password" class="card-link">Forgot Password?</a></div>
                             </div>
-                            <button type="submit" class="btn btn-danger btn-lg btn-block"><i class="ft-unlock"></i> Login</button>
+                            <button type="submit" class="btn btn-warning btn-lg btn-block"><i class="ft-unlock"></i> Login</button>
                         </form>
                     </div>
                 </div>

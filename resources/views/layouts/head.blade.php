@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html class="loading" lang="en" data-textdirection="ltr">
-  <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
@@ -51,10 +48,4 @@
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css/core/menu/menu-types/vertical-menu.min.css">
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css/core/colors/palette-gradient.min.css">
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/login-register.min.css">
-        <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/email-application.css">
-
-
-
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js"></script>
-  </head>
-</html>
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/email-application.css">

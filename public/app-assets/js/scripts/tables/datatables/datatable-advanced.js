@@ -14,7 +14,12 @@ $(document).ready(function() {
      *       js of dom jQuery events        *
      ***************************************/
 
-    var eventsTable = $('.dom-jQuery-events').DataTable();
+    var eventsTable = $('.dom-jQuery-events').DataTable()( {
+        rowReorder: {
+            selector: 'td:nth-child(2)'
+        },
+        responsive: true
+    } );
 
     $('.dom-jQuery-events tbody').on('click', 'tr', function() {
         var data = table.row(this).data();

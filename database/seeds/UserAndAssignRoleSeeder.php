@@ -14,13 +14,13 @@ class UserAndAssignRoleSeeder extends Seeder
      */
     public function run()
     {
-        if (!User::where('email', 'admin@gmail.com')->exists()) {
+        if (!User::where('email', 'member@gmail.com')->exists()) {
             $user1 = new User();
-            $user1->name = 'admin';
-            $user1->email = 'admin@gmail.com';
-            $user1->password = bcrypt('admin1');
+            $user1->name = 'member';
+            $user1->email = 'member@gmail.com';
+            $user1->password = bcrypt('member1');
             $user1->save();
-            $user1->assignRole('admin');
+            $user1->assignRole('member');
         }
 
         if (!User::where('email', 'mimin@gmail.com')->exists()) {
