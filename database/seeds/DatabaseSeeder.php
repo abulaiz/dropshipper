@@ -15,5 +15,6 @@ class DatabaseSeeder extends Seeder
     	$this->command->info('Seeding Permission and Role ...');
         $this->call(AuthSeeder::class);
         $this->call(UserAndAssignRoleSeeder::class);
+        $this->call(ProductSeeder::class);
     }
 }
