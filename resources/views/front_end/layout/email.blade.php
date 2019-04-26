@@ -31,21 +31,22 @@
         <div class="email-app-list">
             <div id="users-list" class="list-group">
                 <div class="users-list-padding media-list">
-                    <a href="#" class="media border-0">
+                    <a href="detailemail" class="media border-0">
                         <div class="media-left pr-1">
                             <span class="avatar avatar-md">
                                 <span class="media-object rounded-circle text-circle bg-info">T</span>
                             </span>
                         </div>
                         <div class="media-body w-100">
-                            <h6 class="list-group-item-heading text-bold-500">Envato Market<span class="float-right"><span class="font-small-2 primary">11:18 PM</span></span></h6>
-                            <p class="list-group-item-text text-truncate text-bold-600 mb-0">You have new comment...</p>
-                            <p class="list-group-item-text mb-0">Hi Pixinvent...<span class="float-right primary"><span class="badge badge-warning mr-1">Work</span> <i class="font-medium-1 ft-star blue-grey lighten-3"></i></span></p>
+                            <h6 class="list-group-item-heading">Heather Howell <span class="float-right"><i class="fa-paperclip fa"></i> <span class="font-small-2">15 July</span></span></h6>
+                            <p class="list-group-item-text text-truncate mb-0">Thanks, Let's do it.</p>
+                            <p class="list-group-item-text mb-0">Can we connect today...<span class="float-right primary"><i class="font-medium-1 ft-star blue-grey lighten-3"></i></span></p>
                         </div>
                     </a>
-                    <a href="#" class="media bg-blue-grey bg-lighten-5 border-right-primary border-right-2">
+                    <a href="detailemail" class="media border-0">
                         <div class="media-left pr-1">
-                            <span class="avatar avatar-md"><img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-7.png" alt="Generic placeholder image">
+                            <span class="avatar avatar-md"><img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-8.png" alt="Generic placeholder image">
+                            <i></i>
                             </span>
                         </div>
                         <div class="media-body w-100">
@@ -54,7 +55,7 @@
                             <p class="list-group-item-text mb-0">Andy, Lte's...<span class="float-right primary"><span class="badge badge-success mr-1">Private</span> <i class="font-medium-1 ft-star warning"></i></span></p>
                         </div>
                     </a>
-                    <a href="#" class="media border-0">
+                    <a href="detailemail" class="media border-0">
                         <div class="media-left pr-1">
                             <span class="avatar avatar-md"><img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-5.png" alt="Generic placeholder image"></span>
                         </div>
@@ -64,22 +65,21 @@
                             <p class="list-group-item-text text-truncate mb-0">Everything looks good.</p>
                         </div>
                     </a>
-                    <a href="#" class="media border-0">
+                    <a href="detailemail" class="media border-0">
                         <div class="media-left pr-1">
                             <span class="avatar avatar-md">
                                 <span class="media-object rounded-circle text-circle bg-success">H</span>
                             </span>
                         </div>
                         <div class="media-body w-100">
-                            <h6 class="list-group-item-heading">Heather Howell <span class="float-right"><i class="fa-paperclip fa"></i> <span class="font-small-2">15 July</span></span></h6>
-                            <p class="list-group-item-text text-truncate mb-0">Thanks, Let's do it.</p>
-                            <p class="list-group-item-text mb-0">Can we connect today...<span class="float-right primary"><i class="font-medium-1 ft-star blue-grey lighten-3"></i></span></p>
+                            <h6 class="list-group-item-heading text-bold-500">Envato Market<span class="float-right"><span class="font-small-2 primary">11:18 PM</span></span></h6>
+                            <p class="list-group-item-text text-truncate text-bold-600 mb-0">You have new comment...</p>
+                            <p class="list-group-item-text mb-0">Hi Pixinvent...<span class="float-right primary"><span class="badge badge-warning mr-1">Work</span> <i class="font-medium-1 ft-star blue-grey lighten-3"></i></span></p>
                         </div>
                     </a>
-                    <a href="#" class="media border-0">
+                    <a href="detailemail" class="media bg-blue-grey bg-lighten-5 border-right-primary border-right-2">
                         <div class="media-left pr-1">
-                            <span class="avatar avatar-md"><img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-8.png" alt="Generic placeholder image">
-                            <i></i>
+                            <span class="avatar avatar-md"><img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-7.png" alt="Generic placeholder image">
                             </span>
                         </div>
                         <div class="media-body w-100">
@@ -88,7 +88,7 @@
                             <p class="list-group-item-text mb-0">Check once...<span class="float-right primary"><span class="badge badge-warning mr-1">Work</span> <i class="font-medium-1 ft-star blue-grey lighten-3"></i></span></p>
                         </div>
                     </a>
-                    <a href="#" class="media border-0">
+                    <a href="detailemail" class="media border-0">
                         <div class="media-left pr-1">
                             <span class="avatar avatar-md">
                                 <span class="media-object rounded-circle text-circle bg-warning">V</span>
@@ -100,7 +100,7 @@
                             <p class="list-group-item-text mb-0">Party tonight ?<span class="float-right primary"><span class="badge badge-primary mr-1">Friends</span> <i class="font-medium-1 ft-star blue-grey lighten-3"></i></span></p>
                         </div>
                     </a>
-                    <a href="#" class="media border-0">
+                    <a href="detailemail" class="media border-0">
                         <div class="media-left pr-1">
                             <span class="avatar avatar-md">
                                 <span class="media-object rounded-circle text-circle bg-info">E</span>
@@ -112,7 +112,7 @@
                             <p class="list-group-item-text mb-0">Here they are work.<span class="float-right primary"><i class="font-medium-1 ft-star blue-grey lighten-3"></i></span></p>
                         </div>
                     </a>
-                    <a href="#" class="media border-0">
+                    <a href="detailemail" class="media border-0">
                         <div class="media-left pr-1">
                             <span class="avatar avatar-md"><img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-6.png" alt="Generic placeholder image"></span>
                         </div>
