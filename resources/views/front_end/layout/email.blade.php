@@ -176,7 +176,7 @@
     </div>
                 </div>
 
-                <div class="tab-pane" id="keluar1" aria-labelledby="pesan-keluar1">
+                <div class="tab-pane fade out" id="keluar1" aria-labelledby="pesan-keluar1">
     
     <!-- Tab Pesan Keluar -->
     <div class="email-app-list-wraper col-md-12 card p-0">

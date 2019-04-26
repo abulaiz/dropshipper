@@ -23,6 +23,7 @@ Route::group(['middleware' => ['role:member']], function () {
 	})->middleware('auth');
 
 	include('web_mod/email.php');
+	include('web_mod/detailemail.php');
 });
 
 
