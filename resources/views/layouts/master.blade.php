@@ -18,7 +18,7 @@
     @include('layouts.footer')
 
     <script src="../../../app-assets/vendors/js/vendors.min.js"></script>
-
+    <script type="text/javascript" src="../../../app-assets/vendors/js/ui/jquery.sticky.js"></script>
     <script src="../../../app-assets/js/core/app-menu.js"></script>
     <script src="../../../app-assets/js/core/app.js"></script>
 
@@ -30,12 +30,10 @@
         });
 
     </script>    
+    <script src="../../../js/config/directive.js"></script>
 
-    <script src="../../../app-assets/vendors/js/tables/datatable/datatables.min.js"></script>
-    <script src="../../../app-assets/vendors/js/tables/datatable/dataTables.buttons.min.js"></script>
-    <script src="../../../app-assets/vendors/js/tables/datatable/dataTables.responsive.js"></script>
     <script src="../../../app-assets/js/scripts/customizer.js" type="text/javascript"></script>
-    <script src="../../../app-assets/js/scripts/tables/datatables/datatable-advanced.js"></script>
+    <!-- <script src="../../../app-assets/js/scripts/tables/datatables/datatable-advanced.js"></script> -->
 
 
     @yield('customJS')    

@@ -4,7 +4,7 @@
 @section('content')
 
 <!-- Sales stats -->
-<div class="row">
+<!-- <div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-content">
@@ -75,91 +75,66 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <!--/ Sales stats -->
 
 <!-- Custom view start -->
-<section id="select-inputs">
+<section id="select-inputs" ng-controller='table'>
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">List View Barang</h4><br>
-                    <button class="ui-button ui-widget ui-corner-all btn-danger mb-2" data-toggle="modal" data-target="#tambahorder"><i class="fa fa-plus"></i>  Order</button>
-
-
-                        <div class="card-content collapse show">
-                        <div class="table-responsive">
-                            <table class="table table-striped table-bordered datatable-select-inputs" id="example">
+                    <button class="ui-button ui-widget ui-corner-all btn-danger mb-2" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#tambahorder"><i class="fa fa-plus"></i>  Order</button>
+                    <div class="card-content collapse show">
+                        <div class="table-responsive" style="display: none;">
+                            <table class="table table-striped table-bordered dt-responsive" id="example">
                                 <thead>
                                     <tr>
                                         <th>Nama Produk</th>
-                                        <th>Jumlah</th>
-                                        <th>Keterangan</th>
+                                        <th>Stok</th>
                                         <th>Harga</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Tiger Nixon</td>
-                                        <td>61</td>
-                                        <td>2011/04/25</td>
-                                        <td>$320,800</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Garrett Winters</td>
-                                        <td>63</td>
-                                        <td>2011/07/25</td>
-                                        <td>$170,750</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ashton Cox</td>
-                                        <td>66</td>
-                                        <td>2009/01/12</td>
-                                        <td>$86,000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Cedric Kelly</td>
-                                        <td>22</td>
-                                        <td>2012/03/29</td>
-                                        <td>$433,060</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Airi Satou</td>
-                                        <td>33</td>
-                                        <td>2008/11/28</td>
-                                        <td>$162,700</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Brielle Williamson</td>
-                                        <td>61</td>
-                                        <td>2012/12/02</td>
-                                        <td>$372,000</td>
+                                    <tr ng-repeat='x in datas'>
+                                        <td>{* x.name *}</td>
+                                        <td>{* x.qty *}</td>
+                                        <td>{* x.price *}</td>
                                     </tr>
                                 </tbody>
                             </table>
+                        </div>
+                        <div class="loader-wrapper" id="table-loader">
+                          <div class="loader-container">
+                            <div class="ball-beat loader-info">
+                              <div></div>
+                              <div></div>
+                              <div></div>
+                            </div>
+                          </div>
+                        </div>                            
                     </div>
-                </div>
-                </div>
                 </div>
             </div>
         </div>
+    </div>
 </section>
 <!-- Custom view end -->
 @include('modals.addOrder')
 @endsection
 
 @section('customJS')
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugins/loaders/loaders.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/core/colors/palette-loader.css">
+
+    <!-- DataTables -->
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/tables/datatable/datatables.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/tables/extensions/responsive.dataTables.min.css">
     <script src="../../../app-assets/vendors/js/tables/datatable/datatables.min.js"></script>
     <script src="../../../app-assets/vendors/js/tables/datatable/dataTables.responsive.min.js"></script>
-    <script>
-        $(document).ready(function() {
-    var table = $('#example').DataTable( {
-        rowReorder: {
-            selector: 'td:nth-child(2)'
-        },
-        responsive: true
-    } );
-} );
-    </script>
+    
+    <script src="../../../js/view/memberHome/modalController.js" type="text/javascript"></script>
+    <script src="../../../js/view/memberHome/tableController.js" type="text/javascript"></script>
+
 @endsection
