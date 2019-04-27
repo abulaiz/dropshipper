@@ -13,22 +13,13 @@ class Products extends Migration
      */
     public function up()
     {
-        Schema::create('product_categories', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name', 100);
-        });
-        
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('product_category_id')->nullable();
             $table->string('name');
             $table->integer('qty');
             $table->integer('price');
             $table->string('type', 10);
             $table->timestamps();
-            $table->foreign('product_category_id')
-                ->references('id')
-                ->on('product_categories');
         });
 
         Schema::create('product_mutations', function (Blueprint $table) {
@@ -55,6 +46,6 @@ class Products extends Migration
     public function down()
     {
         Schema::dropIfExists('products');
-        Schema::dropIfExists('product_categories');
+        Schema::dropIfExists('product_mutations');
     }
 }

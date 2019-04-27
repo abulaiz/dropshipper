@@ -3,7 +3,7 @@
 <head>
     @include('layouts.head')
 </head>
-<body class="horizontal-layout horizontal-menu horizontal-menu-padding 2-columns   menu-expanded" data-open="hover" data-menu="horizontal-menu" data-col="2-columns" ng-app='main'>
+<body class="horizontal-layout horizontal-menu horizontal-menu-padding 2-columns  menu-expanded" data-open="hover" data-menu="horizontal-menu" data-col="2-columns" ng-app='main'>
     @include('layouts.navbar')
     @include('layouts.sidebar')
     <div class="app-content container center-layout mt-2">
@@ -15,6 +15,9 @@
         </div>
         </div>
     </div>
+
+    <div class="ovnav" style="display: none;"></div>
+
     @include('layouts.footer')
 
     <script src="../../../app-assets/vendors/js/vendors.min.js"></script>
@@ -33,7 +36,10 @@
     <script src="../../../js/config/directive.js"></script>
 
     <script src="../../../app-assets/js/scripts/customizer.js" type="text/javascript"></script>
-    <!-- <script src="../../../app-assets/js/scripts/tables/datatables/datatable-advanced.js"></script> -->
+
+    <script src="../../../app-assets/js/scripts/tables/datatables/datatable-advanced.js"></script>
+    <script src="../../../app-assets/js/scripts/pages/email-application.js"></script>
+
 
 
     @yield('customJS')    

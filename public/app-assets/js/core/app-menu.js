@@ -270,6 +270,9 @@
         $('.header-navbar[data-nav=brand-center]').addClass('navbar-brand-center');
       }
 
+      $('.ggg').removeClass('ggg');
+      $('.ovnav').removeClass('ovnav');
+
       // Dropdown submenu on small screen on click
       // --------------------------------------------------
       $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function(event) {
