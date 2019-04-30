@@ -19,10 +19,16 @@
 
     <script src="../../../app-assets/vendors/js/vendors.min.js"></script>
 
+    <script src="../../../app-assets/vendors/js/ui/jquery.sticky.js"></script>
+    <script src="../../../app-assets/vendors/js/charts/raphael-min.js"></script>
+    <script src="../../../app-assets/vendors/js/charts/morris.min.js"></script>
+
+
     <script src="../../../app-assets/js/core/app-menu.js"></script>
     <script src="../../../app-assets/js/core/app.js"></script>
 
     <script src="../../../assets/js/angular.min.js"></script>
+
     <script type="text/javascript">
         var app = angular.module("main", [], function($interpolateProvider){
             $interpolateProvider.startSymbol('{*');
@@ -37,6 +43,12 @@
     <script src="../../../app-assets/js/scripts/customizer.js" type="text/javascript"></script>
     <script src="../../../app-assets/js/scripts/tables/datatables/datatable-advanced.js"></script>
     <script src="../../../app-assets/js/scripts/pages/email-application.js"></script>
+    <script src="../../../app-assets/js/scripts/charts/morris/line.js"></script>
+    <script src="../../../app-assets/js/scripts/charts/morris/smooth-line.js"></script>
+    <script src="../../../app-assets/js/scripts/charts/morris/area.js"></script>
+    <script src="../../../app-assets/js/scripts/charts/morris/smooth-area.js"></script>
+    <script src="../../../app-assets/js/scripts/charts/morris/bar.js"></script>
+    <script src="../../../app-assets/js/scripts/charts/morris/donut.js"></script>
 
 
     @yield('customJS')    

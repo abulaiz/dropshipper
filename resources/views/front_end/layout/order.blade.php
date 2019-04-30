@@ -8,136 +8,78 @@
         <div class="col-12">
             <div class="card">
             <div class="card-content">
-              <div class="card-body">
-
-    <!-- TAB MENU -->
-            <ul class="nav nav-tabs nav-top-border no-hover-bg">
-              <li class="nav-item">
-                <a class="nav-link active" id="home-tab1" data-toggle="tab" href="#home1" aria-controls="home1" aria-expanded="true"><i class="fa fa-inbox"></i>Status Order</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" id="profile-tab1" data-toggle="tab" href="#profile1" aria-controls="profile1" aria-expanded="false"><i class="fa fa-flag"></i>History Order</a>
-              </li>
-            </ul> 
-        <div class="tab-content px-1 pt-1">
-
-        <!-- TAB OnProgress -->
-        <div  role="tabpanel" class="tab-pane active" id="home1" aria-labelledby="home-tab1" aria-expanded="true">
-            <!-- Custom view start -->
-                            <div class="card-content collapse show">
-                        <div class="table-responsive">
-                            <table class="table table-striped table-bordered datatable-select-inputs" id="order">
-                                <thead>
-                                    <tr>
-                                        <th>Nama Produk</th>
-                                        <th>Jumlah</th>
-                                        <th>Keterangan</th>
-                                        <th>Harga</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Tiger Nixon</td>
-                                        <td>61</td>
-                                        <td>2011/04/25</td>
-                                        <td>$320,800</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Garrett Winters</td>
-                                        <td>63</td>
-                                        <td>2011/07/25</td>
-                                        <td>$170,750</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ashton Cox</td>
-                                        <td>66</td>
-                                        <td>2009/01/12</td>
-                                        <td>$86,000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Cedric Kelly</td>
-                                        <td>22</td>
-                                        <td>2012/03/29</td>
-                                        <td>$433,060</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Airi Satou</td>
-                                        <td>33</td>
-                                        <td>2008/11/28</td>
-                                        <td>$162,700</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Brielle Williamson</td>
-                                        <td>61</td>
-                                        <td>2012/12/02</td>
-                                        <td>$372,000</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                    </div>
+                <div class="card-header">
+                <h4 class="card-title">Recent Orders</h4>
+                <a class="heading-elements-toggle"><i class="ft-more-horizontal font-medium-3"></i></a>
+                <div class="heading-elements">
+                    <ul class="list-inline mb-0">
+                        <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+                        <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                    </ul>
                 </div>
-            <!-- Custom view end -->
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <p>Total paid invoices 240, unpaid 150. <span class="float-right"><a href="project-summary.html" target="_blank">Invoice Summary <i class="ft-arrow-right"></i></a></span></p>
+                </div>
+                <div class="table-responsive">
+                    <table id="recent-orders" class="table table-hover mb-0">
+                        <thead>
+                            <tr>
+                                <th>SKU</th>
+                                <th>Invoice#</th>
+                                <th>Customer Name</th>
+                                <th>Status</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-truncate">PO-10521</td>
+                                <td class="text-truncate"><a href="#">INV-001001</a></td>
+                                <td class="text-truncate">Elizabeth W.</td>
+                                <td class="text-truncate"><span class="tag tag-default tag-success">Paid</span></td>
+                                <td class="text-truncate">$ 1200.00</td>
+                            </tr>
+                            <tr>
+                                <td class="text-truncate">PO-532521</td>
+                                <td class="text-truncate"><a href="#">INV-01112</a></td>
+                                <td class="text-truncate">Doris R.</td>
+                                <td class="text-truncate"><span class="tag tag-default tag-warning">Overdue</span></td>
+                                <td class="text-truncate">$ 5685.00</td>
+                            </tr>
+                            <tr>
+                                <td class="text-truncate">PO-05521</td>
+                                <td class="text-truncate"><a href="#">INV-001012</a></td>
+                                <td class="text-truncate">Andrew D.</td>
+                                <td class="text-truncate"><span class="tag tag-default tag-success">Paid</span></td>
+                                <td class="text-truncate">$ 152.00</td>
+                            </tr>
+                            <tr>
+                                <td class="text-truncate">PO-15521</td>
+                                <td class="text-truncate"><a href="#">INV-001401</a></td>
+                                <td class="text-truncate">Megan S.</td>
+                                <td class="text-truncate"><span class="tag tag-default tag-success">Paid</span></td>
+                                <td class="text-truncate">$ 1450.00</td>
+                            </tr>
+                            <tr>
+                                <td class="text-truncate">PO-32521</td>
+                                <td class="text-truncate"><a href="#">INV-008101</a></td>
+                                <td class="text-truncate">Walter R.</td>
+                                <td class="text-truncate"><span class="tag tag-default tag-warning">Overdue</span></td>
+                                <td class="text-truncate">$ 685.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-
-        <!-- Tab History Order -->
-        <div class="tab-pane" id="profile1" aria-labelledby="profile-tab1">
-             <!-- Custom view start -->
-                     <table class="table table-striped table-bordered datatable-select-inputs" id="order2" width="100%">
-                                <thead>
-                                    <tr>
-                                        <th>Nama Produk</th>
-                                        <th>Jumlah</th>
-                                        <th>Keterangan</th>
-                                        <th>Harga</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Tiger Nixon</td>
-                                        <td>61</td>
-                                        <td>2011/04/25</td>
-                                        <td>$320,800</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Garrett Winters</td>
-                                        <td>63</td>
-                                        <td>2011/07/25</td>
-                                        <td>$170,750</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ashton Cox</td>
-                                        <td>66</td>
-                                        <td>2009/01/12</td>
-                                        <td>$86,000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Cedric Kelly</td>
-                                        <td>22</td>
-                                        <td>2012/03/29</td>
-                                        <td>$433,060</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Airi Satou</td>
-                                        <td>33</td>
-                                        <td>2008/11/28</td>
-                                        <td>$162,700</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Brielle Williamson</td>
-                                        <td>61</td>
-                                        <td>2012/12/02</td>
-                                        <td>$372,000</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-            <!-- Custom view end -->
         </div>
             </div>
                 </div>
                 </div>
             </div>
           </div>
-       </div>
     </section>
 
   @endsection
@@ -153,13 +95,5 @@
         },
         responsive: true
     } );
-
-    var table = $('#order2').DataTable( {
-        rowReorder: {
-            selector: 'td:nth-child(2)'
-        },
-        responsive: true
-    } );
-} );
     </script>
 @endsection

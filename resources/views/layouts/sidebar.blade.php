@@ -5,7 +5,10 @@
             <li class="nav-item @yield('home')"><a class="nav-link" href="/"><i class="icon-home"></i>Home</a>
             </li>
             <!-- Order -->
-            <li class=" nav-item @yield('order')"><a class="nav-link" href="order"><i class="icon-basket-loaded"></i><span data-i18n="nav.templates.main">Order</span></a>
+            <li class=" dropdown nav-item @yield('order')"><a class="nav-link" href="order"><i class="icon-basket-loaded"></i><span data-i18n="nav.templates.main">Order</span></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown nav-link @yield('historyOrder')" data-menu="dropdown"><a class="dropdown-item" href="historyOrder" data-toggle="dropdown"><i class="fa fa-bookmark"></i>History Order</a></li>
+              </ul>
             </li>
             <!-- Pengiriman Produk -->
             <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="icon-note"></i><span data-i18n="nav.layouts.temp">Pengiriman Produk</span></a>

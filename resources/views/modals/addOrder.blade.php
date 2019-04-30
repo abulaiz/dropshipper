@@ -82,8 +82,8 @@
         </pre>
         </div>
         <div class="modal-footer">
-            <input type="reset" class="btn btn-primary btn-lg" data-dismiss="modal" value="Kembali">
-            <input type="submit" class="btn btn-danger btn-lg" value="Order">
+            <Button type="reset" class="btn btn-info"><i class="fa fa-times">&nbspKembali</i></button>
+            <button type="submit" class="btn btn-danger"><i class="fa fa-shopping-cart">&nbspOrder</i></button>
         </div>
       </form>
     </div>
