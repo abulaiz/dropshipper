@@ -8,12 +8,12 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form method="POST" action="">
+      <form method="POST" action="{{ route('orderStock') }}">
         <div class="modal-body">
             @csrf
             <label>Produk</label>
             <fieldset class="form-group position-relative has-icon-left">
-                <select class="form-control" required ng-model='product_id'>
+                <select class="form-control" required ng-model='product_id' name="product_id">
                   <option value="" ng-disabled='product_default_option'>- Pilih Produk -</option>  
                   <option value="{* x.id *}" ng-repeat='x in product_options'> {* x.name *} </option>
                 </select>

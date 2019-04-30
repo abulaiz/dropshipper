@@ -10,6 +10,18 @@
       <div class="content-wrapper">
         <div class="content-header row">
         </div>
+      @if(Session::has('_msg'))
+        @php
+          $e = session()->get('_e'); $msg = session()->get('_msg');
+        @endphp
+        <div class="alert {{$_alert->bg($e)}} alert-icon-left alert-dismissible mb-2" role="alert">
+          <span class="alert-icon"><i class="{{$_alert->icon($e)}}"></i></span>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <strong>{{$_alert->caption($e)}}. </strong>{{$msg}}
+        </div>
+      @endif        
         <div class="content-body">
             @yield('content')
         </div>

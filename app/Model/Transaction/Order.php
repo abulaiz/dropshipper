@@ -8,12 +8,14 @@ class Order extends Model
 {
 	protected $table = "product_orders";
 
+	protected $guarded = [''];
+
 	public $autoincrement = false;
 
-	protected $guarded = array('id','created_at','update_at');
+	public $timestamps = false; 
 
-	public function products()
+	public function product()
     {
-        return $this->belongsTo('App\model\Product\Product');
+        return $this->belongsTo('App\Model\Product\Product');
     }
 }

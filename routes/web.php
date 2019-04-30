@@ -1,3 +1,4 @@
+
 <?php
 
 /*
@@ -11,7 +12,8 @@
 |
 */
 
-
+// Composer
+View::composer("*","App\Composers\BaseComposer");
 
 Auth::routes();
 

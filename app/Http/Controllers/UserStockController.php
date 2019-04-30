@@ -23,4 +23,5 @@ class UserStockController extends Controller
 
     	return response()->json(['data' => $res]);    	
     }
+
 }
