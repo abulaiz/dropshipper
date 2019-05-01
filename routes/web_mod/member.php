@@ -6,3 +6,8 @@ Route::get('/order', function () {
 });
 
 Route::post('/order/store', 'OrderProductController@store')->name('orderStock');
+
+Route::get('/historyOrder', function(){
+	return view('front_end/layout/historyOrder');
+});
+

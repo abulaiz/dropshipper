@@ -33,13 +33,16 @@
     @include('layouts.footer')
 
     <script src="../../../app-assets/vendors/js/vendors.min.js"></script>
+
     <script type="text/javascript" src="../../../app-assets/vendors/js/ui/jquery.sticky.js"></script>
+
     <script src="../../../app-assets/js/core/app-menu.js"></script>
     <script src="../../../app-assets/js/core/app.js"></script>
 
     <script src="../../../app-assets/vendors/js/extensions/toastr.min.js" type="text/javascript"></script>
 
     <script src="../../../assets/js/angular.min.js"></script>
+
     <script type="text/javascript">
         var app = angular.module("main", [], function($interpolateProvider){
             $interpolateProvider.startSymbol('{*');
@@ -50,6 +53,7 @@
     <script src="../../../js/config/directive.js"></script>
 
     <script src="../../../app-assets/js/scripts/customizer.js" type="text/javascript"></script>
+
 
     @yield('customJS')    
 </body>

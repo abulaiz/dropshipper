@@ -26,4 +26,4 @@
     <!-- BEGIN ROBUST CSS-->
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css/app.min.css">
     <!-- END ROBUST CSS-->
-    <!-- <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/extensions/toastr.css"> -->
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/extensions/toastr.css">

@@ -67,6 +67,7 @@
     </div>
 </section>
 
+
 @endsection
 
 @section('customJS')
@@ -83,4 +84,5 @@
     <script src="../../../js/plugin/confirmDialog.js" type="text/javascript"></script>
 
     <script src="../../../js/view/memberOrder/tableController.js" type="text/javascript"></script>
+
 @endsection

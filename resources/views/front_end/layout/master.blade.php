@@ -17,6 +17,8 @@
     <link rel="stylesheet" type="text/css" href="../../../../app-assets/vendors/css/charts/morris.css">
     <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/extensions/unslider.css">
     <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/weather-icons/climacons.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/charts/morris.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/core/colors/palette-gradient.css">
 
     <!-- UI -->
     <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/ui/jquery-ui.min.css">
