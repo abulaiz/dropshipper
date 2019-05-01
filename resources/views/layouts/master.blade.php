@@ -37,6 +37,8 @@
     <script src="../../../app-assets/js/core/app-menu.js"></script>
     <script src="../../../app-assets/js/core/app.js"></script>
 
+    <script src="../../../app-assets/vendors/js/extensions/toastr.min.js" type="text/javascript"></script>
+
     <script src="../../../assets/js/angular.min.js"></script>
     <script type="text/javascript">
         var app = angular.module("main", [], function($interpolateProvider){
@@ -48,11 +50,6 @@
     <script src="../../../js/config/directive.js"></script>
 
     <script src="../../../app-assets/js/scripts/customizer.js" type="text/javascript"></script>
-
-    <script src="../../../app-assets/js/scripts/tables/datatables/datatable-advanced.js"></script>
-    <script src="../../../app-assets/js/scripts/pages/email-application.js"></script>
-
-
 
     @yield('customJS')    
 </body>

@@ -20,5 +20,9 @@ use Illuminate\Http\Request;
 Route::group(['middleware' => ['auth']], function () {
 	Route::get('product/available', 'ProductController@available');
 	Route::get('user/stock', 'UserStockController@index');
+
+	Route::post('user/order/cancel', 'OrderProductController@cancel');
 	Route::get('user/order', 'OrderProductController@progress');
+
+	Route::post('checkProductAv', 'ProductController@checkAv');
 });

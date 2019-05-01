@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Libs\UIDGenerator;
 use App\Model\Transaction\Order;
+use App\Model\Product\Product;
 
 use Validator;
 use Auth;
@@ -20,13 +20,13 @@ class OrderProductController extends Controller
     	$v = Validator::make($req->all(), $rules);
     	if($v->passes()){
     		Order::create([
-    			'id' => UIDGenerator::orderId(),
+    			'id' => Order::newId(),
     			'product_id' => $req->product_id,
     			'user_id' => Auth::user()->id,
     			'qty' => $req->qty,
     			'status' => '1'
     		]);
-    		return redirect('/order')->with(['_e'=>'success', '_msg' => 'Pesanan anda sudah tercatat, silahkan tunggu respon dari sistem']);  
+    		return redirect('/order')->with(['_e'=>'success', '_msg' => 'Pesanan anda sudah tercatat, selesaikan proses pembayaran']);  
     	} else {
 
     	}
@@ -34,17 +34,39 @@ class OrderProductController extends Controller
 
     public function progress(){
         $statues = [
-            '1' => 'Menunggu Konfirmasi'
+            '1' => 'Menunggu Pembayaran'
         ];
         $user_id = Auth::user()->id;
         $data = Order::all();
-        $res = [];
+        $res1 = []; // cancelable 
+        $res2 = []; // not cancelable
         foreach ($data as $item) {
-            $res[] = [
-                'id' => $item->id, 'nama_produk' => $item->product->name,
-                'qty' => $item->qty, 'status' => $statues[ $item->status ]
-            ];
+            if($item->status == '1'){
+                $res1[] = [
+                    'id' => $item->id, 'nama_produk' => $item->product->name,
+                    'qty' => $item->qty, 
+                    'status' => $statues[ $item->status ], 
+                    'tanggal' => substr($item->created_at, 0, 10)
+                ];
+            } else {
+                $res2[] = [
+                    'id' => $item->id, 'nama_produk' => $item->product->name,
+                    'qty' => $item->qty, 
+                    'status' => $statues[ $item->status ], 
+                    'tanggal' => substr($item->created_at, 0, 10)
+                ];                
+            }
         }
-        return response()->json($res);
+        return response()->json(['res1' => $res1, 'res2' => $res2]);
+    }
+
+    public function cancel(Request $req){
+        $data = Order::find($req->id);
+        $product = Product::find($data->product_id);
+        $product->booked -= $data->qty;
+        $product->save();        
+        $data->delete();
+
+        return response()->json(['success' => true]);
     }
 }

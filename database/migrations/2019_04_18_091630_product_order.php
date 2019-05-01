@@ -19,6 +19,8 @@ class ProductOrder extends Migration
             $table->unsignedInteger('user_id');
             $table->integer('qty');
             $table->char('status', 1);
+            $table->timestamps();
+
             $table->foreign('product_id')
                 ->references('id')
                 ->on('products');

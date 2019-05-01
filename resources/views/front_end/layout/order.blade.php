@@ -17,18 +17,35 @@
                             <table class="table table-striped table-bordered dt-responsive" id="example">
                                 <thead>
                                     <tr>
-                                        <th>ID Order</th>
                                         <th>Nama Produk</th>
-                                        <th>Jumlah Pemesanan</th>
+                                        <th>Jumlah</th>
+                                        <th>ID Order</th>
+                                        <th>Tanggal</th>
                                         <th>Status</th>
+                                        <th>Opsi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat='x in datas'>
-                                        <td>{* x.id *}</td>
+                                    <tr ng-repeat='x in datas1'>
                                         <td>{* x.nama_produk *}</td>
                                         <td>{* x.qty *}</td>
+                                        <td>{* x.id *}</td>
+                                        <td>{* x.tanggal *}</td>
                                         <td>{* x.status *}</td>
+                                        <td>
+                                            <button ng-click="cancel($index)" class="btn btn-sm btn-outline-danger">
+                                                <i class="fa fa-times"></i>
+                                                Batalkan
+                                            </button>
+                                        </td>
+                                    </tr>                                    
+                                    <tr ng-repeat='x in datas2'>
+                                        <td>{* x.nama_produk *}</td>
+                                        <td>{* x.qty *}</td>
+                                        <td>{* x.id *}</td>
+                                        <td>{* x.tanggal *}</td>
+                                        <td>{* x.status *}</td>
+                                        <td>-</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -61,6 +78,9 @@
     <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/tables/extensions/responsive.dataTables.min.css">
     <script src="../../../app-assets/vendors/js/tables/datatable/datatables.min.js"></script>
     <script src="../../../app-assets/vendors/js/tables/datatable/dataTables.responsive.min.js"></script>
-    
+      
+    <script src="../../../app-assets/vendors/js/extensions/sweetalert.min.js" type="text/javascript"></script>
+    <script src="../../../js/plugin/confirmDialog.js" type="text/javascript"></script>
+
     <script src="../../../js/view/memberOrder/tableController.js" type="text/javascript"></script>
 @endsection

@@ -17,6 +17,7 @@ class Products extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('qty');
+            $table->integer('booked')->default('0');
             $table->integer('price');
             $table->string('type', 10);
             $table->timestamps();

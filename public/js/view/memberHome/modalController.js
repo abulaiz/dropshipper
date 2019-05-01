@@ -5,6 +5,7 @@ app.controller('modalOrder' ,function ($scope, $http) {
 	$scope.product_default_option = false;
 	$scope.product_options = [];
 	$scope.jumlahOrder = 0;
+	$scope.requested = false;
 
 	$scope.getIndex = function(id){
 		for(let i=0; i < $scope.product_options.length; i++){
@@ -16,6 +17,34 @@ app.controller('modalOrder' ,function ($scope, $http) {
 	$scope.updatePrice = function(){
 		$scope.totalPembayaran = $scope.product_options[ index ].price * $scope.jumlahOrder;  
 	};
+
+	$scope.submit = function(e){
+		if(!$scope.requested){
+			$scope.requested = true;
+			e.preventDefault();
+
+			toastr.info('Sedang mengecek stok ...', 'Harap Tunggu!', {
+			positionClass: 'toast-bottom-right', containerId: 'toast-bottom-right'});
+			$scope.requested = false;
+
+	        $http.post('/api/checkProductAv', {'product_id' : $scope.product_id, 'qty' : $scope.jumlahOrder})
+	        .then(function successCallback(response) {
+				if(response.data.success){
+			      	toastr.success('Pesanan anda akan kami catat.', 'Stok Tersedia!', {
+			        positionClass: 'toast-bottom-right', containerId: 'toast-bottom-right'});
+					document.getElementById('addOrder').submit();	
+				} else {
+					toastr.warning('Hanya tersedia '+ response.data.available +'.', 'Stok tidak cukup!', {
+					positionClass: 'toast-bottom-right', containerId: 'toast-bottom-right'});
+					$scope.requested = false;
+				}
+	        }, function errorCallback(response) {
+				toastr.error('Terjadi kesalaha, coba lagi.', 'Request Failed!', {
+				positionClass: 'toast-bottom-right', containerId: 'toast-bottom-right'});
+				$scope.requested = false;
+	        });	
+		}
+	}
 
     // Get product list
     $http({

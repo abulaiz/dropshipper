@@ -8,7 +8,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form method="POST" action="{{ route('orderStock') }}">
+      <form method="POST" id="addOrder" action="{{ route('orderStock') }}" ng-submit='submit($event)'>
         <div class="modal-body">
             @csrf
             <label>Produk</label>
@@ -57,7 +57,7 @@
         </div>
         <div class="modal-footer">
             <input type="reset" class="btn btn-primary btn-lg" data-dismiss="modal" value="Kembali">
-            <input type="submit" class="btn btn-danger btn-lg" value="Order">
+            <input type="submit" ng-disabled='requested' class="btn btn-danger btn-lg" value="Order">
         </div>
       </form>
     </div>
