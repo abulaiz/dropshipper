@@ -5,8 +5,14 @@
             <li class="nav-item @yield('home')"><a class="nav-link" href="/"><i class="icon-home"></i>Home</a>
             </li>
             <!-- Order -->
-            <li class=" nav-item @yield('order')"><a class="nav-link" href="order"><i class="icon-basket-loaded"></i>Status Order</a>
-            </li>
+            <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="icon-note"></i>Order</a>
+            <ul class="dropdown-menu">
+              <li class="dropdown dropdown @yield('order')" data-menu="dropdown-"><a class="dropdown-item" href="order"><i class="icon-basket-loaded"></i>Status Order</a>
+              </li>
+              <li class="dropdown dropdown" data-menu="dropdown-"><a class="dropdown-item" href="historyOrder" data-toggle="dropdown"><i class="fa fa-bookmark"></i>Riwayat Order</a>
+              </li>
+            </ul>
+            </li>            
             <!-- Pengiriman Produk -->
             <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="icon-note"></i>Pengiriman Produk</a>
             <ul class="dropdown-menu">
