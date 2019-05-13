@@ -42,18 +42,16 @@
     <script src="../../../app-assets/vendors/js/extensions/toastr.min.js" type="text/javascript"></script>
 
     <script src="../../../assets/js/angular.min.js"></script>
-
-    <script type="text/javascript">
-        var app = angular.module("main", [], function($interpolateProvider){
-            $interpolateProvider.startSymbol('{*');
-            $interpolateProvider.endSymbol('*}');
-        });
-
-    </script>    
+    <script src="../../../assets/js/angular-route.min.js"></script>
+ 
+    <script src="../../../js/config/angularModule.js"></script>
     <script src="../../../js/config/directive.js"></script>
 
     <script src="../../../app-assets/js/scripts/customizer.js" type="text/javascript"></script>
 
+    <script src="../../../app-assets/new_ext/ambiance/jquery.ambiance.js" type="text/javascript"></script>
+
+    <script src="../../../js/view/notification/navbarController.js"></script>
 
     @yield('customJS')    
 </body>

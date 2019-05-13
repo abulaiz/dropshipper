@@ -25,4 +25,6 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('user/order', 'OrderProductController@progress');
 
 	Route::post('checkProductAv', 'ProductController@checkAv');
+
+	include 'api_mod/mail.php';
 });

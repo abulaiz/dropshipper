@@ -5,6 +5,7 @@
     <meta name="keywords" content="admin template, robust admin template, dashboard template, flat admin template, responsive admin template, web app, crypto dashboard, bitcoin dashboard">
     <meta name="author" content="PIXINVENT">
     <title>Dropshiper Web Application</title>
+    
     <link rel="apple-touch-icon" href="../../../app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="../../../img/logo.png">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i%7CMuli:300,400,500,700" rel="stylesheet">
@@ -27,3 +28,4 @@
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css/app.min.css">
     <!-- END ROBUST CSS-->
     <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/extensions/toastr.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/new_ext/ambiance/jquery.ambiance.css">
