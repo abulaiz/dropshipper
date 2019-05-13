@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Model\Transaction\Order;
 use App\Model\Product\Product;
+use App\Libs\Mail;
 
 use Validator;
 use Auth;
@@ -19,16 +20,29 @@ class OrderProductController extends Controller
     	];
     	$v = Validator::make($req->all(), $rules);
     	if($v->passes()){
+            $id = Order::newId();
     		Order::create([
-    			'id' => Order::newId(),
+    			'id' => $id,
     			'product_id' => $req->product_id,
     			'user_id' => Auth::user()->id,
     			'qty' => $req->qty,
     			'status' => '1'
     		]);
-    		return redirect('/order')->with(['_e'=>'success', '_msg' => 'Pesanan anda sudah tercatat, selesaikan proses pembayaran']);  
-    	} else {
+        
+            Mail::getInstance()->write([
+                'flag_sender' => 'S',
+                'flag_receiper' => 'M',
+                'receiper_mail' => 'System',
+                'receiper_id' => Auth::user()->id,
+                'sender_name' => 'System',
+                'receiper_name' => Auth::user()->name,
+                'subject' => 'Menunggu Pembayaran',
+                'text' => 'Segera selesaikan pembayaran untuk order '. $id
+            ]);
 
+    		return redirect('/order')->with(['_e'=>'success', '_msg' => 'Pesanan anda sudah tercatat, selesaikan proses pembayaran.']);  
+    	} else {
+            return redirect('/order')->with(['_e'=>'warning', '_msg' => 'Harap lengkapi form isian.']);  
     	}
     }
 

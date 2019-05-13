@@ -4,7 +4,12 @@
     	$scope.datas1 = [];
     	$scope.datas2 = [];
 
-    	$scope.cancel = function(index){
+    	$scope.anu = function(){
+				toastr.info('Sedang membatalkan order ...', 'Harap Tunggu!', {
+				positionClass: 'toast-bottom-right', containerId: 'toast-bottom-right'});    		
+    	};
+
+    	$scope.cancel = function(index){ 		
 			_confirm(0, function(){
 				toastr.info('Sedang membatalkan order ...', 'Harap Tunggu!', {
 				positionClass: 'toast-bottom-right', containerId: 'toast-bottom-right'});
@@ -12,11 +17,13 @@
 
 		        $http.post('/api/user/order/cancel', {'id' : $scope.datas1[index].id})
 		        .then(function successCallback(response) {
+		        	toastr.remove();
 					toastr.info('Order telah dibatalkan.', 'Berhasil!', {
 					positionClass: 'toast-bottom-right', containerId: 'toast-bottom-right'});
 					$scope.requested = false;
 					$scope.loadData();
 		        }, function errorCallback(response) {
+		        	toastr.remove();
 					toastr.error('Terjadi kesalahan, coba lagi.', 'Request Failed!', {
 					positionClass: 'toast-bottom-right', containerId: 'toast-bottom-right'});
 					$scope.requested = false;
@@ -42,9 +49,6 @@
 				$('#table-loader').hide();	        
 		        $timeout(function(){     	
 					$('#example').DataTable( {
-					    rowReorder: {
-					        selector: 'td:nth-child(2)'
-					    },
 					    responsive: true
 					});	
 		        }, 50);       

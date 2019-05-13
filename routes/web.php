@@ -25,7 +25,6 @@ Route::group(['middleware' => ['auth']], function () {
 	});
 
 	include('web_mod/email.php');
-	include('web_mod/detailemail.php');
 
 	// Route khusus untuk member
 	Route::group(['middleware' => ['role:member']], function () {

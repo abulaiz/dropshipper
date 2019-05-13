@@ -38,7 +38,7 @@ class UserAndAssignRoleSeeder extends Seeder
             $user3->email = 'admin1@gmail.com';
             $user3->password = bcrypt('admin2');
             $user3->save();
-            $user3->assignRole('member');
+            $user3->assignRole('admin');
         }
     }
 }
