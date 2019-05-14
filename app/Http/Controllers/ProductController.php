@@ -12,6 +12,7 @@ class ProductController extends Controller
     	return response()->json(['data' => $data]);
     }
 
+    // input = product_id, qty
     public function checkAv(Request $req){
     	$data = Product::find($req->product_id);
     	$stok = $data->qty - $data->booked;

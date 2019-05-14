@@ -41,3 +41,11 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 .unread{
 	background-color: antiquewhite !important;
 }
+
+.tester{
+	margin-right: 10px;
+}
+
+.rowtester{
+	margin-bottom: 10px;
+}
