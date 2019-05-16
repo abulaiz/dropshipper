@@ -31,6 +31,7 @@ class OrderProductController extends Controller
         
             Mail::getInstance()->write([
                 'flag_sender' => 'S',
+                'sender_mail' => 'System',
                 'flag_receiper' => 'M',
                 'receiper_mail' => 'System',
                 'receiper_id' => Auth::user()->id,
