@@ -26,5 +26,8 @@ Route::group(['middleware' => ['auth']], function () {
 
 	Route::post('checkProductAv', 'ProductController@checkAv');
 
+	Route::post('order/historyAll', 'HistoryAllController@index');
+	Route::post('order/history', 'HistoriPeriodeController@periode');
+	
 	include 'api_mod/mail.php';
 });
