@@ -12,17 +12,27 @@
                 </ol>
               </div>
 
-<!-- Custom view start -->
-<section id="select-inputs" ng-controller='table'>
+<section id="morris-charts">
+ <!-- Smooth Area Chart -->
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">List View Barang</h4><br>
-                    <button class="ui-button ui-widget ui-corner-all btn-danger mb-2" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#tambahorder"><i class="fa fa-plus"></i>  Order</button>
-                    <div class="card-content collapse show">
-                        <div class="table-responsive" style="display: none;">
-                            <table class="table table-striped table-bordered dt-responsive" id="example">
+                    <h4 class="card-title">History Order</h4><br>
+                    <div class="col-md-3">
+                        
+                        <div class="input-group input-append date" id="dpMonths" data-date="102/2012" data-date-format="mm/yyyy" data-date-viewmode="years" data-date-minviewmode="months">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text add-on"><i class="ft-calendar"></i></span>
+                                </div>
+                                <input type="text" class="form-control datepicker-default span2" value="02/2012" readonly="" />
+                            </div>
+
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered" id="order">
                                 <thead>
                                     <tr>
                                         <th>Nama Produk</th>
@@ -31,34 +41,27 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat='x in datas'>
-                                        <td>{* x.name *}</td>
-                                        <td>{* x.qty *}</td>
-                                        <td>{* x.price *}</td>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
                                     </tr>
                                 </tbody>
-                            </table>
-                        </div>
-                        <div class="loader-wrapper" id="table-loader">
-                          <div class="loader-container">
-                            <div class="ball-beat loader-info">
-                              <div></div>
-                              <div></div>
-                              <div></div>
-                            </div>
-                          </div>
-                        </div>                            
+                        </table>
                     </div>
-                </div>
+                </div>       
             </div>
         </div>
     </div>
-</section>
-<!-- Custom view end -->
+    </section>
 
   @endsection
 
 @section('customJS')
+
+    <!-- Datepicker -->
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/new_ext/datepicker/datepicker.css">
+    <script src="../../../app-assets/new_ext/datepicker/bootstrap-datepicker.js"></script>
     <!-- DataTables -->
     <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/tables/datatable/datatables.min.css">
     <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/tables/extensions/responsive.dataTables.min.css">
@@ -66,11 +69,15 @@
     <script src="../../../app-assets/vendors/js/tables/datatable/dataTables.responsive.min.js"></script>
     <script>
         $(document).ready(function() {
-    var table = $('#order').DataTable( {
-        rowReorder: {
-            selector: 'td:nth-child(2)'
-        },
-        responsive: true
-    } );
+            var table = $('#order').DataTable( {
+                            rowReorder: {
+                                selector: 'td:nth-child(2)'
+                            },
+                            responsive: true
+                        });
+        });
+
+            $('#dpMonths').datepicker();
+
     </script>
 @endsection
