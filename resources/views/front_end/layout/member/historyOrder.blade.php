@@ -5,9 +5,9 @@
 
             <div class="breadcrumb-wrapper col-12">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="index.html">Home</a>
+                  <li class="breadcrumb-item"><a href="/">Home</a>
                   </li>
-                  <li class="breadcrumb-item active">History Order
+                  <li class="breadcrumb-item active"><i class="fa fa-shopping-cart">&nbspHistory Order</i>
                   </li>
                 </ol>
               </div>
