@@ -24,10 +24,10 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::post('user/order/cancel', 'OrderProductController@cancel');
 	Route::get('user/order', 'OrderProductController@progress');
 
-	Route::post('checkProductAv', 'ProductController@checkAv');
+	Route::get('user/order/history', 'OrderProductController@member_history');
+	Route::post('user/order/history', 'OrderProductController@member_history');
 
-	Route::post('order/historyAll', 'HistoryAllController@index');
-	Route::post('order/history', 'HistoriPeriodeController@periode');
+	Route::post('checkProductAv', 'ProductController@checkAv');
 	
 	include 'api_mod/mail.php';
 });

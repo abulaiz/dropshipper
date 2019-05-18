@@ -9,7 +9,7 @@ class HistoryAllController extends Controller
 {
     public function index()
     {
-    	$data = Order::where('status', )->get();
+    	$data = Order::where('status', '2')->get();
     	
     	return response()->json($data);
     }

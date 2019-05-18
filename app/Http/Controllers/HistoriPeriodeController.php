@@ -11,7 +11,7 @@ class HistoriPeriodeController extends Controller
     public function periode(Request $req){
     	$x = $req->year.'-'.$req->month;
     	$data = Order::where('created_at','like', $x.'%')
-    			->where('status', )
+    			->where('status', '2')
     			->get();
     	return response()->json($data);
     }
