@@ -33,7 +33,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 	// Route khusus untuk admin dan superadmin
 	Route::group(['middleware' => ['role:admin|superadmin']], function () {
-		// include('web_mod/admin.php');
+		include('web_mod/admin.php');
 	});
 
 	// Route khusus untuk superadmin
