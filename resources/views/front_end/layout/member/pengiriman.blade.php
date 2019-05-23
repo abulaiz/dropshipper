@@ -206,7 +206,7 @@
                       <img src="../../../img/jt.png"  width="75px" height="75px">
                     </label>
                     <br>
-                    <div align="right"><input type="submit" ng-disabled='requested' class="btn btn-danger btn-lg" value="PROSESS SEMUA"></div>
+                    <div align="right"><button class="btn btn-lg btn-block font-medium-1 btn-outline-danger mb-1 block-page">PROSES SEMUA</button></div>
 
             </fieldset>
                         </div>
@@ -224,6 +224,9 @@
 
 @section('customJS')
     
+    <!-- Add On Block -->
+    
+    <script src="../../../app-assets/js/scripts/extensions/block-ui.js"></script>
     <!-- Radio & Check -->
     <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/forms/icheck/icheck.css">
     <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/forms/icheck/custom.css">
