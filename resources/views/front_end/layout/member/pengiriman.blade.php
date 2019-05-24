@@ -136,6 +136,7 @@
                             <input type="text" class="form-control" placeholder="Masukkan Tujuan Kecamatan/Negara (LUAR NEGERI)" aria-describedby="basic-addon3">
                     </div>
                 </fieldset>
+                <br>
                 </form>
                         </div>
                         
@@ -158,12 +159,12 @@
                   </label>
 
                     <label class="btn">
-                      <input type="radio" name="test" onclick="javascript:yesnoCheck();" value="big" id="noCheck">
+                      <input type="radio" name="test" onclick="javascript:yesnoCheck();" value="big" id="noChecks">
                       <img src="../../../img/ig.png" width="40px" height="40px">
                     </label>
 
                     <label class="btn">
-                      <input type="radio" name="test" onclick="javascript:yesnoCheck();" value="big" id="noCheck">
+                      <input type="radio" name="test" onclick="javascript:yesnoCheck();" value="big" id="noChecked">
                       <img src="../../../img/ln.png"  width="40px" height="40px">
                     </label><br>
 
@@ -211,17 +212,15 @@
             </fieldset>
             <br>
             <fieldset>
-
                     <div class="custom-file">
                                 <input type="file" class="custom-file-input" id="inputGroupFile01">
                                 <label class="custom-file-label" for="inputGroupFile01">Masukkan Bukti Orderan Via E-Commerce</label>
                     </div>
-
             </fieldset>
         </div>
             <br>
             <div id="ongkirK" style="visibility:visible;">
-            <label>Jumlah Ongkos Kirim 1/Kg : </label>
+            <label>Jumlah Ongkos Kirim / 1 Kg : </label>
             <div class="row">
             <div class="col-sm-4">
             <fieldset>    
@@ -229,12 +228,12 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon3"><i class="fa fa-usd"></i></span>
                         </div>
-                            <input type="text" class="form-control" placeholder="10.000" aria-describedby="basic-addon3">
+                            <input type="text" class="form-control" placeholder="10.000" aria-describedby="basic-addon3" readonly="">
                     </div>
                     </fieldset>
             </div>
             x
-            <div class="col-sm-4">
+            <div class="col-sm-2">
             <fieldset>    
                     <div class="input-group">
                         <div class="input-group-prepend">
@@ -332,20 +331,28 @@
                 document.getElementById('ifYes').style.visibility = 'visible';
             } else if (document.getElementById('checks').checked) {
                 document.getElementById('ifYes').style.visibility = 'visible';
-            } 
-            else document.getElementById('ifYes').style.visibility = 'hidden';
+            } else if  (document.getElementById('noCheck').checked) {
+                document.getElementById('ifYes').style.visibility = 'hidden';
+            } else if  (document.getElementById('noChecks').checked) {
+                document.getElementById('ifYes').style.visibility = 'hidden';
+            } else if  (document.getElementById('noChecked').checked) {
+                document.getElementById('ifYes').style.visibility = 'hidden';
+            }
         }
 
         function hiddenCheck(){
 
             if (document.getElementById('gratis').checked) {
                 if (document.getElementById('ifFree').style.visibility = 'visible') {
-                    document.getElementById('ongkirK').style.visibility = 'hidden'};
+                    document.getElementById('ongkirK').style.visibility = 'hidden';
+                }
              }  else if (document.getElementById('nogratis').checked) {
                 if (document.getElementById('ifFree').style.visibility = 'hidden') {
-                    document.getElementById('ongkirK').style.visibility = 'visible'};
+                    document.getElementById('ongkirK').style.visibility = 'visible';
                 }
-            }        
+            } else 
+                    document.getElementById('ifFree').style.visibility = 'hidden';
+        }        
 
             $('#dpMonths').datepicker();
 
