@@ -14,7 +14,7 @@
                     <div class="card-body">
 
                         <div class="table-responsive" style="display: none;">
-                            <table class="table table-striped table-bordered dt-responsive" id="example">
+                            <table class="table table-striped table-bordered" id="example">
                                 <thead>
                                     <tr>
                                         <th>Nama Produk</th>
@@ -33,7 +33,7 @@
                                         <td>{* x.tanggal *}</td>
                                         <td>{* x.status *}</td>
                                         <td>
-                                            <button ng-click="cancel($index)" class="btn btn-sm btn-outline-danger">
+                                            <button ng-click="cancel($index)" class="btn btn-sm btn-outline-danger nn">
                                                 <i class="fa fa-times"></i>
                                                 Batalkan
                                             </button>

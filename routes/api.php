@@ -24,7 +24,6 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::post('user/order/cancel', 'OrderProductController@cancel');
 	Route::get('user/order', 'OrderProductController@progress');
 
-	Route::get('user/order/history', 'OrderProductController@member_history');
 	Route::post('user/order/history', 'OrderProductController@member_history');
 
 	Route::post('checkProductAv', 'ProductController@checkAv');
