@@ -18,13 +18,20 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-header">
+<!--                 <div class="card-header">
                     <h4 class="card-title">Input Alamat Pengiriman</h4><br>
-                </div>
+                </div> -->
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-6">
                     <form method="POST" id="" action="" ng-submit=''>
+                    <table class="table">
+                      <thead class="thead-dark">
+                        <tr>
+                          <th colspan="2">FORM INPUT PENGIRIMAN</th>
+                        </tr>
+                      </thead>
+                </table>
                     <fieldset>
                     <label>Nama Penerima : </label>   
                     <div class="input-group">
@@ -36,12 +43,35 @@
                     </fieldset>
                     <br>
                     <fieldset>
+                        <label>Produk : </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon3"><i class="fa fa-tag"></i></span>
+                            </div>
+                        <select class="form-control" required ng-model='product_id' name="product_id">
+                          <option value="" ng-disabled='product_default_option'>- Pilih Produk -</option>  
+                          <option value="{* x.id *}" ng-repeat='x in product_options'> {* x.name *} </option>
+                        </select>
+                        </div>
+                    </fieldset>
+                    <br>
+                    <fieldset>
+                        <label>Jumlah</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon3"><i class="fa fa-tags"></i></span>
+                            </div>
+                        <input type="number" class="form-control" placeholder="Masukkan Nama Penerima" aria-describedby="basic-addon3">
+                        </div>
+                    </fieldset>
+                    <br>
+                    <fieldset>
                     <label>Alamat Penerima : </label>  
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon3"><i class="fa fa-bookmark"></i></span>
                         </div>
-                            <input type="text" class="form-control" placeholder="Masukkan Alamat Penerima" aria-describedby="basic-addon3">
+                            <textarea class="form-control" placeholder="Masukkan Alamat Penerima"></textarea>
                     </div>
                     </fieldset>
                     <br>
@@ -64,10 +94,11 @@
                             <input type="text" class="form-control" placeholder="Masukkan Nama Pengirim" aria-describedby="basic-addon3">
                     </div>
                     <br>
-                    <input type="reset" class="btn btn-primary btn-lg" value="RESET">
-                    <input type="submit" ng-disabled='requested' class="btn btn-danger btn-lg" value="SUBMIT">
-                    <br><br>
-                <label>Form Alamat Pengiriman :</label>
+                    </fieldset>
+                    <fieldset>
+                    <!-- <input type="reset" class="btn btn-primary btn-lg" value="RESET">
+                    <input type="submit" ng-disabled='requested' class="btn btn-danger btn-lg" value="SUBMIT"> -->
+<!--                 <label>Form Alamat Pengiriman :</label>
                 <div class="table-responsive">
                     <table class="table">
                       <thead class="thead-dark">
@@ -94,9 +125,17 @@
                         </tr>
                       </tbody>
                     </table>
-                </div>
-                    </fieldset>
-                    <br>
+                </div> -->
+                </fieldset>
+                <fieldset>
+                    <label>Tujuan Kecamatan/Negara (LUAR NEGERI) : </label>    
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon3"><i class="fa fa-map-pin"></i></span>
+                        </div>
+                            <input type="text" class="form-control" placeholder="Masukkan Tujuan Kecamatan/Negara (LUAR NEGERI)" aria-describedby="basic-addon3">
+                    </div>
+                </fieldset>
                 </form>
                         </div>
                         
@@ -132,7 +171,7 @@
 
                     <label class="btn">
                       <input type="radio" name="test" onclick="javascript:yesnoCheck();" value="small" id="yesCheck">
-                      <img src="../../../img/bl.png" width="55px" height="45px">
+                      <img src="../../../img/bl.png" width="80px" height="60px">
                     </label>
 
                     <label class="btn">
@@ -159,6 +198,7 @@
               </div>
             </fieldset>
             <br>
+
             <fieldset>
             <div id="ifFree" style="visibility:hidden">
                <div class="input-group">
@@ -180,6 +220,35 @@
             </fieldset>
         </div>
             <br>
+            <div id="ongkirK" style="visibility:visible;">
+            <label>Jumlah Ongkos Kirim 1/Kg : </label>
+            <div class="row">
+            <div class="col-sm-4">
+            <fieldset>    
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon3"><i class="fa fa-usd"></i></span>
+                        </div>
+                            <input type="text" class="form-control" placeholder="10.000" aria-describedby="basic-addon3">
+                    </div>
+                    </fieldset>
+            </div>
+            x
+            <div class="col-sm-4">
+            <fieldset>    
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                        </div>
+                            <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon3">
+                    </div>
+                    <br>
+                    </fieldset>
+            </div>
+            </div>
+            </div>
+
+
+            <br>
             <fieldset class="form-group">  
                 
                 <table class="table">
@@ -189,7 +258,6 @@
                         </tr>
                       </thead>
                 </table>
-                <label>Via Media Sosial :</label><br>
 
                   <label class="btn">
                   <input type="radio" name="test"  value="small">
@@ -206,11 +274,12 @@
                       <img src="../../../img/jt.png"  width="75px" height="75px">
                     </label>
                     <br>
-                    <div align="right"><button class="btn btn-lg btn-block font-medium-1 btn-outline-danger mb-1 block-page">PROSES SEMUA</button></div>
+                    <div align="right"></div>
 
             </fieldset>
                         </div>
 
+                    <button class="btn btn-lg btn-block font-medium-1 btn-outline-danger mb-1 block-page">PROSES SEMUA</button>
 
                     </div>
                 </div>
@@ -225,7 +294,7 @@
 @section('customJS')
     
     <!-- Add On Block -->
-    
+
     <script src="../../../app-assets/js/scripts/extensions/block-ui.js"></script>
     <!-- Radio & Check -->
     <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/forms/icheck/icheck.css">
@@ -270,20 +339,13 @@
         function hiddenCheck(){
 
             if (document.getElementById('gratis').checked) {
-            document.getElementById('ifFree').style.visibility = 'visible';
+                if (document.getElementById('ifFree').style.visibility = 'visible') {
+                    document.getElementById('ongkirK').style.visibility = 'hidden'};
              }  else if (document.getElementById('nogratis').checked) {
-                document.getElementById('ifFree').style.visibility = 'hidden';
-            } 
-        }
-
-        function hiddenJasa(){
-
-            if (document.getElementById('yesJasa').checked) {
-            document.getElementById('ifJasa').style.visibility = 'visible';
-             }  
-
-             else document.getElementById('ifJasa').style.visibility = 'hidden';
-        }        
+                if (document.getElementById('ifFree').style.visibility = 'hidden') {
+                    document.getElementById('ongkirK').style.visibility = 'visible'};
+                }
+            }        
 
             $('#dpMonths').datepicker();
 
