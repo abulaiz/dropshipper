@@ -27,6 +27,9 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::post('user/order/history', 'OrderProductController@member_history');
 
 	Route::post('checkProductAv', 'ProductController@checkAv');
+
+	Route::get('admin/orderRequest', 'OrderProductController@request');
+	Route::get('admin/orderDetail/{id}', 'OrderProductController@request_detail');
 	
 	include 'api_mod/mail.php';
 });

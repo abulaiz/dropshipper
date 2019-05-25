@@ -18,6 +18,11 @@ class Order extends Model
         return $this->belongsTo('App\Model\Product\Product');
     }
 
+	public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
 	public static function newId(){
 		return strtoupper( uniqid('O') );
 	}
