@@ -4,6 +4,7 @@
         	<!-- Dashboard -->
             <li class="nav-item @yield('home')"><a class="nav-link" href="/"><i class="icon-home"></i>Home</a>
             </li>
+            
             @hasrole('member')
             <!-- Order -->
             <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="icon-note"></i>Order</a>
@@ -25,6 +26,7 @@
             </li>
             @endhasrole
 
+
             @unlessrole('member')
             <li class="nav-item @yield('request_order')"><a class="nav-link" href="/orderRequest"><i class="icon-bag"></i>Permintaan Stok</a>
             </li>
@@ -33,6 +35,7 @@
             <li class="nav-item"><a class="nav-link" href="/"><i class="icon-list"></i>Stok Produk</a>
             </li>            
             @endunlessrole
+
         </ul>
       </div>
     </div>
