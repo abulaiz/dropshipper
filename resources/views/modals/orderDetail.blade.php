@@ -53,7 +53,7 @@
            <li class="list-group-item d-flex justify-content-between">
               <div>
                 <small class="text-muted">Total Pembayaran</h6>
-                <h6 class="my-0 moneyformat">{* d.total | currency: "Rp " : 0 *}</small>
+                <h6 class="my-0">{* d.total | currency: "Rp " : 0 *}</small>
               </div>
               <span class="fa fa-money"></span>
             </li>             

@@ -1,8 +1,14 @@
+	var Table;	
 
     app.controller('table', function($scope, $http, $timeout){
 
     	$scope.datas = [];
     	$scope.d = [];
+
+    	$scope.confirm = function(index, e){
+
+    		// Table.row(e.parentNode.parentNode.parentNode).remove().draw( false );
+    	};
 
     	$scope.details = function(index){
     		$('#detail-loader').show();
@@ -33,7 +39,7 @@
 				$('.table-responsive').show();
 				$('#table-loader').hide();	        
 		        $timeout(function(){     	
-					$('#example').DataTable();	
+					Table = $('#example').DataTable();	
 		        }, 50);       
 		    });    		
     	}

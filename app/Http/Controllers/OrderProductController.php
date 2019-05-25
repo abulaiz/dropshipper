@@ -162,4 +162,21 @@ class OrderProductController extends Controller
         ];  
         return response()->json($response); 
     }
+
+    public function confirmOrder(Request $req){
+        $rules = [
+            'id' => 'required|exists:product_orders,id'
+        ];
+        $v = Validator::make($req->all(), $rules);
+        if($v->passes()){
+            $order = Order::find($req->id);
+            $order->status = '2';
+            
+            $product = Product::find($order->product_id);
+            $product->booked -= $order->qty;
+
+            $product->save();
+            $order->save();
+        }         
+    }
 }

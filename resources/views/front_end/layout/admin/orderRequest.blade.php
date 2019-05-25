@@ -41,9 +41,9 @@
                                               <a class="dropdown-item" ng-click="details($index)" data-toggle="modal" data-target="#detail">
                                                 <i class="fa fa-file-o mr-1"></i>Detail</a>  
                                               <div class="dropdown-divider"></div>                           
-                                              <a class="dropdown-item">
+                                              <a class="dropdown-item" ng-click="confirm($index, $event.currentTarget)">
                                                 <i class="fa fa-check mr-1"></i>Konfirmasi</a>     
-                                              <a class="dropdown-item">
+                                              <a class="dropdown-item" >
                                                 <i class="fa fa-times mr-1"></i>Tolak</a>                                                                                        
                                             </div>
                                         </td>
