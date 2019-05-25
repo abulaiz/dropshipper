@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('historyOrder', 'active')
+@section('user', 'active')
 
 @section('content')
 
@@ -20,7 +20,7 @@
 
                 <div class="card-body">
 
-                    <button class="ui-button ui-widget ui-corner-all btn-danger mb-2" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#tambahuser"><i class="fa fa-plus"></i>  Tambah User</button>
+                    <button class="ui-button ui-widget ui-corner-all btn-danger mb-2" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#tambahuser"><i class="fa fa-user-plus"></i>  Tambah User</button>
 
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered" id="order">

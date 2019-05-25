@@ -28,6 +28,16 @@
 
 
             @hasrole('admin')
+            <!-- Pengiriman -->
+            <li class="nav-item @yield('pengiriman')"><a class="nav-link" href="prosesAlamat"><i class="fa fa-map-signs"></i>Proses Alamat Pengiriman</a>
+            </li>
+            <!-- Stok Product -->
+            <li class="nav-item @yield('stok')"><a class="nav-link" href="stokProduk"><i class="fa fa-inbox"></i>Stok Product</a>
+            </li>
+            @endhasrole
+
+
+            @hasrole('superadmin')
             <!-- User -->
             <li class="nav-item @yield('user')"><a class="nav-link" href="user"><i class="fa fa-user"></i>User Member</a>
             </li>
