@@ -33,8 +33,8 @@
                                         <td>{* x.tanggal *}</td>
                                         <td>{* x.status *}</td>
                                         <td>
-                                            <button ng-click="cancel($index)" class="btn btn-sm btn-outline-danger nn">
-                                                <i class="fa fa-times"></i>
+                                            <button ng-click="cancel($index)" class="btn btn-sm btn-outline-danger">
+                                                <i class="fa fa-times" style="margin-right: 5px;"></i>
                                                 Batalkan
                                             </button>
                                         </td>
@@ -45,7 +45,12 @@
                                         <td>{* x.id *}</td>
                                         <td>{* x.tanggal *}</td>
                                         <td>{* x.status *}</td>
-                                        <td>-</td>
+                                        <td>
+                                            <button ng-click="delete($index)" class="btn btn-sm btn-warning">
+                                                <i class="fa fa-trash" style="margin-right: 5px;"></i>
+                                                Hapus
+                                            </button>                                            
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>

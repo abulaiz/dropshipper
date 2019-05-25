@@ -6,8 +6,39 @@
     	$scope.d = [];
 
     	$scope.confirm = function(index, e){
+			_confirm(1, function(){
+				toastr.info('Sedang mengkonfirmasi order.', 'Harap Tunggu !', {
+				positionClass: 'toast-bottom-right', containerId: 'toast-bottom-right'});
 
-    		// Table.row(e.parentNode.parentNode.parentNode).remove().draw( false );
+		        $http.post('/api/admin/order/confirm', {'id' : $scope.datas[index].id})
+		        .then(function successCallback(response) {
+					toastr.success('Order Produk sudah terkonfirmasi.', 'Berhasil !', {
+					positionClass: 'toast-bottom-right', containerId: 'toast-bottom-right'});
+
+		    		Table.row(e.parentNode.parentNode.parentNode).remove().draw( false );
+		        }, function errorCallback(response) {
+					toastr.error('Terjadi kesalahan, coba lagi.', 'Request Failed!', {
+					positionClass: 'toast-bottom-right', containerId: 'toast-bottom-right'});
+		        });				
+			});    			    		
+    	};
+
+    	$scope.reject = function(index, e){
+			_confirm(2, function(){
+				toastr.info('Sedang membatalkan order.', 'Harap Tunggu !', {
+				positionClass: 'toast-bottom-right', containerId: 'toast-bottom-right'});
+
+		        $http.post('/api/admin/order/reject', {'id' : $scope.datas[index].id})
+		        .then(function successCallback(response) {
+					toastr.success('Order Produk sudah dibatalkan.', 'Berhasil !', {
+					positionClass: 'toast-bottom-right', containerId: 'toast-bottom-right'});
+
+		    		Table.row(e.parentNode.parentNode.parentNode).remove().draw( false );
+		        }, function errorCallback(response) {
+					toastr.error('Terjadi kesalahan, coba lagi.', 'Request Failed!', {
+					positionClass: 'toast-bottom-right', containerId: 'toast-bottom-right'});
+		        });				
+			});    			    		
     	};
 
     	$scope.details = function(index){

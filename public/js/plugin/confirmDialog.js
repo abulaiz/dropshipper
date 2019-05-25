@@ -4,7 +4,17 @@ var swalBase = [
 			title:'Apakah anda yakin ?', 
 			text : 'Catatan pesanan anda akan dihapuskan',
 			icon : 'warning'
-		}	
+		},
+		{ // 1
+			title:'Apakah anda yakin ?', 
+			text : 'Setelah dikonfirmasi, stok produk member akan langsung ditambahkan',
+			icon : 'info'
+		},	
+		{ // 2
+			title:'Apakah anda yakin ?', 
+			text : 'Pesanan Produk member akan dibatalkan',
+			icon : 'warning'
+		},					
 ];
 
 function getSwalBody(type){
