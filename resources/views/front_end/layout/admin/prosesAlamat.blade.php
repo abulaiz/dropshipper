@@ -33,60 +33,37 @@
                 </div>
 
                 <div class="card-body">
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="card border-danger bg-transparent">
-                                <div class="card-content">
-                                    <div class="card-body pt-3">
-                                        <div class="table-responsive">
-                                            <table class="table">
-                                              <thead>
-                                                <tr>
-                                                  <th colspan="2"><center>STOCKISTMOC DROPSHIPPER</center></th>
-                                                </tr>
-                                              </thead>
-                                              <tbody>
-                                                <tr>
-                                                  <td width="185px">Nama Product &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:</td>
-                                                  <td>Super Grow Up 1 Paket</td>
-                                                </tr>
-                                                <tr>
-                                                  <td width="185px">Nama Penerima &nbsp&nbsp&nbsp&nbsp:</td>
-                                                  <td>Derrick</td>
-                                                </tr>
-                                                <tr>
-                                                  <td>Alamat Penerima &nbsp&nbsp: </td>
-                                                  <td></td>
-                                                </tr>   
-                                                <tr>
-                                                  <td>Nomer Penerima &nbsp&nbsp: </td>
-                                                  <td></td>
-                                                </tr>
-                                                <tr>
-                                                  <td>Nama Pengirim &nbsp&nbsp&nbsp&nbsp&nbsp: </td>
-                                                  <td></td>
-                                                </tr>
-                                              </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                 </div>    
-                            </div>
+                      <div class="table-responsive">
+                            <table class="table table-striped table-bordered" id="example">
+                                <thead>
+                                    <tr>
+                                        <th>ID Order</th>
+                                        <th>Member</th>
+                                        <th>Nama Produk</th>
+                                        <th>Jumlah</th>
+                                        <th>Opsi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>aaa</td>
+                                        <td>aaa</td>
+                                        <td>aa</td>
+                                        <td>aa</td>
+                                        <td>
+                                            <button type="button" class="btn btn-outline-info dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" size="100">Action</button>
+                                            <div class="dropdown-menu" x-placement="bottom-start" >
+                                              <a class="dropdown-item" ng-click="" data-toggle="modal" data-target="">
+                                                <i class="fa fa-file-o mr-1"></i>Update</a>  
+                                              <div class="dropdown-divider"></div>                           
+                                              <a class="dropdown-item">
+                                                <i class="fa fa-print mr-1"></i>Print</a>                                                                                   
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-
-                        <div class="col-md-6">
-                            <div class="card border-danger text-center bg-transparent">
-                                <div class="card-content">
-                                    <div class="card-body pt-3">
-                                        
-                                    </div>
-                                 </div>    
-                            </div>
-                        </div>
-
-                    </div>
-
                 </div>       
             </div>
         </div>
@@ -107,7 +84,7 @@
     <script src="../../../app-assets/vendors/js/tables/datatable/dataTables.responsive.min.js"></script>
     <script>
         $(document).ready(function() {
-            var table = $('#order').DataTable( {
+            var table = $('#example').DataTable( {
                             rowReorder: {
                                 selector: 'td:nth-child(2)'
                             },

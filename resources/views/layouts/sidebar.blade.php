@@ -28,14 +28,17 @@
             @endhasrole
 
 
-            @hasrole('admin')
+            @unlessrole('member')
             <!-- Pengiriman -->
-            <li class="nav-item @yield('pengiriman')"><a class="nav-link" href="prosesAlamat"><i class="fa fa-map-signs"></i>Proses Alamat Pengiriman</a>
+            <li class="nav-item @yield('request_order')"><a class="nav-link" href="/orderRequest"><i class="icon-bag"></i>Permintaan Stok</a>
             </li>
             <!-- Stok Product -->
-            <li class="nav-item @yield('stok')"><a class="nav-link" href="stokProduk"><i class="fa fa-inbox"></i>Stok Product</a>
+            <li class="nav-item"><a class="nav-link" href="prosesAlamat"><i class="icon-directions"></i>Proses Pengiriman</a>
             </li>
-            @endhasrole
+            <!-- Stok Product -->
+            <li class="nav-item"><a class="nav-link" href="stokBarang"><i class="icon-list"></i>Stok Produk</a>
+            </li>
+            @endunlessrole
 
 
             @hasrole('superadmin')
