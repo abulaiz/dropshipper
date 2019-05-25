@@ -13,7 +13,3 @@ Route::get('/stokProduk', function(){
 	return view('front_end/layout/admin/stokBarang');
 });
 
-// Menu admin Member
-Route::get('/user', function () {
-    return view('front_end/layout/admin/user');
-});
