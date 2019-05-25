@@ -48,9 +48,7 @@
 				$('.table-responsive').show();
 				$('#table-loader').hide();	        
 		        $timeout(function(){     	
-					$('#example').DataTable( {
-					    responsive: true
-					});	
+					$('#example').DataTable();	
 		        }, 50);       
 		    });    		
     	}

@@ -70,3 +70,9 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 .rowtester{
 	margin-bottom: 10px;
 }
+
+.jdt td, .jdt th {
+	padding-top: 10px !important;
+	padding-bottom: 10px !important;
+}
+

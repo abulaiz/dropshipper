@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="../../../../app-assets/css/vendors.css">
 
     <!-- UI -->
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/ui/jquery-ui.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/base/jquery-ui.css">
 
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css/app.css">
     <!-- END ROBUST CSS-->

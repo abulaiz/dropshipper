@@ -1,7 +1,12 @@
 @extends('layouts.master')
-@section('order', 'active')
+@section('request_order', 'active')
 
 @section('content')
+
+<div class="alert bg-pink alert-icon-left alert-arrow-left mb-2" role="alert">
+  <span class="alert-icon"><i class="fa fa-info"></i></span>
+  <strong>TIPS ! .</strong> Untuk mengecek pembayaran member, gunakan ID Order sebagai kata kunci pencarian pesan.
+</div>
 
 <section id="tab-pane1" ng-controller='table'>
     <div class="row">
@@ -17,35 +22,31 @@
                             <table class="table table-striped table-bordered" id="example">
                                 <thead>
                                     <tr>
+                                        <th>ID Order</th>
+                                        <th>Member</th>
                                         <th>Nama Produk</th>
                                         <th>Jumlah</th>
-                                        <th>ID Order</th>
-                                        <th>Tanggal</th>
-                                        <th>Status</th>
                                         <th>Opsi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat='x in datas1'>
-                                        <td>{* x.nama_produk *}</td>
-                                        <td>{* x.qty *}</td>
+                                    <tr ng-repeat='x in datas'>
                                         <td>{* x.id *}</td>
-                                        <td>{* x.tanggal *}</td>
-                                        <td>{* x.status *}</td>
+                                        <td>{* x.member *}</td>
+                                        <td>{* x.produk *}</td>
+                                        <td>{* x.jumlah *}</td>
                                         <td>
-                                            <button ng-click="cancel($index)" class="btn btn-sm btn-outline-danger nn">
-                                                <i class="fa fa-times"></i>
-                                                Batalkan
-                                            </button>
+                                            <button type="button" class="btn btn-outline-info dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</button>
+                                            <div class="dropdown-menu" x-placement="bottom-start" >
+                                              <a class="dropdown-item" ng-click="details($index)" data-toggle="modal" data-target="#detail">
+                                                <i class="fa fa-file-o mr-1"></i>Detail</a>  
+                                              <div class="dropdown-divider"></div>                           
+                                              <a class="dropdown-item" ng-click="confirm($index, $event.currentTarget)">
+                                                <i class="fa fa-check mr-1"></i>Konfirmasi</a>     
+                                              <a class="dropdown-item" >
+                                                <i class="fa fa-times mr-1"></i>Tolak</a>                                                                                        
+                                            </div>
                                         </td>
-                                    </tr>                                    
-                                    <tr ng-repeat='x in datas2'>
-                                        <td>{* x.nama_produk *}</td>
-                                        <td>{* x.qty *}</td>
-                                        <td>{* x.id *}</td>
-                                        <td>{* x.tanggal *}</td>
-                                        <td>{* x.status *}</td>
-                                        <td>-</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -65,6 +66,11 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade text-left" id="detail" tabindex="-1" role="dialog"  aria-hidden="true">
+      @include('modals.orderDetail')
+    </div>
+
 </section>
 
 
@@ -83,6 +89,6 @@
     <script src="../../../app-assets/vendors/js/extensions/sweetalert.min.js" type="text/javascript"></script>
     <script src="../../../js/plugin/confirmDialog.js" type="text/javascript"></script>
 
-    <script src="../../../js/view/memberOrder/tableController.js" type="text/javascript"></script>
+    <script src="../../../js/view/adminOrder/tableController.js" type="text/javascript"></script>
 
 @endsection
