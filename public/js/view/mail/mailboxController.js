@@ -58,7 +58,6 @@ app.controller('mailbox', function ($scope, $http, $rootScope){
 	$rootScope.loadOutbox = function(id = last_sent_id, file = last_sent_file, count = null, type = 'push'){
 		$http.post('/api/mail', {'type' : 'sent', 'last_id' : id, 'last_file' : file, 'count' : count})
 		.then(function successCallback(response) {
-			alert( JSON.stringify( response.data ) );
 			for(tmp_j = 0; tmp_j < response.data.data.length; tmp_j++){
 				if(type == 'push')
 					$scope.sent_data.push( response.data.data[tmp_j] );
@@ -87,9 +86,9 @@ app.controller('mailbox', function ($scope, $http, $rootScope){
 		}
 	};
 
-	$scope.delete = function(){
-		alert('tuhka n');
-	};
+	// $scope.delete = function(){
+	// 	alert('tuhka n');
+	// };
 
 	if(tmp_inbox.length == 0)
 		$scope.loadInbox();

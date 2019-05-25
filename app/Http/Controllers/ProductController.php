@@ -8,10 +8,11 @@ use App\Model\Product\Product;
 class ProductController extends Controller
 {
     public function available(){
-    	$data = Product::where('qty', '>=', 0)->get();
+    	$data = Product::whereRaw('qty-booked > 0')->get();
     	return response()->json(['data' => $data]);
     }
 
+    // input = product_id, qty
     public function checkAv(Request $req){
     	$data = Product::find($req->product_id);
     	$stok = $data->qty - $data->booked;

@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
   <head>
-  @include('front_end.layout.master')
+
+  @include('front_end.layout.member.master')
+
   </head>
   <body class="vertical-layout vertical-menu 1-column   menu-expanded blank-page blank-page" data-open="click" data-menu="vertical-menu" data-col="1-column">
     <!-- ////////////////////////////////////////////////////////////////////////////-->
@@ -63,7 +65,6 @@
                 <div class="card-footer">
                     <div class="">
                         <p class="float-sm-left text-center m-0"><a href="forgot-password" class="card-link">Recover password</a></p>
-                        <p class="float-sm-right text-center m-0">New to Moden Admin? <a href="register" class="card-link">Sign Up</a></p>
                     </div>
                 </div>
             </div>

@@ -4,6 +4,7 @@
         	<!-- Dashboard -->
             <li class="nav-item @yield('home')"><a class="nav-link" href="/"><i class="icon-home"></i>Home</a>
             </li>
+            
             @hasrole('member')
             <!-- Order -->
             <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="icon-note"></i>Order</a>
@@ -17,13 +18,24 @@
             <!-- Pengiriman Produk -->
             <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="icon-note"></i>Pengiriman Produk</a>
             <ul class="dropdown-menu">
-              <li class="dropdown" data-menu="dropdown"><a class="dropdown-item" href="#" data-toggle="dropdown"><i class="fa fa-pencil-square-o"></i>Input Baru</a>
+              <li class="dropdown" data-menu="dropdown"><a class="dropdown-item" href="inputPengiriman" data-toggle="dropdown"><i class="fa fa-pencil-square-o"></i>Input Baru</a>
               </li>
               <li class="dropdown dropdown" data-menu="dropdown-"><a class="dropdown-item" href="#" data-toggle="dropdown"><i class="fa fa-bookmark"></i>Status Pengiriman</a>
               </li>
             </ul>
             </li>
             @endhasrole
+
+
+            @unlessrole('member')
+            <li class="nav-item @yield('request_order')"><a class="nav-link" href="/orderRequest"><i class="icon-bag"></i>Permintaan Stok</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="/"><i class="icon-directions"></i>Proses Pengiriman</a>
+            </li>            
+            <li class="nav-item"><a class="nav-link" href="/"><i class="icon-list"></i>Stok Produk</a>
+            </li>            
+            @endunlessrole
+
         </ul>
       </div>
     </div>

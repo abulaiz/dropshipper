@@ -33,7 +33,7 @@
     @include('layouts.footer')
 
     <script src="../../../app-assets/vendors/js/vendors.min.js"></script>
-
+    
     <script type="text/javascript" src="../../../app-assets/vendors/js/ui/jquery.sticky.js"></script>
 
     <script src="../../../app-assets/js/core/app-menu.js"></script>

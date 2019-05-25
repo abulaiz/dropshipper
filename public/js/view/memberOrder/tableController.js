@@ -4,11 +4,6 @@
     	$scope.datas1 = [];
     	$scope.datas2 = [];
 
-    	$scope.anu = function(){
-				toastr.info('Sedang membatalkan order ...', 'Harap Tunggu!', {
-				positionClass: 'toast-bottom-right', containerId: 'toast-bottom-right'});    		
-    	};
-
     	$scope.cancel = function(index){ 		
 			_confirm(0, function(){
 				toastr.info('Sedang membatalkan order ...', 'Harap Tunggu!', {
@@ -31,6 +26,26 @@
 			});
     	}
 
+    	$scope.delete = function(index){ 		
+			toastr.info('Sedang menghapus order ...', 'Harap Tunggu!', {
+			positionClass: 'toast-bottom-right', containerId: 'toast-bottom-right'});
+			$scope.requested = false;
+
+	        $http.post('/api/user/order/cancel', {'id' : $scope.datas2[index].id})
+	        .then(function successCallback(response) {
+	        	toastr.remove();
+				toastr.info('Data Order telah dihapus.', 'Berhasil!', {
+				positionClass: 'toast-bottom-right', containerId: 'toast-bottom-right'});
+				$scope.requested = false;
+				$scope.loadData();
+	        }, function errorCallback(response) {
+	        	toastr.remove();
+				toastr.error('Terjadi kesalahan, coba lagi.', 'Request Failed!', {
+				positionClass: 'toast-bottom-right', containerId: 'toast-bottom-right'});
+				$scope.requested = false;
+	        });					
+    	}
+
     	$scope.loadData = function(){
 			$('.table-responsive').hide();
 			$('#table-loader').show();
@@ -48,8 +63,8 @@
 				$('.table-responsive').show();
 				$('#table-loader').hide();	        
 		        $timeout(function(){     	
-					$('#example').DataTable( {
-					    responsive: true
+					$('#example').DataTable({
+						"order": [[ 4, 'asc' ], [3, 'desc']]						
 					});	
 		        }, 50);       
 		    });    		
