@@ -63,7 +63,6 @@
                 <div class="card-footer">
                     <div class="">
                         <p class="float-sm-left text-center m-0"><a href="forgot-password" class="card-link">Recover password</a></p>
-                        <p class="float-sm-right text-center m-0">New to Moden Admin? <a href="register" class="card-link">Sign Up</a></p>
                     </div>
                 </div>
             </div>

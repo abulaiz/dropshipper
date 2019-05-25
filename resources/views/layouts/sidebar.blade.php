@@ -4,6 +4,7 @@
         	<!-- Dashboard -->
             <li class="nav-item @yield('home')"><a class="nav-link" href="/"><i class="icon-home"></i>Home</a>
             </li>
+            
             @hasrole('member')
             <!-- Order -->
             <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="icon-note"></i>Order</a>
@@ -24,6 +25,15 @@
             </ul>
             </li>
             @endhasrole
+
+
+            @hasrole('admin')
+            <!-- User -->
+            <li class="nav-item @yield('user')"><a class="nav-link" href="user"><i class="fa fa-user"></i>User Member</a>
+            </li>
+            @endhasrole
+
+
         </ul>
       </div>
     </div>
