@@ -14,7 +14,8 @@
               <li class="dropdown dropdown" data-menu="dropdown-"><a class="dropdown-item" href="historyOrder" data-toggle="dropdown"><i class="fa fa-bookmark"></i>Riwayat Order</a>
               </li>
             </ul>
-            </li>            
+            </li>    
+
             <!-- Pengiriman Produk -->
             <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="icon-note"></i>Pengiriman Produk</a>
             <ul class="dropdown-menu">
@@ -48,6 +49,7 @@
             <li class="nav-item"><a class="nav-link" href="/"><i class="icon-list"></i>Stok Produk</a>
             </li>            
             @endunlessrole
+            @endhasrole
 
         </ul>
       </div>
