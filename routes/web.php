@@ -41,6 +41,8 @@ Route::group(['middleware' => ['auth']], function () {
 		// include('web_mod/superadmin.php');
 	});
 
+	Route::post('fileUpload', 'FileController@upload');
+
 	Route::get('tester', function(){
 		return View('tester');
 	});

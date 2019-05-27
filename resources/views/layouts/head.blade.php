@@ -4,6 +4,7 @@
     <meta name="description" content="Robust admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template.">
     <meta name="keywords" content="admin template, robust admin template, dashboard template, flat admin template, responsive admin template, web app, crypto dashboard, bitcoin dashboard">
     <meta name="author" content="PIXINVENT">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Dropshiper Web Application</title>
     
     <link rel="apple-touch-icon" href="../../../app-assets/images/ico/apple-icon-120.png">
@@ -29,3 +30,5 @@
     <!-- END ROBUST CSS-->
     <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/extensions/toastr.css">
     <link rel="stylesheet" type="text/css" href="../../../app-assets/new_ext/ambiance/jquery.ambiance.css">
+
+    @yield('customHead')

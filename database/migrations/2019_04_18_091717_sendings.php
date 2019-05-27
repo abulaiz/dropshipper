@@ -21,8 +21,10 @@ class Sendings extends Migration
             $table->unsignedInteger('order_via_id');
             $table->string('free_code')->nullable();
             $table->boolean('has_attachment');
-            $table->string('destination');
+            $table->string('sender_name', 50);
+            $table->string('phone_number', 30);
             $table->string('address');
+            $table->string('destination');
             $table->char('status', 1);
             $table->timestamps();
             $table->foreign('product_id')
