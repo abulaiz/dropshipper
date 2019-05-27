@@ -41,8 +41,10 @@ Route::group(['middleware' => ['auth']], function () {
 		 include('web_mod/superadmin.php');
 	});
 
-	Route::post('fileUpload', 'FileController@upload');
-	Route::get('fileUpload', 'FileController@dummyPDF');
+	// Route::post('fileUpload', 'FileController@upload');
+	// Route::get('fileUpload', 'FileController@dummyPDF');
+	// Route::post('/sample-pdf', ['as' => 'SamplePDF', 'uses' => 'FileController@upload' ]);
+	Route::get('/sample-pdf', ['as' => 'my_file', 'uses' => 'FileController@dummyPDF' ]);
 
 	Route::get('tester', function(){
 		return View('tester');

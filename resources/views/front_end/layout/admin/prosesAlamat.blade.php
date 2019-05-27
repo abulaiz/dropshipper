@@ -56,8 +56,8 @@
                                               <a class="dropdown-item" ng-click="" data-toggle="modal" data-target="">
                                                 <i class="fa fa-edit mr-1"></i>Update</a>  
                                               <div class="dropdown-divider"></div>                           
-                                              <a class="dropdown-item">
-                                                <i class="fa fa-print mr-1"></i>Print</a>                                          
+                                              <a class="dropdown-item" href="{{ route('my_file') }}">
+                                                <i class="fa fa-print mr-1"></i>PDF</a>                                          
                                             </div>
                                         </td>
                                     </tr>
