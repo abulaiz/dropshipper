@@ -42,6 +42,7 @@ Route::group(['middleware' => ['auth']], function () {
 	});
 
 	Route::post('fileUpload', 'FileController@upload');
+	Route::get('fileUpload', 'FileController@dummyPDF');
 
 	Route::get('tester', function(){
 		return View('tester');
