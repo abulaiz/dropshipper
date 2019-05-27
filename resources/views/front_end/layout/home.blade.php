@@ -100,7 +100,7 @@
                                     <tbody>
                                         <tr ng-repeat='x in datas'>
                                             <td>{* x.name *}</td>
-                                            <td>{* x.qty *}</td>
+                                            <td>{* x.qty *} {* x.type *}</td>
                                             <td>{* x.price *}</td>
                                         </tr>
                                     </tbody>
