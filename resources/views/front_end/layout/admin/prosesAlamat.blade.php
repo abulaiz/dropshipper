@@ -41,7 +41,7 @@
                                         <th>Member</th>
                                         <th>Nama Produk</th>
                                         <th>Jumlah</th>
-                                        <th>Opsi</th>
+                                        <th width="50">Opsi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -51,13 +51,13 @@
                                         <td>aa</td>
                                         <td>aa</td>
                                         <td>
-                                            <button type="button" class="btn btn-outline-info dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" size="100">Action</button>
+                                            <button type="button" class="btn btn-outline-info dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" width="100">Action</button>
                                             <div class="dropdown-menu" x-placement="bottom-start" >
                                               <a class="dropdown-item" ng-click="" data-toggle="modal" data-target="">
-                                                <i class="fa fa-file-o mr-1"></i>Update</a>  
+                                                <i class="fa fa-edit mr-1"></i>Update</a>  
                                               <div class="dropdown-divider"></div>                           
                                               <a class="dropdown-item">
-                                                <i class="fa fa-print mr-1"></i>Print</a>                                                                                   
+                                                <i class="fa fa-print mr-1"></i>Print</a>                                          
                                             </div>
                                         </td>
                                     </tr>
