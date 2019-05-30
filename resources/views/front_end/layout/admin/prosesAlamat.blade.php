@@ -20,18 +20,7 @@
 
             <div class="card-header">
                 <h4 class="card-title">Proses Alamat Pengiriman</h4><br>
-                    <div class="col-md-3">
-                        
-                        <div class="input-group input-append date" id="dpMonths" data-date="102/2012" data-date-format="dd/mm/yyyy" data-date-viewmode="date" data-date-viewmode="years" data-date-minviewmode="months">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text add-on"><i class="ft-calendar"></i></span>
-                                </div>
-                                <input type="text" class="form-control datepicker-default span2" value="" readonly="" />
-                            </div>
-
-                    </div>
                 </div>
-
                 <div class="card-body">
                       <div class="table-responsive">
                             <table class="table table-striped table-bordered" id="example">
@@ -53,8 +42,8 @@
                                         <td>
                                             <button type="button" class="btn btn-outline-info dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" width="100">Action</button>
                                             <div class="dropdown-menu" x-placement="bottom-start" >
-                                              <a class="dropdown-item" ng-click="" data-toggle="modal" data-target="">
-                                                <i class="fa fa-edit mr-1"></i>Update</a>  
+                                              <a class="dropdown-item" href="detailProduk">
+                                                <i class="fa fa-edit mr-1"></i>Detail</a>  
                                               <div class="dropdown-divider"></div>                           
                                               <a class="dropdown-item" href="{{ route('my_file') }}">
                                                 <i class="fa fa-print mr-1"></i>PDF</a>                                          
