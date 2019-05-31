@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Model\Transaction\Sending;
 use Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Libs\Mail;
 
 class SendingController extends Controller
 {
@@ -100,5 +101,46 @@ class SendingController extends Controller
 
     public function reject(Request $req){
         Sending::find($req->id)->delete();
+    }
+
+    public function sendingRequest(Request $req){
+        $data = Sending::all();
+        $res = [];
+        foreach ($data as $item) {
+            $res[] = [
+                'id' => $item->id,
+                'tanggal' => substr($item->created_at, 0, 10),
+                'member' => $item->user->email,
+                'nama_produk' => $item->product->name,
+                'jumlah' => $item->qty,
+                'status' => $item->status,
+                'berat' => $item->product->weight
+            ];
+        }
+
+        return response()->json($res);        
+    }
+
+    public function pricing(Request $req){
+        $data = Sending::find($req->id);
+        Mail::getInstance()->write([
+            'flag_sender' => 'S',
+            'sender_mail' => 'System',
+            'flag_receiper' => 'M',
+            'receiper_mail' => 'System',
+            'receiper_id' => $data->user_id,
+            'sender_name' => 'System',
+            'receiper_name' => $data->user->name,
+            'subject' => "Pembayaran Pengiriman ". $data->id,
+            'text' => "Segera selesaikan pembayaran anda untuk Pengiriman ".$data->id. " dengan melakukan transfer ke nomer rekening BCA 6300730777 dengan nominal Rp ".$req->harga
+        ]);  
+        $data->status = '2';
+        $data->save();
+    }
+
+    public function changeStatus(Request $req){
+        $data = Sending::find($req->id);
+        $data->status = $req->status;
+        $data->save();
     }
 }

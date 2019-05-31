@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Model\Transaction\Sending;
 use Auth;
 use PDF;
 
@@ -14,6 +15,13 @@ class FileController extends Controller
     	$file = $request->file('attachment');
     	$user_id = Auth::user()->id;
     	return Storage::put('tmp/'.$user_id, $file);
+    }
+
+    public function sendingAttachment($id, $filename){
+    	$data = Sending::find($id);
+    	$path = 'attachment/'.$data->user_id.'/'.$id.'/'.$filename;
+    	$file = Storage::get($path); 
+    	return response($file, 200)->header('Content-Type', 'image/jpeg');
     }
 
     public function dummyPDF(){

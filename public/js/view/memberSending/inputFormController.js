@@ -104,6 +104,7 @@ app.controller('inputForm', function($scope, $http, $timeout){
     		}
 
     		// If can reach section thats mean validation success
+    		$scope.onsubmit = true;
 	        $http.post('/api/member/sending', {
 	        	'product_id' : $scope.product_id,
 	        	'courier_id' : $scope.courier_id,
@@ -130,12 +131,13 @@ app.controller('inputForm', function($scope, $http, $timeout){
 		        		if(response.data.eRtype == 2)
 		        			window.location.reload(true); 
 	        		});
+	        		$scope.onsubmit = false;
 	        	}
 	        }, function errorCallback(response) {
 	        	console.log(response.data);
 				toastr.error('Terjadi kesalahan, coba lagi.', 'Request Failed!', {
 				positionClass: 'toast-bottom-right', containerId: 'toast-bottom-right'});
-				$scope.requested = false;
+				$scope.onsubmit = false;
 	        });	    		
 
     	} else {

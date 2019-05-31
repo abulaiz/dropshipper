@@ -16,6 +16,11 @@ class Sending extends Model
         return $this->belongsTo('App\Model\Master\OrderVia','order_via_id');
     }
 
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
     public function product()
     {
         return $this->belongsTo('App\Model\Product\Product');

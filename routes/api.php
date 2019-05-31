@@ -31,8 +31,11 @@ Route::group(['middleware' => ['auth']], function () {
 
 	Route::post('member/sending', 'SendingController@memberRequest');
 	Route::get('member/sending', 'SendingController@memberStatus');
+	Route::get('admin/sending', 'SendingController@sendingRequest');
 	Route::get('sending/detail/{id}', 'SendingController@detailRequest');
 	Route::post('sending/cancel', 'SendingController@reject');
+	Route::post('sending/priceUpdate', 'SendingController@pricing');
+	Route::post('sending/changeStatus', 'SendingController@changeStatus');
 
 	// Admin Route Area
 	Route::get('admin/orderRequest', 'OrderProductController@request');
