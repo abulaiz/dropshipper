@@ -13,3 +13,7 @@ Route::get('/stokProduk', function(){
 	return view('front_end/layout/admin/stokBarang');
 });
 
+Route::get('/detailProduk', function(){
+	return view('front_end/layout/admin/detailProduk');
+});
+
