@@ -5,7 +5,7 @@
 <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
 @endsection
 
-@section('historyOrder', 'active')
+@section('inputSending', 'active')
 
 @section('content')
 
@@ -73,7 +73,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fa fa-user"></i></span>
                                         </div>
-                                        <input type="text" class="form-control" placeholder="Masukkan Nama Penerima" ng-model='receiver'>
+                                        <input type="text" class="form-control" placeholder="Masukkan Nama Penerima" ng-model='receiver_name'>
                                     </div>
                                 </fieldset>
                                 <br>
@@ -98,12 +98,12 @@
                                 </fieldset>
                                 <br>
                                 <fieldset>
-                                    <label>Tujuan Negara (Opsi untuk keluar negri) : </label>   
+                                    <label>Tujuan Negara : </label>   
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fa fa-user"></i></span>
                                         </div>
-                                        <textarea class="form-control" ng-model='destination' placeholder="Ex : Baker Street , UK"></textarea>
+                                        <textarea class="form-control" ng-model='destination' placeholder="Opsional Jika Melakukan pengiriman ke luar negri"></textarea>
                                     </div>
                                 </fieldset>
                                 <br>                            

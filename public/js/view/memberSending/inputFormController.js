@@ -86,14 +86,16 @@ app.controller('inputForm', function($scope, $http, $timeout){
     $scope.submit = function(){
     	// Validation input logic
     	next = !($scope.receiver == '' || $scope.product_id == '' || $scope.receiver_address == '' || $scope.phone_number == '' );
-    	next = next && !($scope.sender_name == '' || $scope.courier_id == null || $scope.order_via_id == null);
+    	next = next && !($scope.receiver_name == '' || $scope.sender_name == '' || $scope.courier_id == null || $scope.order_via_id == null);
     	if(next){
     		// Validation input level 2
-    		if($scope.bookedByMarketPlace && pond.getFile(0) == null){
-    			return $scope.failureValidation('Sertakan Bukti Pemesanan via Market Place');
-    		} else if($scope.bookedByMarketPlace && pond.getFile(0) != null){
-    			if(pond.getFile(0).status != 5){
-    				return $scope.failureValidation('Bukti Pemesanan belum berhasil diupload');
+    		if($scope.bookedByMarketPlace){
+    			if(pond.getFile(0) == null) {
+    				return $scope.failureValidation('Sertakan Bukti Pemesanan via Market Place');
+    			} else {
+	    			if(pond.getFile(0).status != 5){
+	    				return $scope.failureValidation('Bukti Pemesanan belum berhasil diupload');
+	    			}    				
     			}
     		}
 
@@ -102,21 +104,35 @@ app.controller('inputForm', function($scope, $http, $timeout){
     		}
 
     		// If can reach section thats mean validation success
-
 	        $http.post('/api/member/sending', {
 	        	'product_id' : $scope.product_id,
-	        	'courier_id' : $scope.$scope.courier_id,
+	        	'courier_id' : $scope.courier_id,
 	        	'qty' : $scope.qty_sending,
 	        	'order_via_id' : $scope.order_via_id,
 	        	'free_code' : ($scope.ongkirGratis ? $scope.freeCode : null),
-	        	'attachment' : pond.getFile(0).serverId,
+	        	'attachment' : $scope.bookedByMarketPlace ? pond.getFile(0).serverId : null,
 	        	'sender_name' : $scope.sender_name,
+	        	'receiver_name' : $scope.receiver_name,
 	        	'phone_number' : $scope.phone_number,
 	        	'address' : $scope.receiver_address,
 	        	'destination' : $scope.destination
 	        }).then(function successCallback(response) {
-
+	        	if(response.data.success){
+					toastr.success('Request Pengiriman sudah dikirim.', 'Berhasil !', {
+					positionClass: 'toast-bottom-right', containerId: 'toast-bottom-right'});
+					$timeout(function(){
+	        			window.location = '/member/pengiriman';
+					}, 1500);
+	        	} else {
+					toastr.error(response.data.reason, 'Gagal !', {
+					positionClass: 'toast-bottom-right', containerId: 'toast-bottom-right'});
+	        		$timeout(function(){
+		        		if(response.data.eRtype == 2)
+		        			window.location.reload(true); 
+	        		});
+	        	}
 	        }, function errorCallback(response) {
+	        	console.log(response.data);
 				toastr.error('Terjadi kesalahan, coba lagi.', 'Request Failed!', {
 				positionClass: 'toast-bottom-right', containerId: 'toast-bottom-right'});
 				$scope.requested = false;

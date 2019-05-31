@@ -41,7 +41,7 @@ class OrderProductController extends Controller
     	];
     	$v = Validator::make($req->all(), $rules);
     	if($v->passes()){
-            $id = Order::newId();
+            $id = Order::newId(Auth::user()->id);
     		Order::create([
     			'id' => $id,
     			'product_id' => $req->product_id,

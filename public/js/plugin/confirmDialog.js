@@ -14,7 +14,12 @@ var swalBase = [
 			title:'Apakah anda yakin ?', 
 			text : 'Pesanan Produk member akan dibatalkan',
 			icon : 'warning'
-		},					
+		},	
+		{ // 3
+			title:'Apakah anda yakin ?', 
+			text : 'Request Pengiriman anda akan dibatalkan ?',
+			icon : 'warning'
+		},							
 ];
 
 function getSwalBody(type){

@@ -23,6 +23,9 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('/', function () {
 	    return view('front_end.layout.home');
 	});
+	Route::get('/home', function () {
+	    return view('front_end.layout.home');
+	});	
 
 	include('web_mod/email.php');
 
@@ -41,10 +44,7 @@ Route::group(['middleware' => ['auth']], function () {
 		 include('web_mod/superadmin.php');
 	});
 
-	// Route::post('fileUpload', 'FileController@upload');
-	// Route::get('fileUpload', 'FileController@dummyPDF');
-	// Route::post('/sample-pdf', ['as' => 'SamplePDF', 'uses' => 'FileController@upload' ]);
-	Route::get('/sample-pdf', ['as' => 'my_file', 'uses' => 'FileController@dummyPDF' ]);
+	include 'web_mod/fileHandler.php';
 
 	Route::get('tester', function(){
 		return View('tester');

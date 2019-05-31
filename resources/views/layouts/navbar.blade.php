@@ -18,7 +18,7 @@
 
             <ul class="nav navbar-nav float-right">         
               <li title="Mail" class="dropdown dropdown-notification nav-item">
-                <a class="nav-link nav-link-label" href="email">
+                <a class="nav-link nav-link-label" href="/email">
                   <i class="fa fa-envelope-o fa-lg"></i>
                   <span ng-show="has_unread_message" id='inbox_badge' class="badge badge-pill badge-default badge-danger badge-default badge-up"> {{ $_inbox }} </span>
                 </a>
