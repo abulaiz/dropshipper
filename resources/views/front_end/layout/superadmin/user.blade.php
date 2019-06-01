@@ -12,7 +12,7 @@
                 </ol>
               </div>
 
-<section id="morris-charts">
+<section id="morris-charts" ng-controller='table'>
  <!-- Smooth Area Chart -->
     <div class="row">
         <div class="col-12">
@@ -23,7 +23,7 @@
                     <button class="ui-button ui-widget ui-corner-all btn-danger mb-2" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#tambahuser"><i class="fa fa-user-plus"></i>  Tambah User</button>
 
                     <div class="table-responsive">
-                        <table class="table table-striped table-bordered" id="order">
+                        <table class="table table-striped table-bordered" id="example">
                                 <thead>
                                     <tr>
                                         <th>Nama User</th>
@@ -32,21 +32,38 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                    <tr ng-repeat='x in datas'>
+                                        <td>{* x.name *}</td>
+                                        <td>{* x.email *}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-outline-info dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</button>
+                                            <div class="dropdown-menu" x-placement="bottom-start" >          
+                                              <a class="dropdown-item" ng-click="edit($index, $event.currentTarget)">
+                                                <i class="fa fa-check mr-1"></i>Ubah</a>     
+                                              <a class="dropdown-item" ng-click="delete($index, $event.currentTarget)">
+                                                <i class="fa fa-times mr-1"></i>Hapus</a>              
+                                            </div>
+                                        </td>
                                     </tr>
                                 </tbody>
                         </table>
                     </div>
+                    <div class="loader-wrapper" id="table-loader">
+                          <div class="loader-container">
+                            <div class="ball-beat loader-info">
+                              <div></div>
+                              <div></div>
+                              <div></div>
+                            </div>
+                          </div>
+                        </div> 
                 </div>       
             </div>
         </div>
     </div>
-    </section>
+</section>
 
-    @include('modals.modalsUser.adduser')
+    @include('modals.modalsUser.addUser')
   @endsection
 
 @section('customJS')
@@ -59,17 +76,5 @@
     <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/tables/extensions/responsive.dataTables.min.css">
     <script src="../../../app-assets/vendors/js/tables/datatable/datatables.min.js"></script>
     <script src="../../../app-assets/vendors/js/tables/datatable/dataTables.responsive.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            var table = $('#order').DataTable( {
-                            rowReorder: {
-                                selector: 'td:nth-child(2)'
-                            },
-                            responsive: true
-                        });
-        });
-
-            $('#dpMonths').datepicker();
-
-    </script>
+    <script type="text/javascript" src="../../../js/view/user/tableController.js"></script>
 @endsection
