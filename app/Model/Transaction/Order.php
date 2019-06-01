@@ -23,7 +23,7 @@ class Order extends Model
         return $this->belongsTo('App\User');
     }
 
-	public static function newId(){
-		return strtoupper( uniqid('O') );
-	}
+    public static function newId($user_id){
+        return strtoupper( uniqid('O') ).str_pad($user_id, 4, '0', STR_PAD_LEFT);
+    }  
 }

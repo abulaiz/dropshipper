@@ -15,13 +15,28 @@ class UserStockController extends Controller
     	$res = [];
     	foreach ($data as $item) {
     		$res[] = [
+                'product_id' => $item->product_id,
     			'name' => $item->product->name,
     			'price' => number_format($item->product->price),
-    			'qty' => $item->qty." ".$item->product->type
+    			'qty' => $item->qty,
+                'type' => $item->product->type
     		];
     	}
 
     	return response()->json(['data' => $res]);
+    }
+
+    public function addStock($id, $qty, $user_id = null){
+        $user_id = $user_id == null ? Auth::user()->id : $user_id;
+        if(UserStock::where([['user_id',$user_id],['product_id', $id]])->exists()){
+            UserStock::increment('qty', $qty)->where([['user_id',$user_id],['product_id', $id]]);
+        } else {
+            UserStock::create([
+                'user_id' => $user_id,
+                'product_id' => $id,
+                'qty' => $qty
+            ]);
+        }
     }
 
 }

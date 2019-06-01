@@ -19,6 +19,7 @@ class Products extends Migration
             $table->integer('qty');
             $table->integer('booked')->default('0');
             $table->integer('price');
+            $table->smallInteger('weight'); // per gram
             $table->string('type', 10);
             $table->timestamps();
         });

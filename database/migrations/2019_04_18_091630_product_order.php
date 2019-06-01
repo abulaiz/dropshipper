@@ -14,7 +14,7 @@ class ProductOrder extends Migration
     public function up()
     {
         Schema::create('product_orders', function (Blueprint $table) {
-            $table->char('id', 14);
+            $table->char('id', 18);
             $table->unsignedInteger('product_id');
             $table->unsignedInteger('user_id');
             $table->integer('qty');

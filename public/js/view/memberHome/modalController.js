@@ -39,7 +39,7 @@ app.controller('modalOrder' ,function ($scope, $http) {
 					$scope.requested = false;
 				}
 	        }, function errorCallback(response) {
-				toastr.error('Terjadi kesalaha, coba lagi.', 'Request Failed!', {
+				toastr.error('Terjadi kesalahan, coba lagi.', 'Request Failed!', {
 				positionClass: 'toast-bottom-right', containerId: 'toast-bottom-right'});
 				$scope.requested = false;
 	        });	

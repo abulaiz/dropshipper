@@ -41,7 +41,7 @@ class OrderProductController extends Controller
     	];
     	$v = Validator::make($req->all(), $rules);
     	if($v->passes()){
-            $id = Order::newId();
+            $id = Order::newId(Auth::user()->id);
     		Order::create([
     			'id' => $id,
     			'product_id' => $req->product_id,
@@ -185,6 +185,10 @@ class OrderProductController extends Controller
 
             $product->save();
             $order->save();
+
+
+            app('App\Http\Controllers\UserStockController')->addStock($order->product_id, $order->qty, $order->user_id);
+
             $textMail = "Pesanan Produk $product->name sejumlah $order->qty telah dikonfirmasi dan telah ditambahkan ke stok produk anda";
             $this->mailSystemResponse($order->user_id, 'Pesanan Produk dikonfirmasi', $textMail);
         }         

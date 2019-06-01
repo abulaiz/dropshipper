@@ -18,18 +18,25 @@ use Illuminate\Http\Request;
 // });
 
 Route::group(['middleware' => ['auth']], function () {
+
+	// Member Route Area
 	Route::get('product/available', 'ProductController@available');
 	Route::get('user/stock', 'UserStockController@index');
 
 	Route::post('user/order/cancel', 'OrderProductController@cancel');
 	Route::get('user/order', 'OrderProductController@progress');
-
 	Route::post('user/order/history', 'OrderProductController@member_history');
 
 	Route::get('user', 'UserController@show');
 
 	Route::post('checkProductAv', 'ProductController@checkAv');
 
+	Route::post('member/sending', 'SendingController@memberRequest');
+	Route::get('member/sending', 'SendingController@memberStatus');
+	Route::get('sending/detail/{id}', 'SendingController@detailRequest');
+	Route::post('sending/cancel', 'SendingController@reject');
+
+	// Admin Route Area
 	Route::get('admin/orderRequest', 'OrderProductController@request');
 	Route::get('admin/orderDetail/{id}', 'OrderProductController@request_detail');
 	Route::post('admin/order/confirm', 'OrderProductController@confirmOrder');

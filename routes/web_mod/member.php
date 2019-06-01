@@ -14,3 +14,7 @@ Route::get('/historyOrder', function(){
 Route::get('/inputPengiriman', function(){
 	return view('front_end/layout/member/pengiriman');
 });
+
+Route::get('/member/pengiriman', function(){
+	return view('front_end/layout/member/statusPengiriman');
+});

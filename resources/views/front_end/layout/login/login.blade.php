@@ -49,22 +49,13 @@
                                 @endif                                
                             </fieldset>
 
-                            <div class="form-group row">
-                                <div class="col-md-6 col-12 text-center text-md-left">
-                                    <fieldset>
-                                        <input type="checkbox" id="remember-me" class="chk-remember">
-                                        <label for="remember-me"> Remember Me</label>
-                                    </fieldset>
-                                </div>
-                                <div class="col-md-6 col-12 text-center text-md-right"><a href="forgot-password" class="card-link">Forgot Password?</a></div>
-                            </div>
                             <button type="submit" class="btn btn-warning btn-lg btn-block"><i class="ft-unlock"></i> Login</button>
                         </form>
                     </div>
                 </div>
                 <div class="card-footer">
                     <div class="">
-                        <p class="float-sm-left text-center m-0"><a href="forgot-password" class="card-link">Recover password</a></p>
+                        <!-- <p class="float-sm-left text-center m-0"><a href="forgot-password" class="card-link">Recover password</a></p> -->
                     </div>
                 </div>
             </div>

@@ -14,15 +14,18 @@ class Sendings extends Migration
     public function up()
     {
         Schema::create('sendings', function (Blueprint $table) {
-            $table->char('id', 14);
+            $table->char('id', 18);
             $table->unsignedInteger('product_id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('courier_id');
             $table->unsignedInteger('order_via_id');
+            $table->smallInteger('qty');
             $table->string('free_code')->nullable();
-            $table->boolean('has_attachment');
-            $table->string('destination');
+            $table->string('sender_name', 50);
+            $table->string('receiver_name', 50);
+            $table->string('phone_number', 30);
             $table->string('address');
+            $table->string('destination')->nullable();
             $table->char('status', 1);
             $table->timestamps();
             $table->foreign('product_id')
