@@ -3,7 +3,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title" id="myModalLabel35"><oh i class="fa fa-pencil-square-o primary">&nbspInput User Member</i></h3>
+        <h3 class="modal-title" id="myModalLabel35"><oh i class="fa fa-pencil-square-o primary">&nbspInput New Password</i></h3>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -23,7 +23,7 @@
         </div>
         <div class="modal-footer">
             <input type="reset" class="btn btn-primary btn-lg" data-dismiss="modal" value="Kembali">
-            <input type="submit" ng-disabled='requested' class="btn btn-danger btn-lg" value="Tambah User">
+            <input type="submit" ng-disabled='requested' class="btn btn-danger btn-lg" value="Change Password">
         </div>
       </form>
     </div>

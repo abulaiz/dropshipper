@@ -55,4 +55,10 @@ class UserController extends Controller
 
     	return redirect('/user')->with(['_e'=>'success', '_msg' => 'Password berhasil dirubah']);
     }
+
+    public function delete(Request $req)
+    {
+        User::find($req->id)->delete();
+        return response()->json(['success' => true]);
+    }
 }

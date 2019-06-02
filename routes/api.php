@@ -28,6 +28,8 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::post('user/order/history', 'OrderProductController@member_history');
 
 	Route::get('user', 'UserController@show');
+	Route::get('user/edituser', 'UserController@edituser');
+	Route::post('user/delete', 'UserController@delete');
 
 	Route::post('checkProductAv', 'ProductController@checkAv');
 
