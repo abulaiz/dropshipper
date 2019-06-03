@@ -42,13 +42,8 @@ class UserController extends Controller
         return response()->json(['res1' => $res1]);
     }
 
-    public function update($id, Request $req)
+    public function edituser($id, Request $req)
     {
-    	$this->validate($req, [
-    		'id' => 'required',
-    		'password' => 'required'
-    	]);
-
     	$usr = User::find($id);
     	$usr->password = bcrypt($req->password);
     	$usr->save();

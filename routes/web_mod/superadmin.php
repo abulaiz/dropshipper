@@ -5,4 +5,4 @@ Route::get('/user', function () {
 });
 
 Route::post('/user', 'UserController@save')->name('adduser');
-Route::post('/user/update', 'UserController@update')->name('updateUser');
+Route::post('/user/edit', 'UserController@edituser')->name('editUser');

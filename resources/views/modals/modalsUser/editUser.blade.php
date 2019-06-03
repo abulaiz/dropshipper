@@ -8,7 +8,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form method="POST" id="editUser" action="{{ route('updateUser') }}" ng-submit='submit($event)'>
+      <form method="POST" id="editUser" action="{{ route('editUser') }}">
         <div class="modal-body">
             @csrf
             <fieldset>
@@ -24,6 +24,7 @@
         <div class="modal-footer">
             <input type="reset" class="btn btn-primary btn-lg" data-dismiss="modal" value="Kembali">
             <input type="submit" ng-disabled='requested' class="btn btn-danger btn-lg" value="Change Password">
+            <input type="hidden" name="_method" value="PUT">
         </div>
       </form>
     </div>

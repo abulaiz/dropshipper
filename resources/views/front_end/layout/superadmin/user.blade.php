@@ -38,7 +38,7 @@
                                         <td>
                                             <button type="button" class="btn btn-outline-info dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</button>
                                             <div class="dropdown-menu" x-placement="bottom-start" >          
-                                              <a class="dropdown-item" ng-click="updates($index)" data-toggle="modal" data-target="#edituser">
+                                              <a class="dropdown-item" ng-click="edituser($index)" data-toggle="modal" data-target="#edituser">
                                                 <i class="fa fa-check mr-1"></i>Ubah</a>     
                                               <a class="dropdown-item" ng-click="delete($index, $event.currentTarget)">
                                                 <i class="fa fa-times mr-1"></i>Hapus</a>              
