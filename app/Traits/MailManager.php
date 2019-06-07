@@ -15,11 +15,8 @@ trait MailManager
 
 	// $flag : admin / member
 	private function getInboxPath($flag, $user_id){
-		$file_r = $this->getPath($flag, $user_id) . '/inbox.json';
-		if(!Storage::exists($file_r))
-			Storage::put($file_r , '[]');
-
-		return $file_r;
+		$path = $this->getPath($flag, $user_id) . '/inbox';
+		return $path;
 	}
 
 	private function getOutboxPath($flag, $user_id){
@@ -87,17 +84,9 @@ trait MailManager
 	}
 
 	public function markAsReadInbox($flag, $user_id, $mail_id){
+
 		$path = $this->getPath($flag, $user_id);
-		$data = json_decode(Storage::get($path.'/inbox.json'), true);
-		$tmp;
-		foreach ($data as $key => $value) {
-			if($value['id'] == $mail_id){
-				$tmp = $value;
-				unset($data[$key]);
-				break;
-			}
-		}
-		Storage::put($path.'/inbox.json', json_encode(array_values($data), JSON_PRETTY_PRINT));
+		$data = json_decode(Storage::get($path.'/inbox/'.$mail_id.'.json'), true);
 
 		$i_status = $this->readStatus($flag, $user_id, 'inbox', $path);
 		$_path = $path.'/'.$i_status.'_i.json';
@@ -116,8 +105,9 @@ trait MailManager
 			$_data = [];
 		}
 		
-		$_data[] = $tmp;
+		$_data[] = $data;
 		Storage::put($_path, json_encode(array_values($_data), JSON_PRETTY_PRINT));
+		Storage::delete($path.'/inbox/'.$mail_id.'.json');
 	}
 
 }

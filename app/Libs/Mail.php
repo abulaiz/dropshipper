@@ -35,9 +35,8 @@ class Mail
 		$date = date("Y-m-d H:i");
 
 		// Save to Receipter Inbox
-		$file_r = $this->getInboxPath($arr['flag_receiper'], $arr['receiper_id']);
-		$arr_r = json_decode(Storage::get($file_r), true);
-		$arr_r[] = [
+		$i_path = $this->getInboxPath($arr['flag_receiper'], $arr['receiper_id']);
+		$arr_r = [
 			'id' => $id,
 			'subject' => $arr['subject'],
 			'email' => $arr['sender_mail'],
@@ -48,7 +47,8 @@ class Mail
 			'sender_id' => (isset($arr['sender_id']) ? $arr['sender_id'] : null),
 			'created_at' => $date
 		]; 
-		Storage::put($file_r , json_encode( array_values($arr_r) , JSON_PRETTY_PRINT));
+
+		Storage::put($i_path.'/'.$id.'.json' , json_encode($arr_r , JSON_PRETTY_PRINT));
 
 		// Save to Sender Outbox
 		if( $arr['flag_sender'] != 'S'  ){
@@ -79,12 +79,15 @@ class Mail
 		$last['file'] = $last['file'] == null ? 'inbox' : $last['file'];
 
 		if($last['file'] == 'inbox'){
-			$data = json_decode(Storage::get($path.'/inbox.json'), true);
-			$length = count($data);
+			$i_path = $path.'/inbox';
+			$i_files = Storage::files($i_path);
+			$length = count($i_files);
 			for($i = $length - 1; $i>= 0; $i--){
-				if($last['id'] == $data[$i]['id'] ) $skip == false;
+				$data = json_decode(Storage::get($i_files[$i]), true);
+
+				if($last['id'] == $data['id'] ) $skip == false;
 				if($skip) continue;
-				$mails[] = $this->setContent($data[$i], 'inbox');
+				$mails[] = $this->setContent($data, 'inbox');
 				$count -- ;
 				if ($count == 0)
 					return ['data' => $mails, 'next' => true];
@@ -141,19 +144,24 @@ class Mail
 
 	public function detailMail($flag, $user_id, $mail_id, $file){
 		$path = $this->getPath($flag, $user_id);
-		$data = json_decode( Storage::get($path . '/' . $file . '.json'), true );
-		$res = null;
-		foreach ($data as $item) {
-			if($item['id'] == $mail_id){
-				$res = $item;
+		if($file == 'inbox'){
+		  $data = json_decode( Storage::get($path . '/inbox/' . $mail_id . '.json'), true );
+		  return $data;
+		} else {
+			$data = json_decode( Storage::get($path . '/' . $file . '.json'), true );
+			$res = null;
+			foreach ($data as $item) {
+				if($item['id'] == $mail_id){
+					$res = $item;
+				}
 			}
+			return $res;
 		}
-		return $res;
 	}
 
 	public function countUnreadMessage($flag, $user_id){
 		$path = $this->getInboxPath($flag, $user_id);
-		$data = json_decode( Storage::get($path) );
+		$data = Storage::files($path);
 		return count($data);
 	}
 }
