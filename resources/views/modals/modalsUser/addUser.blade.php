@@ -1,5 +1,5 @@
 <!-- Awal Modal Add -->
-<div ng-controller="modalAlamat" class="modal animated pulse text-left" id="tambahuser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel35" aria-hidden="true">
+<div class="modal animated pulse text-left" id="tambahuser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel35" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -8,7 +8,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form method="POST" id="addAlamat" action="" ng-submit='submit($event)'>
+      <form method="POST" id="addAlamat" action="{{ route('adduser') }}" ng-submit='submit($event)'>
         <div class="modal-body">
             @csrf
                   <fieldset>
@@ -17,17 +17,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon3"><i class="fa fa-user"></i></span>
                         </div>
-                            <input type="text" class="form-control" placeholder="Masukkan Nama Lengkap" aria-describedby="basic-addon3">
-                    </div>
-                  </fieldset><br>
-
-                  <fieldset>
-                    <label>Username : </label>   
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon3"><i class="fa fa-user-o"></i></span>
-                        </div>
-                            <input type="text" class="form-control" placeholder="Masukkan Username" aria-describedby="basic-addon3">
+                            <input type="text" class="form-control" placeholder="Masukkan Nama Lengkap" aria-describedby="basic-addon3" name="name">
                     </div>
                   </fieldset><br>
 
@@ -37,7 +27,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon3"><i class="fa fa-envelope-o"></i></span>
                         </div>
-                            <input type="email" class="form-control" placeholder="Masukkan Email" aria-describedby="basic-addon3">
+                            <input type="email" class="form-control" placeholder="Masukkan Email" aria-describedby="basic-addon3" name="email">
                     </div>
                   </fieldset><br>
 
@@ -47,7 +37,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon3"><i class="fa fa-key"></i></span>
                         </div>
-                            <input type="password" class="form-control" placeholder="Masukkan Password" aria-describedby="basic-addon3">
+                            <input type="password" class="form-control" placeholder="Masukkan Password" aria-describedby="basic-addon3" name="password">
                     </div>
                   </fieldset><br>
 
