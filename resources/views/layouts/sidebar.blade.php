@@ -19,7 +19,7 @@
             <!-- Pengiriman Produk -->
             <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="icon-note"></i>Pengiriman Produk</a>
             <ul class="dropdown-menu">
-              <li class="dropdown @yield('inputSending')" data-menu="dropdown"><a class="dropdown-item" href="/inputPengiriman" data-toggle="dropdown"><i class="fa fa-pencil-square-o"></i>Input Baru</a>
+              <li class="dropdown @yield('inputSending')" data-menu="dropdown-"><a class="dropdown-item" href="/inputPengiriman" data-toggle="dropdown"><i class="fa fa-pencil-square-o"></i>Input Baru</a>
               </li>
               <li class="dropdown @yield('statusSending')" data-menu="dropdown-"><a class="dropdown-item" href="/member/pengiriman" data-toggle="dropdown"><i class="fa fa-bookmark"></i>Status Pengiriman</a>
               </li>

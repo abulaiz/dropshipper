@@ -16,13 +16,13 @@ class SendingController extends Controller
                             $q->where('product_id',$req->product_id);
                           })->get()[0]->stock[0]->qty;
     	if($req->qty < $qty){
-    		return response()->json(['success' => fail, 'reason' => 'Stok barang yang anda kirim tidak cukup.', 'eRtype' => 1]);
+    		return response()->json(['success' => false, 'reason' => 'Stok barang yang anda kirim tidak cukup.', 'eRtype' => 1]);
     	}
 
     	$sending_id = Sending::newId($user_id);
 
     	if($req->order_via_id > 3 && !Storage::exists($req->attachment)){
-    		return response()->json(['success' => fail, 'reason' => 'Terjadi kesalahan pada server, harap ulangi proses pengiriman.', 'eRtype' => 2]);
+    		return response()->json(['success' => false, 'reason' => 'Terjadi kesalahan pada server, harap ulangi proses pengiriman.', 'eRtype' => 2]);
     	}
 
     	Sending::create([
@@ -142,5 +142,8 @@ class SendingController extends Controller
         $data = Sending::find($req->id);
         $data->status = $req->status;
         $data->save();
+        if($req->status == '3'){
+            app('App\Http\Controllers\UserStockController')->stealStock($data->product_id, $data->qty, $data->user_id);
+        }
     }
 }

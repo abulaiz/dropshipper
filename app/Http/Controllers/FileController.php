@@ -20,11 +20,15 @@ class FileController extends Controller
     public function sendingAttachment($id, $filename){
     	$data = Sending::find($id);
     	$path = 'attachment/'.$data->user_id.'/'.$id.'/'.$filename;
-    	$file = Storage::get($path); 
-    	return response($file, 200)->header('Content-Type', 'image/jpeg');
+    	$file = Storage::get($path);
+    	ob_end_clean();
+    	return response($file)->header('Content-Type', 'image/jpeg');
+    						  // ->header('Content-Type', 'image/png'));
     }
 
-    public function dummyPDF(){
+    public function dummyPDF($id){
+
+    	$data = Sending::find($id);
 
 		// Content
 		$html = 'Write something here';
@@ -47,7 +51,7 @@ class FileController extends Controller
 		});
 
 		PDF::SetAuthor('System');
-		PDF::SetTitle('Bukti Pembayaran');
+		PDF::SetTitle('Resi Pengiriman');
 		PDF::SetSubject('Report of System');
 		PDF::SetMargins(25, 18, 25);
 		PDF::SetFontSubsetting(false);
@@ -61,49 +65,51 @@ class FileController extends Controller
 
 		PDF::setY( PDF::getY()+34 );
 		PDF::SetFont('times', 'B', 14);
-		PDF::Cell(0, 18, "BUKTI PEMESANAN", 0, true, 'C', 0, '', 0, false, 'M', 'M');
+		PDF::Cell(0, 18, $data->id, 0, true, 'C', 0, '', 0, false, 'M', 'M');
 		$style = array('width' => 0.7, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0));
 		PDF::Line(PDF::getX()+55, PDF::getY()-5, PDF::getX()+105, PDF::getY()-5, $style);
 
 		PDF::Ln(10);
 
 		PDF::Line(PDF::getX()+40, PDF::getY()-5, PDF::getX()+120, PDF::getY()-5, $style);
-		PDF::Cell(0, 18, "ORDER = Super Grow UP", 0, true, 'C', 0, '', 0, false, 'M', 'M');
+		PDF::Cell(0, 18, "ORDER = ".$data->product->name." ".$data->qty." ".$data->product->type, 0, true, 'C', 0, '', 0, false, 'M', 'M');
 		PDF::Line(PDF::getX()+40, PDF::getY()-5, PDF::getX()+120, PDF::getY()-5, $style);
 
 		PDF::Ln(10);
 
-		PDF::Cell(50, 17, "No ", 0, 0, '', 0, '', 0, false, 'M', 'M');
-		PDF::Cell(0, 17, ":  ".'001', 0, true, '', 0, '', 0, false, 'M', 'M');
-
 		PDF::Cell(50, 17, "Nama Penerima ", 0, 0, '', 0, '', 0, false, 'M', 'M');
-		PDF::Cell(0, 17, ":  ".'NAMA', 0, true, '', 0, '', 0, false, 'M', 'M');
+		PDF::Cell(0, 17, ":  ".$data->receiver_name, 0, true, '', 0, '', 0, false, 'M', 'M');
 
-		$des = 'ALAMAT';
 		PDF::Cell(50, 17, "Alamat Penerima", 0, 0, '', 0, '', 0, false, 'M', 'M');
 		PDF::Cell(3.5, 15, ":  ", 0, 0, '', 0, '', 0, false, 'M', 'M');
 		PDF::setCellHeightRatio(1.2);
 		PDF::setY( PDF::getY()-2, false );
-		PDF::MultiCell(0, 5, $des, 0, '', 0, 2, '', '', true);	
+		PDF::MultiCell(0, 5, $data->address, 0, '', 0, 2, '', '', true);	
 		PDF::setY( PDF::getY()+10 );
 
 		PDF::Cell(50, 17, "Nomer Penerima", 0, 0, '', 0, '', 0, false, 'M', 'M');
-		PDF::Cell(0, 17, ":  ".'089-XXX-XXX-XXX', 0, true, '', 0, '', 0, false, 'M', 'M');
+		PDF::Cell(0, 17, ":  ".$data->phone_number, 0, true, '', 0, '', 0, false, 'M', 'M');
 
 		PDF::Cell(50, 17, "Nama Pengirim", 0, 0, '', 0, '', 0, false, 'M', 'M');
-		PDF::Cell(0, 17, ":  ".'PENGIRIM', 0, true, '', 0, '', 0, false, 'M', 'M');
+		PDF::Cell(0, 17, ":  ".$data->sender_name, 0, true, '', 0, '', 0, false, 'M', 'M');
 
-		PDF::Ln(10);
+		// PDF::Ln(10);
 
-		PDF::Line(PDF::getX()+25, PDF::getY()-5, PDF::getX()+135, PDF::getY()-5, $style);
-		PDF::Cell(0, 18, "TUJUAN KECAMATAN = KELAPA GADING", 0, true, 'C', 0, '', 0, false, 'M', 'M');
-		PDF::Line(PDF::getX()+25, PDF::getY()-5, PDF::getX()+135, PDF::getY()-5, $style);
+		// PDF::Line(PDF::getX()+25, PDF::getY()-5, PDF::getX()+135, PDF::getY()-5, $style);
+		// PDF::Cell(0, 18, "TUJUAN KECAMATAN = KELAPA GADING", 0, true, 'C', 0, '', 0, false, 'M', 'M');
+		// PDF::Line(PDF::getX()+25, PDF::getY()-5, PDF::getX()+135, PDF::getY()-5, $style);
 
 		PDF::Ln(10);
 
 		PDF::Line(PDF::getX()+55, PDF::getY()-5, PDF::getX()+105, PDF::getY()-5, $style);
-		PDF::Cell(0, 18, "VIA SICEPAT", 0, true, 'C', 0, '', 0, false, 'M', 'M');
+		PDF::Cell(0, 18, "VIA ".$data->courier->name, 0, true, 'C', 0, '', 0, false, 'M', 'M');
 		PDF::Line(PDF::getX()+55, PDF::getY()-5, PDF::getX()+105, PDF::getY()-5, $style);
+
+		PDF::Ln(10);
+
+		PDF::Line(PDF::getX()+55, PDF::getY()-5, PDF::getX()+105, PDF::getY()-5, $style);
+		PDF::Cell(0, 18, "ORDER BY  ".$data->order_vias->name, 0, true, 'C', 0, '', 0, false, 'M', 'M');
+		PDF::Line(PDF::getX()+55, PDF::getY()-5, PDF::getX()+105, PDF::getY()-5, $style);		
 		// PDF::setX( PDF::getX() + 110 );
 		// PDF::Cell(0, 10, "Bandung, 27 Mei 2019", 0, true, 'C', 0, '', 0, false, 'M', 'M');
 
@@ -111,8 +117,8 @@ class FileController extends Controller
 
 
 		PDF::lastPage();
-		ob_end_clean();
-		PDF::Output('my_file.pdf');      	
+		PDF::Output('Resi Pengiriman '.$data->id.'.pdf');   
+		ob_end_clean();   	
     }
     
 }

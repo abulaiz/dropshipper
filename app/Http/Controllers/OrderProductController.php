@@ -182,6 +182,7 @@ class OrderProductController extends Controller
             
             $product = Product::find($order->product_id);
             $product->booked -= $order->qty;
+            $product->qty -= $order->qty;
 
             $product->save();
             $order->save();

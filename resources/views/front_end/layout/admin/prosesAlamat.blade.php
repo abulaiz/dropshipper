@@ -53,25 +53,27 @@
                                             <div class="dropdown-menu" x-placement="bottom-start" >
                                               <a class="dropdown-item" ng-click="detail($index)" data-toggle="modal" data-target="#detail">
                                                 <i class="fa fa-file-o mr-1"></i>Detail</a> 
-
-                                              <div ng-if="x.status == '2'">
-                                                  <a class="dropdown-item" ng-click="payed($index)">
-                                                    <i class="fa fa-money mr-1"></i>Konfirmasi Pembayaran</a>                                                  
-                                              </div>
-                                              
-                                              <div ng-if="x.status == '3'">
-                                                  <a class="dropdown-item" ng-click="sended($index)">
-                                                    <i class="fa fa-money mr-1"></i>Barang Telah dikirim</a>   
-                                              </div>
-
+                                              <a class="dropdown-item" ng-click="cetak($index)">
+                                                <i class="fa fa-print mr-1"></i>Cetak Resi</a> 
                                               <div ng-if="x.status == '1'">
                                                   <a class="dropdown-item" data-toggle="modal" data-target="#input" ng-click="input($index)">
-                                                    <i class="fa fa-money mr-1"></i>Input Harga</a>                                                
-                                                  <div class="dropdown-divider"></div>                               
+                                                    <i class="fa fa-money mr-1"></i>Input Harga</a> 
+                                              </div>  
+                                              <div ng-if="x.status != '4'">
+                                                  <div class="dropdown-divider"></div>  
+                                              </div>
+                                              <div ng-if="x.status == '2'">
+                                                  <a class="dropdown-item" ng-click="payed($index)">
+                                                    <i class="fa fa-check mr-1"></i>Konfirmasi Pembayaran</a>
+                                              </div>
+                                              <div ng-if="x.status == '3'">
+                                                  <a class="dropdown-item" ng-click="sended($index)">
+                                                    <i class="fa fa-check-square-o mr-1"></i>Barang Telah dikirim</a>   
+                                              </div>
+                                              <div ng-if="x.status == '1'">                            
                                                   <a class="dropdown-item" ng-click="cancel($index, $event.currentTarget)">
                                                     <i class="fa fa-times mr-1"></i>Tolak</a>                                               
                                               </div>
-
                                             </div>                                            
                                         </td>
                                     </tr>                                    

@@ -121,29 +121,29 @@
                                     <label>Via Media Sosial :</label><br>
                                         <label class="btn">
                                             <input type="radio" name="orderVia_id" ng-click='setOrderVia(1)'>
-                                            <img src="../../../img/wa.png" width="40px" height="40px">
+                                            <img src="../../../img/wa.png" width="40px" height="40px" alt="WhatsApp">
                                         </label>
                                         <label class="btn">
                                             <input type="radio" name="orderVia_id" ng-click='setOrderVia(2)'>
-                                            <img src="../../../img/ig.png" width="40px" height="40px">
+                                            <img src="../../../img/ig.png" width="40px" height="40px" alt="Instagram">
                                         </label>
                                         <label class="btn">
                                             <input type="radio" name="orderVia_id" ng-click='setOrderVia(3)'>
-                                            <img src="../../../img/ln.png"  width="40px" height="40px">
+                                            <img src="../../../img/ln.png"  width="40px" height="40px" alt="Line">
                                         </label>
                                         <br>
                                     <label>Via Toko Online :</label><br>
                                         <label class="btn">
                                           <input type="radio" name="orderVia_id" ng-click='setOrderVia(4)'>
-                                          <img src="../../../img/bl.png" width="80px" height="60px">
+                                          <img src="../../../img/bl.png" width="80px" height="60px" alt="BukaLapak">
                                         </label>
                                         <label class="btn">
                                           <input type="radio" name="orderVia_id" ng-click='setOrderVia(5)' ng-click="cek()">
-                                          <img src="../../../img/tp.png" width="75px" height="70px">
+                                          <img src="../../../img/tp.png" width="75px" height="70px" alt="Tokopedia">
                                         </label>
                                         <label class="btn">
                                           <input type="radio" name="orderVia_id" ng-click='setOrderVia(6)'>
-                                          <img src="../../../img/sp.png" width="70px" height="70px">
+                                          <img src="../../../img/sp.png" width="70px" height="70px" alt="Shoopee">
                                         </label>
                                 </fieldset>
                                 <div ng-show='bookedByMarketPlace'>                              

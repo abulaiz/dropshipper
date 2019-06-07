@@ -147,4 +147,8 @@
 	    	$scope.changeStatus(index, '3');
 	    };
 
+	    $scope.cetak = function(index){
+	    	window.open('/resiPengiriman/' + $scope.datas[index].id);
+	    };
+
     });

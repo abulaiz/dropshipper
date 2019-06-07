@@ -29,7 +29,7 @@
                 <small class="text-muted">Nama Produk</h6>
                 <h6 class="my-0">{* d.product_name *}</small>
               </div>
-              <span class="fa fa-user"></span>
+              <span class="fa fa-glass"></span>
             </li>
 
             <li class="list-group-item d-flex justify-content-between">
@@ -37,7 +37,7 @@
                 <small class="text-muted">Jumlah Pengiriman</h6>
                 <h6 class="my-0">{* d.qty *} {* d.product_type *}</small>
               </div>
-              <span class="fa fa-address-card-o"></span>
+              <span class="fa fa-shopping-cart"></span>
             </li>
 
             <li class="list-group-item d-flex justify-content-between">
@@ -45,7 +45,7 @@
                 <small class="text-muted">Dipesan lewat</h6>
                 <h6 class="my-0">{* d.order_via *}</small>
               </div>
-              <span class="fa fa-briefcase"></span>
+              <span class="fa fa-pencil-square-o"></span>
             </li>
 
             <li class="list-group-item d-flex justify-content-between">
@@ -53,7 +53,7 @@
                 <small class="text-muted">Kurir Pengiriman</h6>
                 <h6 class="my-0">{* d.courier *}</small>
               </div>
-              <span class="fa fa-shopping-cart"></span>
+              <span class="fa fa-truck"></span>
             </li>
 
            <li class="list-group-item d-flex justify-content-between">
@@ -61,7 +61,7 @@
                 <small class="text-muted">Nama Penerima</h6>
                 <h6 class="my-0">{* d.receiver_name *}</small>
               </div>
-              <span class="fa fa-money"></span>
+              <span class="fa fa-user"></span>
             </li>
 
            <li class="list-group-item d-flex justify-content-between">
@@ -69,7 +69,7 @@
                 <small class="text-muted">Alamat Penerima</h6>
                 <h6 class="my-0">{* d.address *}</small>
               </div>
-              <span class="fa fa-money"></span>
+              <span class="fa fa-address-card-o"></span>
             </li>
 
             <li class="list-group-item d-flex justify-content-between">
@@ -77,7 +77,7 @@
                 <small class="text-muted">Total Berat Barang</h6>
                 <h6 class="my-0">{* round( (d.qty * d.product_weight) / 1000 ) *} kg</small>
               </div>
-              <span class="fa fa-money"></span>
+              <span class="fa fa-paperclip"></span>
             </li>
 
           </ul>                 
