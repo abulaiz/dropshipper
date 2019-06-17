@@ -22,19 +22,19 @@ var swalBase = [
 		},							
 ];
 
-function getSwalBody(type){
+function getSwalBody(type, text){
 	return {
 		title : swalBase[type].title,
-		text : swalBase[type].text,
+		text : text != null ? text : swalBase[type].text,
 		icon : swalBase[type].icon,
 		buttons : true,
 		dangerMode : true
 	}
 }
 
-function _confirm(type, event){
+function _confirm(type, event, text = null){
 	if(!sawlRet){
-		swal(getSwalBody(type))
+		swal(getSwalBody(type, text))
 		.then((willDelete) => {
 			if(willDelete){
 				event();

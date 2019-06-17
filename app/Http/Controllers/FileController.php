@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Model\Transaction\Sending;
 use Auth;
 use PDF;
+use App\Libs\SimpleCry;
 
 class FileController extends Controller
 {
@@ -19,11 +20,31 @@ class FileController extends Controller
 
     public function sendingAttachment($id, $filename){
     	$data = Sending::find($id);
-    	$path = 'attachment/'.$data->user_id.'/'.$id.'/'.$filename;
+    	ob_start();
+    	$path = 'attachment/sending/'.$data->user_id.'/'.$id.'/'.$filename;
     	$file = Storage::get($path);
+    	
     	ob_end_clean();
     	return response($file)->header('Content-Type', 'image/jpeg');
     						  // ->header('Content-Type', 'image/png'));
+    }
+
+    public function mailAttachment($owner_id, $tagged_id, $filename){
+
+    	$scr = new SimpleCry();
+    	
+    	$id = Auth::user()->hasRole('member') ? Auth::user()->id : 0;
+    	$owner_id = (int)$scr->decrypt($owner_id);
+    	$tagged_id = (int)$scr->decrypt($tagged_id);
+
+    	if( $id == $owner_id || $id == $tagged_id ){
+	    	ob_start();
+	    	$path = 'attachment/mail/'.$owner_id.'/'.$tagged_id.'/'.$filename;
+	    	$file = Storage::get($path);
+	    	
+	    	ob_end_clean();
+	    	return response($file)->header('Content-Type', 'image/jpeg');
+    	}
     }
 
     public function dummyPDF($id){

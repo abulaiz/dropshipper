@@ -7,7 +7,35 @@ var month = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
 				'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
 
 var avatar_colour = ['success', 'info', 'warning', 'indigo', 'cyan', 'teal', 'green', 
-						'lime', 'grey', 'orange', 'purple', 'pink', 'blue'];
+						'lime', 'brown', 'orange', 'purple', 'pink', 'blue'];
+
+FilePond.registerPlugin(
+    FilePondPluginImagePreview,
+    FilePondPluginFileValidateType
+);
+
+FilePond.setOptions({
+    server: {
+        url: '/fileUpload',
+        process: {
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }                   
+        },
+    }
+});
+
+const inputElement = document.querySelector('input[type="file"]');
+var pond = FilePond.create( inputElement, {acceptedFileTypes: ['image/png']} );
+	
+pond.labelTapToUndo = '';
+pond.allowRevert = false;
+pond.labelIdle = "Klik / seret gambar untuk menyisipkan gambar";
+pond.maxFiles = 10;
+
+pond.on('processfile', (error, file) => {
+	pond.labelIdle = "Klik untuk menambahkan gambar lagi";
+});
 
 
 app.controller('mail' ,function ($scope, $rootScope, $location, $http) {
@@ -27,6 +55,13 @@ app.controller('mail' ,function ($scope, $rootScope, $location, $http) {
 		return $scope.readMailState;	
 	};	
 
+	$rootScope.setComposeMail = function(subject, receiver = null){
+		$scope.subject = subject;
+		if(receiver != null){
+			$scope.email = receiver;
+		}
+	}
+
 	$rootScope.$on("$routeChangeStart", function(){
 		$scope.inload = true;
 	});
@@ -36,33 +71,43 @@ app.controller('mail' ,function ($scope, $rootScope, $location, $http) {
 	});
 
 	$scope.sentMail = function(){;
-      	toastr.info('Sedang mengirim pesan ...', 'Harap Tunggu', {
-        positionClass: 'toast-bottom-right', containerId: 'toast-bottom-right'});
+
+        _leftAlert('Harap Tunggu', 'Sedang mengirim pesan ...', 'info');
         $scope.onSending = true;
 
-	    $http.post('/api/mail/write', {'subject' : $scope.subject, 'text' : $scope.text, 'email' : $scope.email})
+	    var attachment = [];
+	    var x = pond.getFiles();
+
+		for(let i=0; i < x.length; i++){
+			if(x[i].status != 5){
+				return _leftAlert('Oops !', 'Beberapa gambar belum berhasil diupload, batalkan atau muat ulang', 'warning');
+			}
+			attachment.push(x[i].serverId);  		
+		}
+
+        $("[data-dismiss=modal]").click();
+
+	    $http.post('/api/mail/write', {'subject' : $scope.subject, 'text' : $scope.text, 'email' : $scope.email, 'attachment' : attachment})
 	    .then(function successCallback(response) {
 
 	    	if(response.data.success){
-		      	toastr.success('Pesan anda telah terkirim', 'Selesai', {
-		        positionClass: 'toast-bottom-right', containerId: 'toast-bottom-right'});
+	    		_leftAlert('Selesai', 'Pesan anda telah terkirim.', 'success');
 
 		      	$scope.subject = ''; $scope.text = ''; $scope.email = '';
-		        $rootScope.loadOutbox(null, null, 1, 'unshift');	    		
-		      } else {
-		      	toastr.error(response.data.reason, 'Gagal', {
-		        positionClass: 'toast-bottom-right', containerId: 'toast-bottom-right'});			      	
-		      }
-	
-
+		        $rootScope.loadOutbox(null, null, 1, 'unshift');	
+				pond.removeFiles();		
+		    } else {
+				_leftAlert('Gagal !', response.data.reason, 'error');		      	
+		    }
 	        $scope.onSending = false;
 	    }, function errorCallback(response) {
-
-			toastr.error('Terjadi kesalahan, coba lagi.', 'Request Failed!', {
-			positionClass: 'toast-bottom-right', containerId: 'toast-bottom-right'});
-
+	    	console.log(response.data);
+			_leftAlert('Request Failed !', 'Terjadi kesalahan, coba lagi.', 'error');
 			$scope.onSending = false;
-	    });			
+	    });	
+	    
+	    attachment = null;
+	    x = null;
 	}
 
 });

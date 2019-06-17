@@ -31,6 +31,25 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 }
 
 
+@media (max-width: 1199.98px)
+{
+	.header-navbar .navbar-container ul.nav li a.dropdown-user-link .user-name{
+		display: inline-block !important;
+	}
+
+	.avatar-online, #on-avatar{
+		display: none;
+	}
+
+	.header-navbar .navbar-container ul.nav li a.dropdown-user-link{
+		padding-top: 20px !important;
+	}
+}
+
+.header-navbar .navbar-header .navbar-brand{
+	padding: 5px;
+}
+
 #box1
 {
 	width:auto;
@@ -75,5 +94,9 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 .jdt td, .jdt th {
 	padding-top: 10px !important;
 	padding-bottom: 10px !important;
+}
+
+.selectedMailAvatar {
+	background-color: grey !important;
 }
 

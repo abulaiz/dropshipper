@@ -19,9 +19,12 @@
 		    	new_unread = response.data.data;
 		    	if(new_unread > $scope.unread_message){
 		    		tmp = new_unread - $scope.unread_message;
-					$.ambiance({message: 'Anda Mendapat '+ tmp +' pesan baru.',
-					            title: 'Pesan baru', timeout: 0,
-					            type: "success", fade : true});			      			    		
+					$.ambiance({
+						message: 'Anda Mendapat '+ tmp +' pesan baru.',
+					    title: 'Pesan baru', timeout: 0,
+					    type: "success", fade : true,
+					    link : '/email', linkName : 'Cek Sekarang', linkColor: "white"
+					});			      			    		
 		    	}
 	      		$("#inbox_badge").text( new_unread );
 		    	$scope.unread_message = new_unread;
@@ -34,6 +37,10 @@
 		$interval(function () {
 			$scope.load_inbox();			
 		}, 6000); // 10 detik
-  	
+		
+// if (typeof $rootScope.getTodaysSteps !== 'undefined' && typeof $rootScope.getTodaysSteps === 'function') 
+// { 
+//      ...
+// }		
 
     });

@@ -43,7 +43,7 @@ class SendingController extends Controller
 
     	if($req->order_via_id > 3){
     		$slash = explode('/', $req->attachment);
-    		Storage::move($req->attachment, 'attachment/'.$user_id.'/'.$sending_id.'/'.$slash[2]);
+    		Storage::move($req->attachment, 'attachment/sending/'.$user_id.'/'.$sending_id.'/'.$slash[2]);
     	}
     	return response()->json(['success' => true]);
     }

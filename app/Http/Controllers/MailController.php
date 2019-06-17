@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Libs\Mail;
+use App\Libs\SimpleCry;
+use Illuminate\Support\Facades\Storage;
 use Auth;
 use Validator;
 use App\User;
@@ -55,11 +57,11 @@ class MailController extends Controller
             $receiper_mail = 'Admin';
             $sender_mail = Auth::user()->email;            
         } else {
-            $u = User::where('email', isset($req->email) ? $req->email : '')->get();
+            $email_address = isset($req->email) ? $req->email : '';
+            if(!User::where('email', $email_address)->exists())
+                return response()->json(['success' => false, 'reason' => 'Email tujuan tidak terdaftar pada sistem ini.']);
             
-            if($u == null)
-                return response()->json(['success' => false, 'reason' => 'Email tidak terdaftar pada sistem ini.']);
-            
+            $u = User::where('email', $email_address)->get();
             $flag_sender = 'A';
             $flag_receiper = 'M';
             $sender_name = 'Admin';
@@ -68,6 +70,17 @@ class MailController extends Controller
             $receiper_id = $u[0]->id;     
             $receiper_mail = $u[0]->email;
             $sender_mail = 'Admin';                
+        }
+
+        $attachment = [];
+        $user_id = Auth::user()->hasRole('member') ? Auth::user()->id.'/0' : '0/'.$u[0]->id;
+        $key = explode('/', $user_id);
+        $scr = new SimpleCry();
+
+        foreach ($req->attachment as $item) {
+            $slash = explode('/', $item);
+            Storage::move($item, 'attachment/mail/'.$user_id.'/'.$slash[2]);
+            $attachment[] = $scr->encrypt($key[0]) . '/'. $scr->encrypt($key[1]) .'/'.$slash[2];            
         }
 
         Mail::getInstance()->write([
@@ -80,9 +93,25 @@ class MailController extends Controller
             'sender_name' => $sender_name,
             'sender_id' => $sender_id,
             'receiper_name' => $receiper_name,
-            'receiper_id' => $receiper_id
+            'receiper_id' => $receiper_id,
+            'attachment' => $attachment
         ]);
 
         return response()->json(['success' => true]);
+    }
+
+    public function delete(Request $req){
+        $user_id = Auth::user()->id;
+        $flag = Auth::user()->hasRole('member') ? 'M' : 'A';
+        foreach ($req->data as $item) {
+            Mail::getInstance()->delete($flag, $user_id, $item['mail_id'], $item['file']);   
+        }
+    }
+
+    public function search(Request $req){
+        $user_id = Auth::user()->id;
+        $flag = Auth::user()->hasRole('member') ? 'M' : 'A';
+        $res = Mail::getInstance()->find($req->keyword, $req->type, $flag, $user_id);
+        return response()->json($res);
     }
 }

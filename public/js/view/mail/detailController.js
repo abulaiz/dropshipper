@@ -1,5 +1,17 @@
 var tmp_res = [];
 
+function initPhotoSw(){
+    initPhotoSwipeFromDOM('.my-gallery');
+    if($('.masonry-grid').length > 0){
+        $('.masonry-grid').masonry({
+              // options
+              itemSelector: '.grid-item',
+              columnWidth: '.grid-sizer',
+              //cpercentPosition: true
+        });
+    }	
+}
+
 app.controller('detail' ,function ($scope, $rootScope, $location, $http) {
 	$scope.onload = true;
 
@@ -16,6 +28,10 @@ app.controller('detail' ,function ($scope, $rootScope, $location, $http) {
 	$scope.subject = $scope.state.subject;
 	$scope.name = $scope.state.name;
 	$scope.email = $scope.state.email;
+	$scope.attachment = [];
+
+	if($scope.state.file != 'inbox' && $scope.state.file[ $scope.state.file.length - 1 ] != 'i')
+		$("#reply-icon").remove();
 
 	$scope.hasCached = function(id){
 		for (let i = 0; i < tmp_res.length; i++) {
@@ -30,7 +46,9 @@ app.controller('detail' ,function ($scope, $rootScope, $location, $http) {
 			if(tmp_res[i].id == $scope.state.id){
 				$scope.content = tmp_res[i].text;
 				$('#contentMail').html($scope.content);
-				$scope.onload = false;				
+				$scope.attachment = tmp_res[i].attachment;
+				$scope.onload = false;		
+				initPhotoSw();		
 			}
 		}
 	} else {
@@ -38,10 +56,12 @@ app.controller('detail' ,function ($scope, $rootScope, $location, $http) {
 		.then(function successCallback(response) {
 			$scope.content = response.data.text.split('\n').join('<br>');
 			$('#contentMail').html($scope.content);
-			$scope.onload = false;
+			$scope.attachment = response.data.attachment;
+			initPhotoSw();
 			
+			$scope.onload = false;
 			if($scope.state.file == 'inbox')
-				tmp_res.push({'id' : $scope.state.id, 'text' : $scope.content});	
+				tmp_res.push({'id' : $scope.state.id, 'text' : $scope.content, 'attachment' : response.data.attachment});	
 			
 		});	
 	}
@@ -52,7 +72,7 @@ app.controller('detail' ,function ($scope, $rootScope, $location, $http) {
 		else if($scope.flag == 'S')
 			return 'bg-danger';
 		else 
-			return 'bg-' + avatar_colour[ Math.floor(($scope.name[0].toUpperCase().charCodeAt(0)-1)/2) - 32 ];
+			return 'bg-' + avatar_colour[ Math.floor(($scope.email[0].toUpperCase().charCodeAt(0)-1)/2) - 32 ];
 	};
 
 	$scope.getDate = function(){
@@ -62,5 +82,16 @@ app.controller('detail' ,function ($scope, $rootScope, $location, $http) {
 		else 
 			return x[0].substr(8, 2) +' '+ month[Number(x[0].substr(5, 2)) - 1]+ ' '+ x[0].substr(0, 4);
 	};
+
+	$scope.back = function(){
+		$location.path('/');
+	}
+
+	$scope.reply = function(){
+		if($scope.flag == 'M')
+			$rootScope.setComposeMail("Re:"+$scope.subject, $scope.email);
+		else
+			$rootScope.setComposeMail("Re:"+$scope.subject);
+	}
 	
 });

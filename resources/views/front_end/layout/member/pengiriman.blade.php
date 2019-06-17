@@ -220,6 +220,7 @@
     <script src="../../../app-assets/vendors/js/forms/icheck/icheck.min.js"></script>
     <script src="../../../app-assets/js/scripts/forms/Radio-radio.js"></script>
 
+    <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
     <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
     <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
 

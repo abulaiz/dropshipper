@@ -3,6 +3,7 @@ var next = false;
 
 FilePond.registerPlugin(
     FilePondPluginImagePreview,
+    FilePondPluginFileValidateType
 );
 
 FilePond.setOptions({
@@ -17,7 +18,7 @@ FilePond.setOptions({
 });
 
 const inputElement = document.querySelector('input[type="file"]');
-var pond = FilePond.create( inputElement );
+var pond = FilePond.create( inputElement, {acceptedFileTypes: ['image/png']} );
             pond.labelTapToUndo = '';
 pond.allowRevert = false;
 

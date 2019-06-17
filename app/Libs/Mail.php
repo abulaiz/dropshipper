@@ -31,7 +31,7 @@ class Mail
 	// 'subject','text' ,'attachment'
 	public function write($arr){
 		// Generate ID
-		$id = strtoupper( uniqid( Auth::user()->id ) );
+		$id = strtoupper( uniqid() ).Auth::user()->id;
 		$date = date("Y-m-d H:i");
 
 		// Save to Receipter Inbox
@@ -75,7 +75,7 @@ class Mail
 		$count = $count == null ? $this->max_load : $count;
 		$path = $this->getPath($flag, $user_id);
 		$mails = [];
-		$skip = $last['id'] != null;
+		$skip = $last['id'] != null; // if($last['id'] == null) $skip = false;
 		$last['file'] = $last['file'] == null ? 'inbox' : $last['file'];
 
 		if($last['file'] == 'inbox'){
@@ -83,35 +83,49 @@ class Mail
 			$i_files = Storage::files($i_path);
 			$length = count($i_files);
 			for($i = $length - 1; $i>= 0; $i--){
-				$data = json_decode(Storage::get($i_files[$i]), true);
+				
+				if($i != $length - 1 && $skip){
+					$k = $i_files[$i+1];
+					$skip = $last['id'].".json" != explode('/', $k)[ count(explode('/', $k)) -1 ];
+				}
 
-				if($last['id'] == $data['id'] ) $skip == false;
 				if($skip) continue;
+				
+				$data = json_decode(Storage::get($i_files[$i]), true);
 				$mails[] = $this->setContent($data, 'inbox');
 				$count -- ;
-				if ($count == 0)
-					return ['data' => $mails, 'next' => true];
+				if ($count == 0){
+					$n_i = json_decode(Storage::get($path.'/'.$this->readStatus($flag, $user_id, 'inbox', $path).'_i.json'), true);
+					return ['data' => $mails, 'next' => count($n_i) > 0 ? true : false];
+				}
 			}
 		}
 
 		$num = ($last['file'] == 'inbox' ? $this->readStatus($flag, $user_id, 'inbox', $path) : (int) substr($last['file'] , 0, 1) );
+		if($last['file'] == 'inbox' && $skip)
+			$skip = false;
 
 		if(!Storage::exists($path.'/'.$num.'_i.json'))
 			return ['data' => $mails, 'next' => false];
 
 		for($j = $num ; $j>0; $j--){
 			$data = json_decode(Storage::get($path.'/'.$j.'_i.json'), true);
+			
 			$length = count($data);
-			for($i = $length - 1; $i>= 0; $i--){
-				if($last['id'] == $data[$i]['id'] ) $skip == false;
+			for($i = $length - 1; $i>=0; $i--){
+
+				if($i != $length - 1 && $skip)
+					$skip = $last['id'] != $data[$i+1]['id']; // if( $last['id'] == $data[$i+1]['id'] ) $skip = false;	
+
 				if($skip) continue;
+
 				$mails[] = $this->setContent($data[$i], $j.'_i');
 				$count -- ;
+
 				if ($count == 0)
-					return ['data' => $mails, 'next' => true];
+					return ['data' => $mails, 'next' =>  $j==1 && $i==0 ? false : true ];
 			}			
 		}
-
 		return ['data' => $mails, 'next' => false];
 	}
 
@@ -121,7 +135,7 @@ class Mail
 		$mails = [];
 		$skip = $last['id'] != null;
 
-		$num = ($last['file'] == null ? $this->readStatus($flag, $user_id, 'outbox', $path) : (int) substr($file , 0, 1) );
+		$num = ($last['file'] == null ? $this->readStatus($flag, $user_id, 'outbox', $path) : (int) substr($last['file'] , 0, 1) );
 
 		if(!Storage::exists($path.'/'.$num.'_o.json'))
 			return ['data' => $mails, 'next' => false];
@@ -130,12 +144,16 @@ class Mail
 			$data = json_decode(Storage::get($path.'/'.$j.'_o.json'), true);
 			$length = count($data);
 			for($i = $length - 1; $i>= 0; $i--){
-				if($last['id'] == $data[$i]['id'] ) $skip == false;
+				
+				if($i != $length - 1 && $skip)
+					$skip = $last['id'] != $data[$i+1]['id']; // if( $last['id'] == $data[$i+1]['id'] ) $skip = false;
+				
 				if($skip) continue;
+
 				$mails[] = $this->setContent($data[$i], $j.'_o');
 				$count -- ;
 				if ($count == 0)
-					return ['data' => $mails, 'next' => true];
+					return ['data' => $mails, 'next' => $j==1 && $i==0 ? false : true];
 			}			
 		}
 
@@ -159,9 +177,70 @@ class Mail
 		}
 	}
 
+	public function delete($flag, $user_id, $mail_id, $file){
+		$path = $this->getPath($flag, $user_id);
+		if($file == 'inbox'){
+			Storage::delete($path . '/inbox/' . $mail_id . '.json');
+		} else {
+			$data = json_decode( Storage::get($path . '/' . $file . '.json'), true );
+			foreach ($data as $key => $item) {
+				if($item['id'] == $mail_id){
+					unset( $data[$key] );
+					break;
+				}
+			}
+			Storage::put($path . '/' . $file . '.json' , json_encode( array_values($data) , JSON_PRETTY_PRINT));	
+		}
+	}
+
 	public function countUnreadMessage($flag, $user_id){
 		$path = $this->getInboxPath($flag, $user_id);
 		$data = Storage::files($path);
 		return count($data);
+	}
+
+	private function hasSame($t1, $t2){
+		if (strpos(strtoupper($t2), strtoupper($t1)) !== false) 
+		    return true;
+		else
+			return false;
+		
+	}
+
+	public function find($subject, $type, $flag, $user_id){
+		$path = $this->getPath($flag, $user_id);
+		$res = [];
+		if($type == 'inbox'){
+			// Search on inbox first
+			$_inbox_files = Storage::files($path.'/inbox');
+			foreach ($_inbox_files as $item) {
+				$data = json_decode( Storage::get($item), true );
+				if($this->hasSame($subject, $data['subject'])){
+					$res[] = $this->setContent($data, 'inbox');
+				}
+			}
+			// Search in archived message
+			$status = $this->readStatus($flag, $user_id, 'inbox', $path);
+			for($i = $status ; $i > 0; $i--){
+				$data = json_decode( Storage::get($path.'/'.$i.'_i.json') , true);
+				foreach ($data as $item) {
+					if($this->hasSame($subject, $item['subject'])){
+						$res[] = $this->setContent($item, $i.'_i');
+					}
+				}
+			}
+
+		} else {
+			$status = $this->readStatus($flag, $user_id, 'outbox', $path);
+			for($i = $status ; $i > 0; $i--){
+				$data = json_decode( Storage::get($path.'/'.$i.'_o.json') , true);
+				foreach ($data as $item) {
+					if($this->hasSame($subject, $item['subject'])){
+						$res[] = $this->setContent($item, $i.'_o');
+					}
+				}
+			}
+		}
+		return $res;
 	}
 }

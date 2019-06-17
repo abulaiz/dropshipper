@@ -12,7 +12,7 @@
             @if(!Auth::user()->hasRole('member'))
             <label>Tujuan</label>
             <fieldset class="form-group position-relative has-icon-left">
-                <input type="text" ng-model='email' class="form-control">
+                <input type="text" ng-model='email' placeholder="Email" class="form-control">
                 <div class="form-control-position">
                     <i class="icon-cursor primary"></i>
                 </div>
@@ -21,7 +21,7 @@
             <input type="hidden" ng-model='email' ng-init='email=""' placeholder="Email Tujuan">
             @endif
 
-            <label for="jenis">Subject</label>
+            <label>Subject</label>
             <fieldset class="form-group position-relative has-icon-left">
                 <input ng-model='subject' type="text" class="form-control" placeholder="Subject">
                 <div class="form-control-position">
@@ -29,7 +29,7 @@
                 </div>
             </fieldset>
 
-            <label for="jenis">Pesan</label>
+            <label>Pesan</label>
             <fieldset class="form-group position-relative has-icon-left">
                 <textarea ng-model='text' class="form-control position-relative has-icon-left" placeholder="Pesan anda disini ..."></textarea>
                 <div class="form-control-position">
@@ -37,9 +37,14 @@
                 </div>
             </fieldset>
 
+            <label style="font-style: italic;">Attachment (optional) Max : 10</label>
+            <fieldset class="form-group">
+                <input type="file" name="attachment" multiple="">
+            </fieldset>            
+
         </div>
         <div class="modal-footer">
-            <input type="reset" ng-click='sentMail()' class="btn btn-primary btn-lg" data-dismiss="modal" value="Kirim">
+            <input ng-click='sentMail()' class="btn btn-primary btn-lg" value="Kirim">
         </div>
       </form>
     </div>
