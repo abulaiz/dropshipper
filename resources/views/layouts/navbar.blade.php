@@ -40,7 +40,7 @@
                 <span class="user-name">{{ Auth::user()->name }}</span>
               </a>
               <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item" href="#"><i class="ft-user"></i> My Account</a>
+                <a class="dropdown-item" href="/profile"><i class="ft-user"></i> My Account</a>
                 <a class="dropdown-item" href="/email"><i class="ft-mail"></i> My Inbox</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" ng-click="logout($event)" href="{{ route('logout') }}"><i class="ft-power"></i> Logout</a>

@@ -27,6 +27,10 @@ Route::group(['middleware' => ['auth']], function () {
 	    return view('front_end.layout.home');
 	});	
 
+	Route::get('/profile', 'UserController@profile');
+	Route::post('/changePassword', 'UserController@update_password')->name('changePassword');
+	Route::post('/changeInfo', 'UserController@update_info')->name('changeInfo');
+
 	include('web_mod/email.php');
 
 	// Route khusus untuk member
