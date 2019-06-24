@@ -31,7 +31,7 @@ app.controller('detail' ,function ($scope, $rootScope, $location, $http) {
 	$scope.attachment = [];
 
 	if($scope.state.file != 'inbox' && $scope.state.file[ $scope.state.file.length - 1 ] != 'i')
-		$("#reply-icon").remove();
+		$("#reply-icon").hide();
 
 	$scope.hasCached = function(id){
 		for (let i = 0; i < tmp_res.length; i++) {

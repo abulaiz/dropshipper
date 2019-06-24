@@ -62,6 +62,15 @@
 		      url: '/api/sending/detail/' + $scope.datas[index].id
 		    }).then(function successCallback(response) {
 		    	$scope.d = response.data;
+		    	if(response.data.attachment_path == ""){
+		    		$("#img-instance").hide();
+		    	} else {
+					$("#img-instance").show();
+					$("#img").attr({'src' : '/sendingAttachment/'+ response.data.id + '/' + response.data.attachment_path});		    		
+					$( document.getElementById('img').parentNode ).attr(
+						{'href' : '/sendingAttachment/'+ response.data.id + '/' + response.data.attachment_path}
+					);		    		
+		    	}		    	
 	    		$('#detail-loader').hide();
 	    		$('.hd').show();
 		    });     		

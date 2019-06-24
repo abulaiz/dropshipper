@@ -54,7 +54,7 @@
             </form>
             <div class="pull-right" style="margin-bottom: 20px;">
               <button data-toggle="modal" data-target="#basic" class="btn btn-outline-secondary">
-                <i class="fa fa-pencil"></i> Sesuaikan
+                Sesuaikan
               </button>
             </div>   
 
@@ -65,7 +65,7 @@
             </form>
             <div class="pull-left" style="margin-bottom: 20px;">
               <button data-toggle="modal" data-target="#cp" class="btn btn-outline-secondary">
-                <i class="fa fa-pencil"></i> Ganti Password
+                Ganti Password
               </button>
             </div>   
 

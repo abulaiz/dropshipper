@@ -18,12 +18,12 @@
 
             <!-- Pengiriman Produk -->
             <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="icon-note"></i>Pengiriman Produk</a>
-            <ul class="dropdown-menu">
-              <li class="dropdown @yield('inputSending')" data-menu="dropdown-"><a class="dropdown-item" href="/inputPengiriman" data-toggle="dropdown"><i class="fa fa-pencil-square-o"></i>Input Baru</a>
-              </li>
-              <li class="dropdown @yield('statusSending')" data-menu="dropdown-"><a class="dropdown-item" href="/member/pengiriman" data-toggle="dropdown"><i class="fa fa-bookmark"></i>Status Pengiriman</a>
-              </li>
-            </ul>
+              <ul class="dropdown-menu">
+                <li class="dropdown @yield('inputSending')" data-menu="dropdown-"><a class="dropdown-item" href="/inputPengiriman" data-toggle="dropdown"><i class="fa fa-pencil-square-o"></i>Input Baru</a>
+                </li>
+                <li class="dropdown @yield('statusSending')" data-menu="dropdown-"><a class="dropdown-item" href="/member/pengiriman" data-toggle="dropdown"><i class="fa fa-bookmark"></i>Status Pengiriman</a>
+                </li>
+              </ul>
             </li>
             @endhasrole
 
@@ -33,17 +33,24 @@
             <li class="nav-item @yield('request_order')"><a class="nav-link" href="/orderRequest"><i class="icon-bag"></i>Permintaan Stok</a>
             </li>
             <!-- Stok Product -->
-            <li class="nav-item"><a class="nav-link" href="prosesAlamat"><i class="icon-directions"></i>Proses Pengiriman</a>
+            <li class="nav-item @yield('prosesAlamat')"><a class="nav-link" href="/prosesAlamat"><i class="icon-directions"></i>Proses Pengiriman</a>
             </li>
             <!-- Stok Product -->
-            <li class="nav-item"><a class="nav-link" href="stokBarang"><i class="icon-list"></i>Stok Produk</a>
+            <li class="nav-item @yield('stok_produk')"><a class="nav-link" href="/stokBarang"><i class="icon-list"></i>Stok Produk</a>
             </li>
             @endunlessrole
 
 
             @hasrole('superadmin')
-            <!-- User -->
-            <li class="nav-item @yield('user')"><a class="nav-link" href="user"><i class="fa fa-user"></i>User Member</a>
+            <!-- Member Management -->
+            <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="fa fa-user"></i>Kelola Member</a>
+              <ul class="dropdown-menu">
+                <li class="dropdown @yield('member_terdaftar')" data-menu="dropdown-"><a class="dropdown-item" href="/members" data-toggle="dropdown"><i class="fa fa-pencil-square-o"></i>Member Terdaftar</a>
+                </li>
+                <li class="dropdown @yield('pendaftar_baru')" data-menu="dropdown-"><a class="dropdown-item" href="/registrant" data-toggle="dropdown"><i class="fa fa-bookmark"></i>Pendaftar Baru</a>
+                </li>
+              </ul>
+            </li>              
             @endhasrole
 
         </ul>

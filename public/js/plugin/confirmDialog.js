@@ -19,7 +19,12 @@ var swalBase = [
 			title:'Apakah anda yakin ?', 
 			text : 'Request Pengiriman anda akan dibatalkan ?',
 			icon : 'warning'
-		},							
+		},	
+		{ // 4
+			title:'Apakah data sudah benar ?', 
+			text : ' ?',
+			icon : 'warning'
+		},									
 ];
 
 function getSwalBody(type, text){

@@ -79,6 +79,12 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 	}
 }
 
+@media (max-width: 400px) {
+	.responsiveCard{
+		padding: unset !important;
+	}
+}
+
 .unread{
 	background-color: antiquewhite !important;
 }

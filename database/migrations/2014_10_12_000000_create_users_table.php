@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('phone');
             $table->char('gender', 1); // 1 = laki-laik; 0 = perempuan
             $table->string('address');
+            $table->boolean('activate');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

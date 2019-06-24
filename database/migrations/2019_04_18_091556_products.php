@@ -28,7 +28,7 @@ class Products extends Migration
             $table->unsignedInteger('user_id')->nullable();
             $table->unsignedInteger('product_id');
             $table->integer('qty');
-            $table->boolean('is_added');
+            $table->char('status', 1); // 1 = sold by member, 2 = added by admin
             $table->string('description');
             $table->timestamp('created_at');
             $table->foreign('user_id')

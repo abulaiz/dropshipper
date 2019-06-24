@@ -21,14 +21,19 @@ Route::group(['middleware' => ['auth']], function () {
 
 	// Member Route Area
 	Route::get('product/available', 'ProductController@available');
+	Route::get('product/stock', 'ProductController@stock');
+	Route::post('product/add', 'ProductController@add');
 	Route::get('user/stock', 'UserStockController@index');
 
 	Route::post('user/order/cancel', 'OrderProductController@cancel');
 	Route::get('user/order', 'OrderProductController@progress');
 	Route::post('user/order/history', 'OrderProductController@member_history');
+	Route::get('user/historyOrder/{id}', 'OrderProductController@user_history');
 
 	Route::get('user', 'UserController@show');
-	Route::get('user/edituser', 'UserController@edituser');
+	Route::get('registrant', 'UserController@registrant');
+	Route::post('activateUser', 'UserController@activate');
+	Route::post('user/update_password', 'UserController@edit_password');
 	Route::post('user/delete', 'UserController@delete');
 
 	Route::post('checkProductAv', 'ProductController@checkAv');

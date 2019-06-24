@@ -27,6 +27,11 @@ class LoginController extends Controller
      */
     protected $redirectTo = '/';
 
+    public function showLoginForm()
+    {
+        return view('front_end.layout.auth.login');
+    }
+
     /**
      * Create a new controller instance.
      *

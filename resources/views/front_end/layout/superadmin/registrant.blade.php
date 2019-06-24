@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('stok_produk', 'active')
+@section('pendaftar_baru', 'active')
 
 @section('content')
 
@@ -8,8 +8,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>Stok Produk</h4>
-                    <small class="text-mutted">Last updated at {* last_updated *}</small>
+                    <h4>Pendaftar Baru</h4>
                 </div>
                 <div class="card-content">
                     <div class="card-body">
@@ -18,22 +17,31 @@
                             <table class="table table-striped table-bordered" id="example">
                                 <thead>
                                     <tr>
-                                        <th>Produk</th>
-                                        <th>Masuk</th>
-                                        <th>Keluar</th>
-                                        <th>Sisa</th>
+                                        <th>Tanggal</th>
+                                        <th>Nama</th>
+                                        <th>Email</th>
+                                        <th>No Tlp</th>
                                         <th>Opsi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat='x in datas'>
+                                        <td>{* x.created_at.substr(0, 10) *}</td>
                                         <td>{* x.name *}</td>
-                                        <td>{* x.in *} {* x.type *}</td>
-                                        <td>{* x.out *} {* x.type *}</td>
-                                        <td>{* x.qty *} {* x.type *}</td>
+                                        <td>{* x.email *}</td>
+                                        <td>{* x.phone *}</td>
                                         <td>
-                                            <button class="btn btn-success btn-sm" ng-click="prep_add($index)" data-toggle="modal" data-target="#add">
-                                             <i class="fa fa-plus mr-1"></i>Tambah Stok</button>  
+                                            <button type="button" class="btn btn-outline-info dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</button>
+                                            <div class="dropdown-menu" x-placement="bottom-start" >
+                                                
+                                                <a class="dropdown-item" ng-click="confirm($index)">
+                                                <i class="fa fa-user-plus mr-1"></i>Konfirmasi</a>
+ 
+                                                <div class="dropdown-divider"></div>                           
+                                                   
+                                                <a class="dropdown-item" ng-click="reject($index)">
+                                                <i class="fa fa-user-times mr-1"></i>Tolak</a>                                                                                                
+                                            </div>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -55,10 +63,6 @@
         </div>
     </div>
 
-    <div class="modal fade text-left" id="add" tabindex="-1" role="dialog"  aria-hidden="true">
-      @include('modals.addProductStok')
-    </div>
-
 </section>
 
 
@@ -78,6 +82,6 @@
     <script src="../../../js/plugin/confirmDialog.js" type="text/javascript"></script>
     <script src="../../../js/plugin/leftToastr.js" type="text/javascript"></script>
 
-    <script src="../../../js/view/productStock/tableController.js" type="text/javascript"></script>
+    <script src="../../../js/view/user/registrantController.js" type="text/javascript"></script>
 
 @endsection

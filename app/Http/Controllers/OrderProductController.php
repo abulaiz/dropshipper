@@ -184,11 +184,10 @@ class OrderProductController extends Controller
             $product->booked -= $order->qty;
             $product->qty -= $order->qty;
 
+            app('App\Http\Controllers\UserStockController')->addStock($order->product_id, $order->qty, $order->user_id);
+
             $product->save();
             $order->save();
-
-
-            app('App\Http\Controllers\UserStockController')->addStock($order->product_id, $order->qty, $order->user_id);
 
             $textMail = "Pesanan Produk $product->name sejumlah $order->qty telah dikonfirmasi dan telah ditambahkan ke stok produk anda";
             $this->mailSystemResponse($order->user_id, 'Pesanan Produk dikonfirmasi', $textMail);
@@ -213,4 +212,20 @@ class OrderProductController extends Controller
             $this->mailSystemResponse($order->user_id, 'Pesanan Produk ditolak', $textMail);            
         }         
     }   
+
+    public function user_history($id){
+        $data  = Order::where('user_id', $id)->orderBy('created_at', 'desc')->get();
+        $res = [];
+        foreach ($data as $item) {
+            $res[] = [
+                'name' => $item->product->name,
+                'qty' => $item->qty,
+                'type' => $item->product->type,
+                'created_at' => substr($item->created_at, 0, 10),
+                'status' => $item->status,
+            ];
+        }
+
+        return response()->json($res);
+    }
 }

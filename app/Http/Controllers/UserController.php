@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Validator;
 use App\User;
 use Auth;
+use App\Libs\EmailSender;
+use Hash;
+use App\Libs\PasswordGenerator;
 
 class UserController extends Controller
 {
@@ -29,9 +32,17 @@ class UserController extends Controller
     	// }
     }
 
+    public function registrant(){
+        $data = User::where('activate', false)->get();
+
+        return response()->json(['res1' => $data]);        
+    }
+
     public function show()
     {
-		$data = User::all();
+        $data = User::whereHas('roles', function ($query) {
+            return $query->where('name', 'member');
+        })->get();
         $res1 = [];
         foreach ($data as $item) {
         	$res1[] = [
@@ -43,13 +54,13 @@ class UserController extends Controller
         return response()->json(['res1' => $res1]);
     }
 
-    public function edituser($id, Request $req)
+    public function edit_password(Request $req)
     {
-    	$usr = User::find($id);
+    	$usr = User::find($req->id);
     	$usr->password = bcrypt($req->password);
     	$usr->save();
 
-    	return redirect('/user')->with(['_e'=>'success', '_msg' => 'Password berhasil dirubah']);
+    	return response()->json(['success' => true]);
     }
 
     public function delete(Request $req)
@@ -105,5 +116,33 @@ class UserController extends Controller
         } else {
             return redirect()->back()->with(['_w'=>$v->messages()]);
         }
+    }
+
+    public function activate(Request $req){
+        $user = User::find($req->id);
+        $user->activate = true;
+        $password = PasswordGenerator::make($user->name);
+        $data = [
+            'name' => $user->name,
+            'email' => $user->email,
+            'gender' => $user->gender == '1' ? "Laki - laki" : "Perempuan",
+            'address' => $user->address,
+            'phone' => $user->phone,
+            'password' => $password
+        ];
+        $sent = EmailSender::send($data, 'emails.accountActivation', 'Akun Sudah Aktif', $user->email, $user->name);
+        if($sent){
+            $user->password = Hash::make($password);
+            $user->save();
+            $user->assignRole('member');          
+            return response()->json(['success' => true]);
+        } else {
+            return response()->json(['success' => false]);
+        }
+
+    }
+
+    public function tes(){
+        EmailSender::send([], 'emails.accountActivation', 'Akun Sudah Aktif', 'ronabulaiz@gmail.com', "Imron");
     }    
 }

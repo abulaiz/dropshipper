@@ -64,8 +64,8 @@ class SendingController extends Controller
         return response()->json($res);
     }
 
-    private function getAttachmentPath($id, $user_id){
-        $dir = 'attachment/'.$user_id.'/'.$id;
+    public function getAttachmentPath($id, $user_id){
+        $dir = 'attachment/sending/'.$user_id.'/'.$id;
         $files = Storage::files($dir);
         $eF = explode('/', $files[0]);
         return $eF[ count($eF)-1 ];

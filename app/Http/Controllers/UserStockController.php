@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\Product\UserStock;
+use App\Model\Product\Mutation;
 use App\Model\Transaction\Sending;
 
 use Auth;
@@ -42,6 +43,13 @@ class UserStockController extends Controller
 
     public function addStock($id, $qty, $user_id = null){
         $user_id = $user_id == null ? Auth::user()->id : $user_id;
+        Mutation::create([
+            'user_id' => $user_id,
+            'product_id' => $id,
+            'qty' => $qty,
+            'status' => '1',
+            'description' => 'Dibeli member'
+        ]);
         if(UserStock::where([['user_id',$user_id],['product_id', $id]])->exists()){
             UserStock::where([['user_id',$user_id],['product_id', $id]])->increment('qty', $qty);
         } else {

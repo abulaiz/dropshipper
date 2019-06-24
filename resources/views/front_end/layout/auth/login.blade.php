@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
   <head>
-
-  @include('front_end.layout.member.master')
-
+    @include('layouts.head')
   </head>
   <body class="vertical-layout vertical-menu 1-column   menu-expanded blank-page blank-page" data-open="click" data-menu="vertical-menu" data-col="1-column">
     <!-- ////////////////////////////////////////////////////////////////////////////-->
@@ -14,7 +12,7 @@
         <div class="content-body"><section class="flexbox-container">
     <div class="col-12 d-flex align-items-center justify-content-center">
         <div class="col-md-4 col-10 box-shadow-2 p-0">
-            <div class="card border-grey border-lighten-3 m-0">
+            <div class="card border-grey border-lighten-3 m-0 responsiveCard">
                 <div class="card-header border-0">
                     <div class="card-title text-center">
                        <div class="p-1"><img src="../../../img/logo.png" alt="branding logo" width="200"></div>
@@ -26,7 +24,7 @@
                         <form class="form-horizontal form-simple" method="POST" action="{{ route('login') }}" novalidate>
                             @csrf
                             <fieldset class="form-group position-relative has-icon-left mb-0">
-                                <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="Your Username" required autofocus>
+                                <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="Masukkan Email" required autofocus>
                                 <div class="form-control-position">
                                     <i class="ft-user"></i>
                                 </div>
@@ -38,7 +36,7 @@
                             </fieldset>
 
                             <fieldset class="form-group position-relative has-icon-left">
-                                <input type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password"  placeholder="Enter Password" required>
+                                <input type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password"  placeholder="Masukkan Password" required>
                                 <div class="form-control-position">
                                     <i class="fa fa-key"></i>
                                 </div>
@@ -52,6 +50,7 @@
                             <button type="submit" class="btn btn-warning btn-lg btn-block"><i class="ft-unlock"></i> Login</button>
                         </form>
                     </div>
+                    <p class="text-center">Belum punya akun ? <a href="/register" class="card-link">Daftar</a></p>
                 </div>
                 <div class="card-footer">
                     <div class="">

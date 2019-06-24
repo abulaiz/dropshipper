@@ -17,6 +17,7 @@
 
 		    		Table.row(e.parentNode.parentNode.parentNode).remove().draw( false );
 		        }, function errorCallback(response) {
+		        	console.log(response.data);
 					toastr.error('Terjadi kesalahan, coba lagi.', 'Request Failed!', {
 					positionClass: 'toast-bottom-right', containerId: 'toast-bottom-right'});
 		        });				

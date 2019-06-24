@@ -20,7 +20,7 @@ class FileController extends Controller
 
     public function sendingAttachment($id, $filename){
     	$data = Sending::find($id);
-    	ob_start();
+    	// ob_start();
     	$path = 'attachment/sending/'.$data->user_id.'/'.$id.'/'.$filename;
     	$file = Storage::get($path);
     	
@@ -38,7 +38,7 @@ class FileController extends Controller
     	$tagged_id = (int)$scr->decrypt($tagged_id);
 
     	if( $id == $owner_id || $id == $tagged_id ){
-	    	ob_start();
+	    	// ob_start();
 	    	$path = 'attachment/mail/'.$owner_id.'/'.$tagged_id.'/'.$filename;
 	    	$file = Storage::get($path);
 	    	
@@ -135,11 +135,16 @@ class FileController extends Controller
 		// PDF::Cell(0, 10, "Bandung, 27 Mei 2019", 0, true, 'C', 0, '', 0, false, 'M', 'M');
 
 		// PDF::setX( PDF::getX() + 110 );
+		$path = '/app/attachment/sending/' . $data->user_id . '/' . $data->id . '/';
+		$path = $path . app('App\Http\Controllers\SendingController')->getAttachmentPath($data->id, $data->user_id);
+		$path = storage_path($path);
+		PDF::Image($path, '', '', 100);
 
 
 		PDF::lastPage();
+		ob_end_clean(); 
 		PDF::Output('Resi Pengiriman '.$data->id.'.pdf');   
-		ob_end_clean();   	
+		  	
     }
     
 }

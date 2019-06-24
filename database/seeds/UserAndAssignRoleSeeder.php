@@ -21,6 +21,7 @@ class UserAndAssignRoleSeeder extends Seeder
             $user1->gender = '1';
             $user1->address = "Jl Karapitan";
             $user1->phone = "089214124214";
+            $user1->activate = true;
             $user1->password = bcrypt('member1');
             $user1->save();
             $user1->assignRole('member');
@@ -33,6 +34,7 @@ class UserAndAssignRoleSeeder extends Seeder
             $user2->gender = '1';
             $user2->address = 'Jl Pamanukan';
             $user2->phone = '0819842203423';
+            $user2->activate = true;
             $user2->password = bcrypt('mimin1');
             $user2->save();
             $user2->assignRole('superadmin');
@@ -45,6 +47,7 @@ class UserAndAssignRoleSeeder extends Seeder
             $user3->gender = '0';
             $user3->address = 'Jl Jalan';
             $user3->phone = '0821342243234';
+            $user3->activate = true;
             $user3->password = bcrypt('admin2');
             $user3->save(); 
             $user3->assignRole('admin');

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Mutation extends Model
 {
-    protected $table = "product_mutation";
+    protected $table = "product_mutations";
 
     public $timestamps = false; 
 

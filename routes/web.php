@@ -15,7 +15,7 @@
 // Composer
 View::composer("*","App\Composers\BaseComposer");
 
-Auth::routes();
+Auth::routes(['reset' => false]);
 
 // Route untuk semua jenis role yang telah login
 Route::group(['middleware' => ['auth']], function () {
@@ -53,8 +53,10 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('tester', function(){
 		return View('tester');
 	});
+
 });
 
-
-
-
+// Route::get('tes', 'UserController@tes');
+// Route::get('tes', function(){
+// 	return View('emails.accountActivation');
+// });

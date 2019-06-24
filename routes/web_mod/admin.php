@@ -9,7 +9,7 @@ Route::get('/prosesAlamat', function () {
     return view('front_end/layout/admin/prosesAlamat');
 });
 
-Route::get('/stokProduk', function(){
+Route::get('/stokBarang', function(){
 	return view('front_end/layout/admin/stokBarang');
 });
 
