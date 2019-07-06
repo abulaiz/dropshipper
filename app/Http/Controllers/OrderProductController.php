@@ -152,7 +152,8 @@ class OrderProductController extends Controller
                 'id' => $item->id,
                 'member' => $item->user->email,
                 'produk' => $item->product->name,
-                'jumlah' => $item->qty
+                'jumlah' => $item->qty,
+                'tanggal' => substr($item->created_at, 0, 16)
             ];
         }
         return response()->json($res);

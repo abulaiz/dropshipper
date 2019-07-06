@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('prosesAlamat', 'active')
+@section('page_title', 'Proses Alamat')
 
 @section('content')
 
@@ -22,7 +23,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>Order Progres List</h4>
+                    <h4>Request Pengiriman</h4>
                 </div>
                 <div class="card-content">
                     <div class="card-body">
@@ -35,7 +36,7 @@
                                         <th>ID</th>
                                         <th>Member</th>
                                         <th>Nama Produk</th>
-                                        <th>Jumlah</th>
+                                        <th>Tujuan</th>
                                         <th>Status</th>
                                         <th>Opsi</th>
                                     </tr>
@@ -46,34 +47,22 @@
                                         <td>{* x.id *}</td>
                                         <td>{* x.member *}</td>
                                         <td>{* x.nama_produk *}</td>
-                                        <td>{* x.jumlah *}</td>
-                                        <td>{* viewStatus(x.status) *}</td>
+                                        <td>{* x.tujuan *}</td>
+                                        <td style="{* statusStyle(x.status) *}">{* viewStatus(x.status) *}</td>
                                         <td>
                                             <button type="button" class="btn btn-outline-info dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</button>
                                             <div class="dropdown-menu" x-placement="bottom-start" >
                                               <a class="dropdown-item" ng-click="detail($index)" data-toggle="modal" data-target="#detail">
                                                 <i class="fa fa-file-o mr-1"></i>Detail</a> 
                                               <a class="dropdown-item" ng-click="cetak($index)">
-                                                <i class="fa fa-print mr-1"></i>Cetak Resi</a> 
-                                              <div ng-if="x.status == '1'">
-                                                  <a class="dropdown-item" data-toggle="modal" data-target="#input" ng-click="input($index)">
-                                                    <i class="fa fa-money mr-1"></i>Input Harga</a> 
-                                              </div>  
-                                              <div ng-if="x.status != '4'">
-                                                  <div class="dropdown-divider"></div>  
-                                              </div>
-                                              <div ng-if="x.status == '2'">
-                                                  <a class="dropdown-item" ng-click="payed($index)">
-                                                    <i class="fa fa-check mr-1"></i>Konfirmasi Pembayaran</a>
-                                              </div>
-                                              <div ng-if="x.status == '3'">
-                                                  <a class="dropdown-item" ng-click="sended($index)">
-                                                    <i class="fa fa-check-square-o mr-1"></i>Barang Telah dikirim</a>   
-                                              </div>
-                                              <div ng-if="x.status == '1'">                            
-                                                  <a class="dropdown-item" ng-click="cancel($index, $event.currentTarget)">
-                                                    <i class="fa fa-times mr-1"></i>Tolak</a>                                               
-                                              </div>
+                                                <i class="fa fa-print mr-1"></i>Cetak Resi</a>  
+                                              <div class="dropdown-divider"></div>  
+                                              <a ng-if="x.status == '1'" class="dropdown-item" ng-click="payed($index)">
+                                                <i class="fa fa-check mr-1"></i>Konfirmasi Pembayaran</a>
+                                              <a ng-if="x.status == '2'" class="dropdown-item" ng-click="sended($index)">
+                                                <i class="fa fa-check-square-o mr-1"></i>Barang telah dikirim</a>   
+                                              <a class="dropdown-item" ng-click="reject($index)">
+                                                <i class="fa fa-times mr-1"></i>Tolak</a>   
                                             </div>                                            
                                         </td>
                                     </tr>                                    
@@ -97,9 +86,6 @@
     </div>
     <div class="modal fade text-left" id="detail" tabindex="-1" role="dialog"  aria-hidden="true">
       @include('modals.sendingDetail')
-    </div>   
-    <div class="modal fade text-left" id="input" tabindex="-1" role="dialog"  aria-hidden="true">
-      @include('modals.inputSenderPrice')
     </div>        
 </section>
 

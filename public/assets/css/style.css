@@ -77,6 +77,15 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 		columns: white;	
 		z-index: 100000;
 	}
+
+}
+
+.sb-unread{
+	margin-right: -9px !important;
+}
+
+.sb-readed{
+	margin-right: unset !important;
 }
 
 @media (max-width: 400px) {
@@ -106,3 +115,23 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 	background-color: grey !important;
 }
 
+.badge-sb{
+	position: relative;
+	top: -10px;
+	left: -25px;
+	font-size: .8rem !important;
+}
+
+.angular-smooth{
+	opacity: 0;
+	-webkit-transition: opacity 0.5s ease-in;
+	-moz-transition: opacity 0.5s ease-in;
+	-ms-transition: opacity 0.5s ease-in;
+	-o-transition: opacity 0.5s ease-in;
+	transition: opacity 0.5s ease-in;		
+}
+
+.badge-show {
+	opacity: 1 !important;
+	width: unset !important;
+}

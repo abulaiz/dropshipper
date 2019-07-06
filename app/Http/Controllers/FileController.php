@@ -61,13 +61,12 @@ class FileController extends Controller
 		        $pdf->SetFont('times', 'B', 15);
 		        // Title
 		        $pdf->SetY(18);
-		        $pdf->Image(0, 16, 'img/bl.png', 0, true, 'C', 0, '', 0, false, 'M', 'M');
 		        $pdf->Cell(0, 16, "STOCKISTMOC", 0, true, 'C', 0, '', 0, false, 'M', 'M');
 		        $pdf->Cell(0, 16, "DROPSHIPPER APPLICATION", 0, true, 'C', 0, '', 0, false, 'M', 'M');
 				$style = array('width' => 1, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0));
 				$style2 = array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0));
-				$pdf->Line($pdf->getX()+15, $pdf->getY(), $pdf->getX()+140, $pdf->getY(), $style);
-				$pdf->Line($pdf->getX()+15, $pdf->getY()+1, $pdf->getX()+140, $pdf->getY()+1, $style2);
+				$pdf->Line($pdf->getX()+15, $pdf->getY(), $pdf->getX()+170, $pdf->getY(), $style);
+				$pdf->Line($pdf->getX()+15, $pdf->getY()+1, $pdf->getX()+170, $pdf->getY()+1, $style2);
 
 		});
 
@@ -78,8 +77,8 @@ class FileController extends Controller
 		PDF::SetFontSubsetting(false);
 		PDF::SetFontSize('10px');   
 		PDF::SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);     
-		$width = PDF::pixelsToUnits(600); 
-		$height = PDF::pixelsToUnits(600);
+		$width = PDF::pixelsToUnits(650); 
+		$height = PDF::pixelsToUnits(650);
 		$resolution= array($width, $height);
 		PDF::AddPage('L', $resolution);
 
@@ -88,31 +87,31 @@ class FileController extends Controller
 		PDF::SetFont('times', 'B', 14);
 		PDF::Cell(0, 18, $data->id, 0, true, 'C', 0, '', 0, false, 'M', 'M');
 		$style = array('width' => 0.7, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0));
-		PDF::Line(PDF::getX()+55, PDF::getY()-5, PDF::getX()+105, PDF::getY()-5, $style);
+		PDF::Line(PDF::getX()+55, PDF::getY()-5, PDF::getX()+125, PDF::getY()-5, $style);
 
 		PDF::Ln(10);
 
-		PDF::Line(PDF::getX()+40, PDF::getY()-5, PDF::getX()+120, PDF::getY()-5, $style);
+		PDF::Line(PDF::getX()+40, PDF::getY()-5, PDF::getX()+140, PDF::getY()-5, $style);
 		PDF::Cell(0, 18, "ORDER = ".$data->product->name." ".$data->qty." ".$data->product->type, 0, true, 'C', 0, '', 0, false, 'M', 'M');
-		PDF::Line(PDF::getX()+40, PDF::getY()-5, PDF::getX()+120, PDF::getY()-5, $style);
+		PDF::Line(PDF::getX()+40, PDF::getY()-5, PDF::getX()+140, PDF::getY()-5, $style);
 
 		PDF::Ln(10);
 
 		PDF::Cell(50, 17, "Nama Penerima ", 0, 0, '', 0, '', 0, false, 'M', 'M');
-		PDF::Cell(0, 17, ":  ".$data->receiver_name, 0, true, '', 0, '', 0, false, 'M', 'M');
+		PDF::Cell(0, 17, ":  ".$data->detail->receiver_name, 0, true, '', 0, '', 0, false, 'M', 'M');
 
 		PDF::Cell(50, 17, "Alamat Penerima", 0, 0, '', 0, '', 0, false, 'M', 'M');
 		PDF::Cell(3.5, 15, ":  ", 0, 0, '', 0, '', 0, false, 'M', 'M');
 		PDF::setCellHeightRatio(1.2);
 		PDF::setY( PDF::getY()-2, false );
-		PDF::MultiCell(0, 5, $data->address, 0, '', 0, 2, '', '', true);	
+		PDF::MultiCell(0, 5, $data->detail->address, 0, '', 0, 2, '', '', true);	
 		PDF::setY( PDF::getY()+10 );
 
 		PDF::Cell(50, 17, "Nomer Penerima", 0, 0, '', 0, '', 0, false, 'M', 'M');
-		PDF::Cell(0, 17, ":  ".$data->phone_number, 0, true, '', 0, '', 0, false, 'M', 'M');
+		PDF::Cell(0, 17, ":  ".$data->detail->phone_number, 0, true, '', 0, '', 0, false, 'M', 'M');
 
 		PDF::Cell(50, 17, "Nama Pengirim", 0, 0, '', 0, '', 0, false, 'M', 'M');
-		PDF::Cell(0, 17, ":  ".$data->sender_name, 0, true, '', 0, '', 0, false, 'M', 'M');
+		PDF::Cell(0, 17, ":  ".$data->detail->sender_name, 0, true, '', 0, '', 0, false, 'M', 'M');
 
 		// PDF::Ln(10);
 
@@ -120,26 +119,27 @@ class FileController extends Controller
 		// PDF::Cell(0, 18, "TUJUAN KECAMATAN = KELAPA GADING", 0, true, 'C', 0, '', 0, false, 'M', 'M');
 		// PDF::Line(PDF::getX()+25, PDF::getY()-5, PDF::getX()+135, PDF::getY()-5, $style);
 
-		PDF::Ln(10);
+		PDF::Ln(5);
 
-		PDF::Line(PDF::getX()+55, PDF::getY()-5, PDF::getX()+105, PDF::getY()-5, $style);
+		PDF::Line(PDF::getX()+55, PDF::getY()-5, PDF::getX()+125, PDF::getY()-5, $style);
 		PDF::Cell(0, 18, "VIA ".$data->courier->name, 0, true, 'C', 0, '', 0, false, 'M', 'M');
-		PDF::Line(PDF::getX()+55, PDF::getY()-5, PDF::getX()+105, PDF::getY()-5, $style);
+		PDF::Line(PDF::getX()+55, PDF::getY()-5, PDF::getX()+125, PDF::getY()-5, $style);
 
 		PDF::Ln(10);
 
-		PDF::Line(PDF::getX()+55, PDF::getY()-5, PDF::getX()+105, PDF::getY()-5, $style);
+		PDF::Line(PDF::getX()+55, PDF::getY()-5, PDF::getX()+125, PDF::getY()-5, $style);
 		PDF::Cell(0, 18, "ORDER BY  ".$data->order_vias->name, 0, true, 'C', 0, '', 0, false, 'M', 'M');
-		PDF::Line(PDF::getX()+55, PDF::getY()-5, PDF::getX()+105, PDF::getY()-5, $style);		
+		PDF::Line(PDF::getX()+55, PDF::getY()-5, PDF::getX()+125, PDF::getY()-5, $style);		
 		// PDF::setX( PDF::getX() + 110 );
 		// PDF::Cell(0, 10, "Bandung, 27 Mei 2019", 0, true, 'C', 0, '', 0, false, 'M', 'M');
 
-		// PDF::setX( PDF::getX() + 110 );
-		$path = '/app/attachment/sending/' . $data->user_id . '/' . $data->id . '/';
-		$path = $path . app('App\Http\Controllers\SendingController')->getAttachmentPath($data->id, $data->user_id);
-		$path = storage_path($path);
-		PDF::Image($path, '', '', 100);
-
+		// PDF::setX( PDF::getX() + 110 );	
+		if($data->order_via_id > 3){
+			$path = '/app/attachment/sending/' . $data->user_id . '/' . $data->id . '/';
+			$path = $path . app('App\Http\Controllers\SendingController')->getAttachmentPath($data->id, $data->user_id);
+			$path = storage_path($path);
+			PDF::Image($path, 90, 162, 60, 40, '', '', 'C');
+		}	
 
 		PDF::lastPage();
 		ob_end_clean(); 

@@ -15,6 +15,8 @@ function initPhotoSw(){
 app.controller('detail' ,function ($scope, $rootScope, $location, $http) {
 	$scope.onload = true;
 
+	$rootScope.mailBoxState = 'detail';
+
 	// Get Mail State From Parent C
 	$scope.state = $rootScope.getMailState();
 

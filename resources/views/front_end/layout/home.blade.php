@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('home', 'active')
+@section('page_title', 'Home')
 
 @section('content')
 

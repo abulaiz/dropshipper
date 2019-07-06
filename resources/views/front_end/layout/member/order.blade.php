@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('order', 'active')
+@section('page_title', 'Status Order')
 
 @section('content')
 
@@ -44,7 +45,7 @@
                                         <td>{* x.qty *}</td>
                                         <td>{* x.id *}</td>
                                         <td>{* x.tanggal *}</td>
-                                        <td>{* x.status *}</td>
+                                        <td style="background-color: #da4453; color: white;">{* x.status *}</td>
                                         <td>
                                             <button ng-click="delete($index)" class="btn btn-sm btn-warning">
                                                 <i class="fa fa-trash" style="margin-right: 5px;"></i>

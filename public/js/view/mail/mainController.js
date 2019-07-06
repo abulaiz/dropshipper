@@ -46,6 +46,8 @@ app.controller('mail' ,function ($scope, $rootScope, $location, $http) {
 
 	$scope.onSending = false;
 
+	$rootScope.mailBoxState = 'mailbox';
+
 	$rootScope.readMail = function(state){
 		$scope.readMailState = state;
 		$location.path('/content');

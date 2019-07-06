@@ -4,7 +4,7 @@
             <h4 class="modal-title" style="color:white">Detail Pengiriman</h4>
             <button type="button" class="close" id="closeModel" data-dismiss="modal">&times;</button>
         </div>
-        <div class="modal-body">                  
+        <div class="modal-body" style="max-height: 500px; overflow-y: auto;">                  
         <div class="loader-wrapper" id="detail-loader">
           <div class="loader-container">
             <div class="ball-beat loader-success">
@@ -18,71 +18,55 @@
 
             <li class="list-group-item d-flex justify-content-between">
               <div>
-                <small class="text-muted">ID Order</h6>
-                <h6 class="my-0">{* d.id *}</small>
+                <small class="text-muted">ID Order</small>
+                <h6 class="my-0">{* d.id *}</h6>
               </div>
               <span class="fa fa-qrcode"></span>
             </li>         
 
             <li class="list-group-item d-flex justify-content-between">
               <div>
-                <small class="text-muted">Nama Produk</h6>
-                <h6 class="my-0">{* d.product_name *}</small>
+                <small class="text-muted">Nama Produk</small>
+                <h6 class="my-0">{* d.product_name *}</h6>
               </div>
               <span class="fa fa-glass"></span>
             </li>
 
             <li class="list-group-item d-flex justify-content-between">
               <div>
-                <small class="text-muted">Jumlah Pengiriman</h6>
-                <h6 class="my-0">{* d.qty *} {* d.product_type *}</small>
+                <small class="text-muted">Jumlah Pengiriman</small>
+                <h6 class="my-0">{* d.qty *} {* d.product_type *}</h6>
               </div>
               <span class="fa fa-shopping-cart"></span>
             </li>
-
+            
             <li class="list-group-item d-flex justify-content-between">
               <div>
-                <small class="text-muted">Dipesan lewat</h6>
-                <h6 class="my-0">{* d.order_via *}</small>
+                <small class="text-muted">Total Berat Barang</small>
+                <h6 class="my-0">{* round( (d.qty * d.product_weight) / 1000 ) *} kg</h6>
               </div>
-              <span class="fa fa-pencil-square-o"></span>
+              <span class="fa fa-archive"></span>
             </li>
 
             <li class="list-group-item d-flex justify-content-between">
               <div>
-                <small class="text-muted">Kurir Pengiriman</h6>
-                <h6 class="my-0">{* d.courier *}</small>
-              </div>
-              <span class="fa fa-truck"></span>
-            </li>
-
-           <li class="list-group-item d-flex justify-content-between">
-              <div>
-                <small class="text-muted">Nama Penerima</h6>
-                <h6 class="my-0">{* d.receiver_name *}</small>
+                <small class="text-muted">Nama Penerima</small>
+                <h6 class="my-0">{* d.receiver_name *}</h6>
               </div>
               <span class="fa fa-user"></span>
             </li>
 
-           <li class="list-group-item d-flex justify-content-between">
+            <li class="list-group-item d-flex justify-content-between">
               <div>
-                <small class="text-muted">Alamat Penerima</h6>
-                <h6 class="my-0">{* d.address *}</small>
+                <small class="text-muted">Alamat Penerima</small>
+                <h6 class="my-0">{* d.address *}</h6>
               </div>
               <span class="fa fa-address-card-o"></span>
             </li>
 
-            <li class="list-group-item d-flex justify-content-between">
-              <div>
-                <small class="text-muted">Total Berat Barang</h6>
-                <h6 class="my-0">{* round( (d.qty * d.product_weight) / 1000 ) *} kg</small>
-              </div>
-              <span class="fa fa-paperclip"></span>
-            </li>
-
-            <li class="list-group-item d-flex justify-content-between" id="img-instance">
+            <li ng-hide="d.attachment_path == ''" class="list-group-item d-flex justify-content-between">
               <div class="my-gallery" itemscope>
-                <small class="text-muted">Bukti Pemesanan</h6>
+                <small class="text-muted">Bukti Pemesanan</small>
                 <br>
                 <div class="row">
                   <figure class="col-12" itemprop="associatedMedia" itemscope id="opensw">
@@ -94,6 +78,54 @@
                 </div>               
               </div>
               <span class="fa fa-paperclip"></span>
+            </li>
+
+            <li class="list-group-item d-flex justify-content-between">
+              <div>
+                <small class="text-muted">Dipesan lewat</small>
+                <h6 class="my-0">{* d.order_via *}</h6>
+              </div>
+              <span class="fa fa-pencil-square-o"></span>
+            </li>
+
+            <li class="list-group-item d-flex justify-content-between">
+              <div>
+                <small class="text-muted">Kurir Pengiriman</small>
+                <h6 class="my-0">{* d.courier *}</h6>
+              </div>
+              <span class="fa fa-truck"></span>
+            </li>
+
+            <li class="list-group-item d-flex justify-content-between">
+              <div>
+                <small class="text-muted">Tujuan Pengiriman</small>
+                <h6 class="my-0">{* d.destination *}</h6>
+              </div>
+              <span class="fa fa-map-signs"></span>
+            </li>
+
+            <li class="list-group-item d-flex justify-content-between">
+              <div>
+                <small class="text-muted">Layanan Pengiriman</small>
+                <h6 class="my-0">{* d.courier_service *}</h6>
+              </div>
+              <span class="fa fa-space-shuttle"></span>
+            </li>
+
+            <li ng-show="d.free_code != ''" class="list-group-item d-flex justify-content-between">
+              <div>
+                <small class="text-muted">Kode Spesial</small>
+                <h6 class="my-0">{* d.free_code *}</h6>
+              </div>
+              <span class="fa fa-wpforms"></span>
+            </li>
+
+            <li class="list-group-item d-flex justify-content-between">
+              <div>
+                <small class="text-muted">Total Pembayaran</small>
+                <h6 class="my-0">{* d.price.p *} {* d.price.c *}</h6>
+              </div>
+              <span class="fa fa-money"></span>
             </li>
 
           </ul>                 

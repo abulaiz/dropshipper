@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('request_order', 'active')
+@section('page_title', 'Request Order')
 
 @section('content')
 
@@ -13,7 +14,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>Order Progres List</h4>
+                    <h4>Order Request List</h4>
                 </div>
                 <div class="card-content">
                     <div class="card-body">
@@ -22,19 +23,19 @@
                             <table class="table table-striped table-bordered" id="example">
                                 <thead>
                                     <tr>
+                                        <th>Tanggal</th>
                                         <th>ID Order</th>
                                         <th>Member</th>
                                         <th>Nama Produk</th>
-                                        <th>Jumlah</th>
                                         <th>Opsi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat='x in datas'>
+                                        <td>{* x.tanggal *}</td>
                                         <td>{* x.id *}</td>
                                         <td>{* x.member *}</td>
                                         <td>{* x.produk *}</td>
-                                        <td>{* x.jumlah *}</td>
                                         <td>
                                             <button type="button" class="btn btn-outline-info dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</button>
                                             <div class="dropdown-menu" x-placement="bottom-start" >

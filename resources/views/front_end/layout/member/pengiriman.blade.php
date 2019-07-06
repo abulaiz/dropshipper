@@ -1,7 +1,8 @@
 @extends('layouts.master')
+@section('page_title', 'Input Pengiriman')
 
 @section('customHead')
-<link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+<link href="../../../filepond/dist/filepond.css" rel="stylesheet">
 <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
 @endsection
 
@@ -29,7 +30,7 @@
                                 <table class="table">
                                   <thead class="thead-dark">
                                     <tr>
-                                      <th colspan="2">FORM INPUT PENGIRIMAN</th>
+                                      <th colspan="2">PILIHAN BARANG</th>
                                     </tr>
                                   </thead>
                                 </table>
@@ -39,7 +40,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fa fa-tag"></i></span>
                                         </div>
-                                        <select class="form-control" ng-model="product_id">
+                                        <select id="product_id" class="form-control" ng-model="product_id">
                                             <option value="" ng-disabled='product_default_option'>- Pilih Produk -</option>  
                                             <option value="{* x.product_id *}" ng-repeat='x in product_options'> {* x.name *} </option>
                                         </select>
@@ -52,10 +53,64 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fa fa-tags"></i></span>
                                         </div>
-                                        <input type="number" class="form-control" min="1" ng-model='qty_sending' placeholder="Jumlah Pengiriman">
+                                        <input id="qty_sending" type="number" class="form-control" min="1" ng-model='qty_sending' placeholder="Jumlah Pengiriman">
                                     </div>
                                 </fieldset>
-                                <br>                            
+                                <br>   
+                                <table class="table">
+                                  <thead class="thead-dark">
+                                    <tr>
+                                      <th colspan="2">TUJUAN PENGIRIMAN</th>
+                                    </tr>
+                                  </thead>
+                                </table>
+                                <fieldset class="row" style="margin: unset;">
+                                  <label class="col-md-12" style="padding-left: unset;">Jenis Pengiriman : </label>
+                                  <div class="custom-control custom-radio col-md-6">
+                                    <input type="radio" ng-click="pengirimanDomestik(true)" class="custom-control-input" name="jenis_pengiriman" id="domestik" checked>
+                                    <label class="custom-control-label" for="domestik">Domestik</label>
+                                  </div>   
+                                  <div class="custom-control custom-radio col-md-6">
+                                    <input type="radio" ng-click="pengirimanDomestik(false)" class="custom-control-input" name="jenis_pengiriman" id="internasional">
+                                    <label class="custom-control-label" for="internasional">Internasional</label>
+                                  </div>                                                                   
+                                </fieldset>
+                                <br>                                 
+                                <fieldset class="domestik">
+                                    <label>Tujuan Provinsi : </label>
+                                    <select class="selectizes">
+                                        <option value="" disabled>Pilih Provinsi</option>
+                                    </select>
+                                </fieldset>
+                                <br class="domestik">
+                                <fieldset class="domestik">
+                                    <label>Tujuan Kota / Kabupaten : </label>
+                                    <select class="selectizes">
+                                        <option value="" disabled>Pilih Kota / Kabupaten</option>
+                                    </select>
+                                </fieldset>
+                                <br class="domestik">  
+                                <fieldset class="domestik">
+                                    <label>Tujuan Kecamatan : </label>
+                                    <select class="selectizes">
+                                        <option value="" disabled>Pilih Kecamatan</option>
+                                    </select>
+                                </fieldset>
+                                <br class="domestik">
+                                <fieldset class="internasional" style="display: none;">
+                                    <label>Tujuan Negara : </label>
+                                    <select class="selectizes">
+                                        <option value="" disabled>Pilih Negara</option>
+                                    </select>
+                                </fieldset>
+                                <br class="internasional">                                                
+                                <table class="table">
+                                  <thead class="thead-dark">
+                                    <tr>
+                                      <th colspan="2">DETAIL PENGIRIMAN</th>
+                                    </tr>
+                                  </thead>
+                                </table>                          
                                 <fieldset>
                                     <label>Nama Pengirim : </label>    
                                     <div class="input-group">
@@ -96,17 +151,7 @@
                                         <input type="text" class="form-control" ng-model='phone_number' placeholder="Masukkan Nomer Penerima">
                                     </div>
                                 </fieldset>
-                                <br>
-                                <fieldset>
-                                    <label>Tujuan Negara : </label>   
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fa fa-user"></i></span>
-                                        </div>
-                                        <textarea class="form-control" ng-model='destination' placeholder="Opsional Jika Melakukan pengiriman ke luar negri"></textarea>
-                                    </div>
-                                </fieldset>
-                                <br>                            
+                                <br>                        
                             </div>
                             <div class="col-md-6">
                                 <fieldset class="form-group">  
@@ -150,8 +195,50 @@
                                     <fieldset>
                                         <label>Masukkan Bukti Pemesanan : </label>
                                         <input type="file" name="attachment">
-                                    </fieldset>
-                                    <br>
+                                    </fieldset>                            
+                                </div>                                
+                                <br>
+                                <fieldset class="form-group">  
+                                    <table class="table">
+                                          <thead class="thead-dark">
+                                            <tr>
+                                              <th colspan="2">JASA KURIR</th>
+                                            </tr>
+                                          </thead>
+                                    </table>
+                                    <small class="text-muted mb-1" style="font-style: italic; display: block;">* Klik atau tap salah satu icon terpilih</small>                                
+                                    <label class="btn ng-class:availableCourier(1)">
+                                        <input type="radio" name="courier_id" ng-click='setCourier(1)'>
+                                        <img src="../../../img/sc.jpg" width="75px" height="75px">
+                                    </label>
+                                    <label class="btn ng-class:availableCourier(2)">
+                                        <input type="radio" name="courier_id" ng-click='setCourier(2)'>
+                                        <img src="../../../img/jn.jpg" width="75px" height="75px">
+                                    </label>
+                                    <label class="btn ng-class:availableCourier(3)">
+                                        <input type="radio" name="courier_id" ng-click='setCourier(3)'>
+                                        <img src="../../../img/jt.png"  width="75px" height="75px">
+                                    </label>
+                                    <label class="btn hidden" >
+                                        <input type="radio" name="courier_id" id="fake_courier" ng-click='setCourier()'>
+                                        <img src="../../../img/jt.png"  width="75px" height="75px">
+                                    </label>                                    
+                                </fieldset>
+                                <fieldset class="courier_service" style="display: none;">
+                                    <label>Jenis Layanan : </label>
+                                    <select class="selectizes">
+                                        <option value="" disabled>Pilih Layanan</option>
+                                    </select>
+                                </fieldset>
+                                <br class="courier_service" style="display: none;">                                     
+                                <table class="table">
+                                  <thead class="thead-dark">
+                                    <tr>
+                                      <th colspan="2">BIAYA PENGIRIMAN</th>
+                                    </tr>
+                                  </thead>
+                                </table>
+                                <div ng-show='bookedByMarketPlace'>                              
                                     <fieldset>
                                       <div class="custom-control custom-radio">
                                         <input type="radio" ng-click="setOngkirGratis(false)" class="custom-control-input" name="customRadio" id="customRadio1" checked>
@@ -172,32 +259,15 @@
                                             </div>
                                             <input type="text" class="form-control" ng-model='freeCode' placeholder="Masukkan Kode Booking">
                                         </div>
-                                    </fieldset>                                
-                                </div>
-                                <br>
-                                <fieldset class="form-group">  
-                                    <table class="table">
-                                          <thead class="thead-dark">
-                                            <tr>
-                                              <th colspan="2">JASA KURIR</th>
-                                            </tr>
-                                          </thead>
-                                    </table>
-                                    <small class="text-muted mb-1" style="font-style: italic; display: block;">* Klik atau tap salah satu icon terpilih</small>                                
-                                    <label class="btn">
-                                        <input type="radio" name="courier_id" ng-click='setCourier(1)'>
-                                        <img src="../../../img/sc.jpg" width="75px" height="75px">
-                                    </label>
-                                    <label class="btn" ng-show='bookedByMarketPlace'>
-                                        <input type="radio" name="courier_id" ng-click='setCourier(2)'>
-                                        <img src="../../../img/jn.jpg" width="75px" height="75px">
-                                    </label>
-                                    <label class="btn" ng-show='bookedByMarketPlace'>
-                                        <input type="radio" name="courier_id" ng-click='setCourier(3)'>
-                                        <img src="../../../img/jt.png"  width="75px" height="75px">
-                                    </label>
-                                </fieldset>                            
+                                    </fieldset>   
+                                    <br>                                                                 
+                                </div>                                 
+                                <fieldset class="row" style="margin: unset;">
+                                    <label class="col-md-6">Total Biaya</label>
+                                    <strong class="col-md-6" id="price">0 IDR</strong>
+                                </fieldset>                                                         
                             </div>
+
                             <div class="col-md-12 mt-3 mb-1">
                                 <button ng-click='submit()' ng-disabled='onsubmit' class="btn btn-block btn-lg font-medium-1 btn-outline-danger">PROSES PENGIRIMAN</button>
                             </div>
@@ -209,7 +279,21 @@
     </div>
 </section>
 
-  @endsection
+<div id="backdrop" class="modal-backdrop fade show" style="display: none;">
+  <div class="loader-wrapperr" style="top: 40%;">
+    <div class="loader-container">
+      <div class="line-scale-pulse-out loader-warning loader-darken-4">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>  
+</div>
+
+@endsection
 
 @section('customJS')
     
@@ -220,10 +304,20 @@
     <script src="../../../app-assets/vendors/js/forms/icheck/icheck.min.js"></script>
     <script src="../../../app-assets/js/scripts/forms/Radio-radio.js"></script>
 
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugins/loaders/loaders.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/core/colors/palette-loader.css">
+
     <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
     <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
-    <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+    <script src="../../../filepond/dist/filepond.min.js"></script>
 
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/forms/selects/selectize.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/forms/selects/selectize.default.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugins/forms/selectize/selectize.css">
+    <script src="../../../app-assets/vendors/js/forms/select/selectize.min.js" type="text/javascript"></script>
+
+    <script src="../../../js/plugin/leftToastr.js" type="text/javascript"></script>
     <script type="text/javascript" src="../../../js/view/memberSending/inputFormController.js"></script>
+    <script type="text/javascript" src="../../../js/plugin/cleanSelectize.js"></script>
 
 @endsection

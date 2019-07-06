@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('statusSending', 'active')
+@section('page_title', 'Status Pengiriman')
 
 @section('content')
 
@@ -20,7 +21,7 @@
                                         <th>Tanggal</th>
                                         <th>ID</th>
                                         <th>Nama Produk</th>
-                                        <th>Jumlah</th>
+                                        <th>Tujuan</th>
                                         <th>Status</th>
                                         <th>Opsi</th>
                                     </tr>
@@ -30,18 +31,19 @@
                                         <td>{* x.tanggal *}</td>
                                         <td>{* x.id *}</td>
                                         <td>{* x.nama_produk *}</td>
-                                        <td>{* x.jumlah *}</td>
-                                        <td>{* viewStatus(x.status) *}</td>
+                                        <td>{* x.tujuan *}</td>
+                                        <td style="{* statusStyle(x.status) *}">{* viewStatus(x.status) *}</td>
                                         <td>
                                             <button type="button" class="btn btn-outline-info dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</button>
                                             <div class="dropdown-menu" x-placement="bottom-start" >
                                               <a class="dropdown-item" ng-click="detail($index)" data-toggle="modal" data-target="#detail">
                                                 <i class="fa fa-file-o mr-1"></i>Detail</a> 
-                                              <div ng-if="x.status == '1' || x.status == '2'">
-                                                  <div class="dropdown-divider"></div>                               
-                                                  <a class="dropdown-item" ng-click="cancel($index, $event.currentTarget)">
-                                                    <i class="fa fa-times mr-1"></i>Batalkan</a>                                               
-                                              </div>                                                                                           
+                                              <div ng-if="x.status == '4' || x.status == '1'" class="dropdown-divider"></div>          
+                                              <a ng-if="x.status == '4'" class="dropdown-item" ng-click="cancel($index, true)">
+                                                <i class="fa fa-trash mr-1"></i>Hapus</a>                                                                    
+                                              <a ng-if="x.status == '1'" class="dropdown-item" ng-click="cancel($index)">
+                                                <i class="fa fa-times mr-1"></i>Batalkan</a>                                               
+                                                                                               
                                             </div>                                            
                                         </td>
                                     </tr>                                    

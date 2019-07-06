@@ -14,19 +14,14 @@ class Sendings extends Migration
     public function up()
     {
         Schema::create('sendings', function (Blueprint $table) {
-            $table->char('id', 18);
+            $table->char('id', 18)->primary();
             $table->unsignedInteger('product_id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('courier_id');
             $table->unsignedInteger('order_via_id');
             $table->smallInteger('qty');
-            $table->string('free_code')->nullable();
-            $table->string('sender_name', 50);
-            $table->string('receiver_name', 50);
-            $table->string('phone_number', 30);
-            $table->string('address');
-            $table->string('destination')->nullable();
-            $table->char('status', 1);
+            $table->char('status', 1); // 1 = Menunggu Pembayaran, 2 = Pembayaran terkonfirmasi, 3 = Barang dikirim, 4 = ditolak admin
+
             $table->timestamps();
             $table->foreign('product_id')
                 ->references('id')
@@ -40,6 +35,25 @@ class Sendings extends Migration
             $table->foreign('order_via_id')
                 ->references('id')
                 ->on('order_vias');
+        });
+
+        Schema::create('sending_details', function(Blueprint $table) {
+            $table->char('sending_id', 18);
+            $table->string('free_code')->nullable();
+            $table->string('sender_name', 50);
+            $table->string('receiver_name', 50);
+            $table->string('phone_number', 30);
+            $table->string('address');
+            $table->string('province', 80)->nullable();
+            $table->string('city', 80)->nullable();
+            $table->string('subdistrict', 80)->nullable();
+            $table->string('country', 80)->nullable();
+            $table->string('price', 80);
+            $table->string('courier_service', 80);
+
+            $table->foreign('sending_id')
+                ->references('id')->on('sendings')
+                ->onDelete('cascade')->onUpdate('cascade');            
         });
     }
 

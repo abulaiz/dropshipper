@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('historyOrder', 'active')
+@section('page_title', 'Riwayat Order')
 
 @section('content')
 

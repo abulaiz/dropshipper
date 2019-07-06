@@ -66,18 +66,8 @@ app.controller('table', function($scope, $http, $timeout){
 
     	$scope.loadData();
 
-    	$scope.order_history = function(index){
-    		$scope.name = $scope.datas[index].name;
-    		$("#detail-loader").show();
-    		$(".hd").hide();
-		    $http({
-		      method: 'GET',
-		      url: '/api/user/historyOrder/' + $scope.datas[index].id
-		    }).then(function successCallback(response) {
-		    	$(".hd").show();
-		        $scope.details = response.data;
-		        $("#detail-loader").hide();
-		    });      		
+    	$scope.user_activity = function(index){
+			window.location = '/members/' + SimpleEnc.encrypt( $scope.datas[index].id );     		
     	}
 
 });

@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('stok_produk', 'active')
+@section('page_title', 'Stok Barang')
 
 @section('content')
 

@@ -1,8 +1,7 @@
-<!DOCTYPE html>
-<html class="loading" lang="en" data-textdirection="ltr">
-  <head>
-    @include('layouts.head')
-  </head>
+@extends('front_end.layout.auth.master')
+@section('page_title', 'Login')
+
+@section('content')
   <body class="vertical-layout vertical-menu 1-column   menu-expanded blank-page blank-page" data-open="click" data-menu="vertical-menu" data-col="1-column">
     <!-- ////////////////////////////////////////////////////////////////////////////-->
     <div class="app-content content">
@@ -82,4 +81,4 @@
     <script src="../../../app-assets/js/scripts/forms/form-login-register.min.js"></script>
     <!-- END PAGE LEVEL JS-->
   </body>
-</html>
+@endsection

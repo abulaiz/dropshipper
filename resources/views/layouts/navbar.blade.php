@@ -3,7 +3,7 @@
         <div class="navbar-header">
           <ul class="nav navbar-nav flex-row">
             <li class="nav-item mobile-menu d-md-none mr-auto">
-              <a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu font-large-1"></i></a>
+              <a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu font-large-1"></i><span ng-show="has_sidebar_notif" class="badge badge-pill badge-danger badge-up badge-sm">N</span></a>
             </li>
             <li class="nav-item">
               <a class="navbar-brand" href="/"><img class="brand-logo h-100 w-100" alt="robust admin logo" src="../../../img/logo2.png"></a>

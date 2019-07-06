@@ -1,5 +1,3 @@
-	var Table;	
-
     app.controller('table', function($scope, $http, $timeout){
 
     	$scope.datas = [];
@@ -14,8 +12,7 @@
 		        .then(function successCallback(response) {
 					toastr.success('Order Produk sudah terkonfirmasi.', 'Berhasil !', {
 					positionClass: 'toast-bottom-right', containerId: 'toast-bottom-right'});
-
-		    		Table.row(e.parentNode.parentNode.parentNode).remove().draw( false );
+		    		$scope.loadData();
 		        }, function errorCallback(response) {
 		        	console.log(response.data);
 					toastr.error('Terjadi kesalahan, coba lagi.', 'Request Failed!', {
@@ -33,8 +30,7 @@
 		        .then(function successCallback(response) {
 					toastr.success('Order Produk sudah dibatalkan.', 'Berhasil !', {
 					positionClass: 'toast-bottom-right', containerId: 'toast-bottom-right'});
-
-		    		Table.row(e.parentNode.parentNode.parentNode).remove().draw( false );
+		    		$scope.loadData();
 		        }, function errorCallback(response) {
 					toastr.error('Terjadi kesalahan, coba lagi.', 'Request Failed!', {
 					positionClass: 'toast-bottom-right', containerId: 'toast-bottom-right'});
@@ -71,7 +67,7 @@
 				$('.table-responsive').show();
 				$('#table-loader').hide();	        
 		        $timeout(function(){     	
-					Table = $('#example').DataTable();	
+					$('#example').DataTable({ order : [[ 0, 'desc' ]] });	
 		        }, 50);       
 		    });    		
     	}

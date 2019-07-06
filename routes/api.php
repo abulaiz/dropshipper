@@ -42,7 +42,8 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('member/sending', 'SendingController@memberStatus');
 	Route::get('admin/sending', 'SendingController@sendingRequest');
 	Route::get('sending/detail/{id}', 'SendingController@detailRequest');
-	Route::post('sending/cancel', 'SendingController@reject');
+	Route::post('sending/cancel', 'SendingController@cancel');
+	Route::post('sending/reject', 'SendingController@reject');
 	Route::post('sending/priceUpdate', 'SendingController@pricing');
 	Route::post('sending/changeStatus', 'SendingController@changeStatus');
 
@@ -51,6 +52,9 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('admin/orderDetail/{id}', 'OrderProductController@request_detail');
 	Route::post('admin/order/confirm', 'OrderProductController@confirmOrder');
 	Route::post('admin/order/reject', 'OrderProductController@rejectOrder');
+
+	Route::get('/admin/badge', 'NotificationController@admin_badge');
 	
 	include 'api_mod/mail.php';
+	include 'api_mod/ongkir.php';
 });

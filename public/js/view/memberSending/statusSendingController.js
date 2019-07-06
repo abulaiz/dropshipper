@@ -1,10 +1,9 @@
 	var status_flag = {
-		'1' : 'Menunggu Konfirmasi Harga',
-		'2' : 'Menunggu Pembayaran',
-		'3' : 'Pembayaran Dikonfirmasi',
-		'4' : 'Barang Telah Terkirim',
+		'1' : 'Menunggu Pembayaran',
+		'2' : 'Pembayaran Dikonfirmasi',
+		'3' : 'Barang telah dikirim',
+		'4' : 'Pengiriman ditolak',
 	};
-	var Table;
 
     app.controller('statusSending', function($scope, $http, $timeout){
 
@@ -38,7 +37,7 @@
     		return Math.round(e);
     	};
 
-    	$scope.cancel = function(index, e){ 		
+    	$scope.cancel = function(index, deleted = false){ 		
 			_confirm(3, function(){
 				toastr.info('Sedang membatalkan pengirman ...', 'Harap Tunggu!', {
 				positionClass: 'toast-bottom-right', containerId: 'toast-bottom-right'});
@@ -46,39 +45,48 @@
 		        $http.post('/api/sending/cancel', {'id' : $scope.datas[index].id})
 		        .then(function successCallback(response) {
 		        	toastr.remove();
-					toastr.info('Pengiriman telah dibatalkan.', 'Berhasil!', {
+					toastr.info(deleted ? 'Data pengiriman berhasil dihapus.' : 'Pengiriman telah dibatalkan.', 'Berhasil!', {
 					positionClass: 'toast-bottom-right', containerId: 'toast-bottom-right'});
-					Table.row(e.parentNode.parentNode.parentNode.parentNode).remove().draw( false );
+					$scope.loadData();
 		        }, function errorCallback(response) {
 		        	toastr.remove();
 		        	console.log(response.data);
 					toastr.error('Terjadi kesalahan, coba lagi.', 'Request Failed!', {
 					positionClass: 'toast-bottom-right', containerId: 'toast-bottom-right'});
 		        });					
-			});
+			}, deleted ? "Setelah dihapus data tidak bisa dipulihkan." : null);
     	}
 
    		$scope.viewStatus = function(status){
    			return status_flag[status]; 
    		}
 
+   		$scope.statusStyle = function(status){
+   			if(status == '1') return '';
+   			else if(status == '2') return 'background-color : #3bafda; color: white;';
+   			else if(status == '3') return 'background-color : #37bc9b; color: white;';
+   			else if(status == '4') return 'background-color : #da4453; color: white;';
+   		}
+
 		$('.table-responsive').hide();
 		$('#table-loader').show();
         
-	    $http({
-	      method: 'GET',
-	      url: '/api/member/sending'
-	    }).then(function successCallback(response) {
-	        $scope.datas = response.data;
-			$('.table-responsive').show();
-			$('#table-loader').hide();	        
-	        $timeout(function(){     	
-				Table = $('#example').DataTable({
-							"order": [[ 0, 'asc' ], [4, 'desc']]						
-						});	
-	        }, 50);       
-	    });    		
-
-
+        $scope.loadData = function(){
+            if ( $.fn.DataTable.isDataTable('#example') ){
+               $('#example').DataTable().destroy();    
+            }        	
+		    $http({
+		      method: 'GET',
+		      url: '/api/member/sending'
+		    }).then(function successCallback(response) {
+		        $scope.datas = response.data;
+				$('.table-responsive').show();
+				$('#table-loader').hide();	        
+		        $timeout(function(){     	
+					$('#example').DataTable({"order": [[ 1, 'desc' ], [4, 'desc']]});	
+		        }, 50);       
+		    });   
+        }
+ 		$scope.loadData();
 
     });

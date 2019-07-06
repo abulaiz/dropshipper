@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Validator;
-use App\User;
-use Auth;
 use App\Libs\EmailSender;
-use Hash;
 use App\Libs\PasswordGenerator;
+use App\Libs\SimpleEnc;
+use App\User;
+
+use Hash;
+use Auth;
+use Validator;
 
 class UserController extends Controller
 {
@@ -139,10 +141,12 @@ class UserController extends Controller
         } else {
             return response()->json(['success' => false]);
         }
-
     }
 
-    public function tes(){
-        EmailSender::send([], 'emails.accountActivation', 'Akun Sudah Aktif', 'ronabulaiz@gmail.com', "Imron");
-    }    
+    public function members($id){
+        $c = new SimpleEnc();
+        $id = $c->decrypt($id);
+        $user = User::find($id);
+        return View('front_end.layout.superadmin.memberActivity', compact('user'));
+    }
 }

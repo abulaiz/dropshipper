@@ -52,7 +52,9 @@
     <script src="../../../app-assets/new_ext/ambiance/jquery.ambiance.js" type="text/javascript"></script>
 
     <script src="../../../js/view/notification/navbarController.js"></script>
+    <script src="../../../js/view/notification/sidebarController.js"></script>
 
     @yield('customJS')    
+
 </body>
 </html>

@@ -31,6 +31,10 @@ class Sending extends Model
         return $this->belongsTo('App\Model\Master\Courier');
     }
 
+    public function detail(){
+        return $this->hasOne('App\Model\Transaction\Sending_detail');
+    }
+
     public static function newId($user_id){
         return strtoupper( uniqid('P') ).str_pad($user_id, 4, '0', STR_PAD_LEFT);
     }    

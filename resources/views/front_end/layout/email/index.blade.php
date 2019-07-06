@@ -1,12 +1,13 @@
 
 @extends('layouts.master')
 @section('email', 'active')
+@section('page_title', 'Pesan')
 
 @section('customHead')
 <link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugins/loaders/loaders.min.css">
 <link rel="stylesheet" type="text/css" href="../../../app-assets/css/core/colors/palette-loader.css">
 
-<link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+<link href="../../../filepond/dist/filepond.css" rel="stylesheet">
 <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
 
   <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/js/gallery/photo-swipe/photoswipe.css">
@@ -49,7 +50,7 @@
 
     <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
     <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
-    <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+    <script src="../../../filepond/dist/filepond.min.js"></script>
 
   <script src="../../../app-assets/vendors/js/gallery/photo-swipe/photoswipe.min.js"
   type="text/javascript"></script>

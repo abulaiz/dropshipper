@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('member_terdaftar', 'active')
+@section('page_title', 'Members')
 
 @section('content')
 
@@ -36,9 +37,7 @@
                                       <td>
                                           <button type="button" class="btn btn-outline-info dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</button>
                                           <div class="dropdown-menu" x-placement="bottom-start">                                              
-                                            <a class="dropdown-item" ng-click="order_history($index)" data-toggle="modal" data-target="#history_order"><i class="fa fa-pencil-square-o mr-1"></i>Riwayat Order</a>
-
-            <!--                                 <a class="dropdown-item" ng-click="sending_history($index)" data-toggle="modal" data-target="#edituser"><i class="fa fa-external-link mr-1"></i>Riwayat Pengiriman</a> -->
+                                            <a class="dropdown-item" ng-click="user_activity($index)"><i class="fa fa-pencil-square-o mr-1"></i>Lihat Aktivitas</a>
 
                                             <a class="dropdown-item" ng-click="show_modal_edit_user($index)" data-toggle="modal" data-target="#edituser"><i class="fa fa-key mr-1"></i>Ganti Password</a>                                                                                        
                                             <div class="dropdown-divider"></div>   
@@ -66,14 +65,6 @@
 
     @include('modals.modalsUser.editUser')
 
-    <div class="modal fade text-left" id="history_order" tabindex="-1" role="dialog"  aria-hidden="true">
-      @include('modals.historyOrder')
-    </div>    
-
-    <div class="modal fade text-left" id="add" tabindex="-1" role="dialog"  aria-hidden="true">
-      @include('modals.addProductStok')
-    </div>
-
 </section>
 
   @endsection
@@ -85,6 +76,7 @@
     <script src="../../../app-assets/vendors/js/extensions/sweetalert.min.js" type="text/javascript"></script>
     <script src="../../../js/plugin/confirmDialog.js" type="text/javascript"></script>
     <script src="../../../js/plugin/leftToastr.js" type="text/javascript"></script>
+    <script src="../../../js/plugin/SimpleEnc.js" type="text/javascript"></script>
 
     <!-- Datepicker -->
     <link rel="stylesheet" type="text/css" href="../../../app-assets/new_ext/datepicker/datepicker.css">

@@ -29,6 +29,10 @@ app.controller('mailbox', function ($scope, $http, $rootScope, $timeout){
 	$scope.tmp_search = '';
 	$scope.timer;
 
+	$rootScope.mailBoxState = 'mailbox';
+
+	$rootScope.unaddedMail();
+
 	$scope.resetSelected = function(){
 		for(let i=0; i < selected_mails.length; i++){
 			$("#aV"+$scope.activeSelectedFlag+'-'+selected_mails[i]).click();
@@ -75,18 +79,24 @@ app.controller('mailbox', function ($scope, $http, $rootScope, $timeout){
 
 	// type = 'push' / 'unshift'
 	$rootScope.loadInbox = function(id = last_inbox_id, file = last_inbox_file, count = null, type = 'push'){
-		$("#inbox-loader").show();
+		if(type == 'push')
+			$("#inbox-loader").show();
 		$http.post('/api/mail', {'type' : 'inbox', 'last_id' : id, 'last_file' : file, 'count' : count})
 		.then(function successCallback(response) {
 			for(tmp_i = 0; tmp_i < response.data.data.length; tmp_i++){
-				$scope.inbox_data.push( response.data.data[tmp_i] );
+				if(type == 'push')
+					$scope.inbox_data.push( response.data.data[tmp_i] );
+				else
+					$scope.inbox_data.unshift( response.data.data[tmp_i] );				
 			}
-			if(response.data.data.length > 0){
-				last_inbox_id = response.data.data[tmp_i-1].id;
-				last_inbox_file = response.data.data[tmp_i-1].file;
+			if(type == 'push'){
+				if(response.data.data.length > 0){
+					last_inbox_id = response.data.data[tmp_i-1].id;
+					last_inbox_file = response.data.data[tmp_i-1].file;
+				}
+				next_inbox = response.data.next;
+				$("#inbox-loader").hide();				
 			}
-			next_inbox = response.data.next;
-			$("#inbox-loader").hide();
 		}, function errorCallback(response) {
 			_leftAlert('Request Failed!', 'Terjadi kesalahan', 'error');
 			$scope.requested = false;

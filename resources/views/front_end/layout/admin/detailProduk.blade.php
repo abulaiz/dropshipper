@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('prosesAlamat', 'active')
+@section('page_title', 'Riwayat Member')
 
 @section('content')
 

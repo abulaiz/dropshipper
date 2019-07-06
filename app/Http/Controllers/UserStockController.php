@@ -33,7 +33,8 @@ class UserStockController extends Controller
                     'name' => $item->product->name,
                     'price' => number_format($item->product->price),
                     'qty' => $qty,
-                    'type' => $item->product->type
+                    'type' => $item->product->type,
+                    'weight' => $item->product->weight
                 ];
             }
     	}

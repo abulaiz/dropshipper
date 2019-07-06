@@ -4,6 +4,8 @@ Route::get('/members', function () {
     return view('front_end/layout/superadmin/user');
 });
 
+Route::get('/members/{id}', 'UserController@members');
+
 Route::get('/registrant', function () {
     return view('front_end/layout/superadmin/registrant');
 });

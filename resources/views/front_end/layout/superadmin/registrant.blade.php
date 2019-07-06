@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('pendaftar_baru', 'active')
+@section('page_title', 'Registran')
 
 @section('content')
 

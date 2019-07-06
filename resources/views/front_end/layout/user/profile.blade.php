@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@section('page_title', 'Profile')
 
 @section('breadcumb_nav')
     <li class="breadcrumb-item"><a href="{{URL::to('dashboard')}}">Home</a>

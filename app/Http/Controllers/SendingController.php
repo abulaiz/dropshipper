@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\Transaction\Sending;
+use App\Model\Transaction\Sending_detail;
 use Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Libs\Mail;
@@ -15,7 +16,7 @@ class SendingController extends Controller
     	$qty = Auth::user()->whereHas('stock',function($q) use($req) {
                             $q->where('product_id',$req->product_id);
                           })->get()[0]->stock[0]->qty;
-    	if($req->qty < $qty){
+    	if($req->qty > $qty){
     		return response()->json(['success' => false, 'reason' => 'Stok barang yang anda kirim tidak cukup.', 'eRtype' => 1]);
     	}
 
@@ -32,14 +33,23 @@ class SendingController extends Controller
     		'courier_id' => $req->courier_id,
     		'qty' => $req->qty,
     		'order_via_id' => $req->order_via_id,
-    		'free_code' => $req->free_code,
-    		'sender_name' => $req->sender_name,
-            'receiver_name' => $req->receiver_name,
-    		'phone_number' => $req->phone_number,
-    		'address' => $req->address,
-    		'destination' => $req->destination,
     		'status' => '1'
     	]);
+
+        Sending_detail::create([
+            'sending_id' => $sending_id,
+            'free_code' => $req->free_code,
+            'sender_name' => $req->sender_name,
+            'receiver_name' => $req->receiver_name,
+            'phone_number' => $req->phone_number,
+            'address' => $req->address,
+            'province' => $req->province,
+            'city' => $req->city,
+            'subdistrict' => $req->subdistrict,
+            'country' => $req->country,
+            'courier_service' => $req->courier_service,
+            'price' => json_encode($req->price)
+        ]);
 
     	if($req->order_via_id > 3){
     		$slash = explode('/', $req->attachment);
@@ -56,7 +66,7 @@ class SendingController extends Controller
                 'id' => $item->id,
                 'tanggal' => substr($item->created_at, 0, 10),
                 'nama_produk' => $item->product->name,
-                'jumlah' => $item->qty,
+                'tujuan' => $item->detail->country == null ? $item->detail->subdistrict.', '.$item->detail->city : $item->detail->country,
                 'status' => $item->status
             ];
         }
@@ -86,43 +96,29 @@ class SendingController extends Controller
             'courier' => $data->courier->name,
             'order_via' => $data->order_vias->name,
             'qty' => $data->qty,
-            'free_code' => $data->free_code,
+            'free_code' => $data->detail->free_code == null ? '' : $data->detail->free_code,
             'attachment_path' => ($data->order_via_id > 3 ? $this->getAttachmentPath($data->id, $data->user_id) : ''),
-            'sender_name' => $data->sender_name,
-            'receiver_name' => $data->receiver_name,
-            'phone_number' => $data->phone_number,
-            'address' => $data->address,
-            'destination' => $data->destination,
+            'sender_name' => $data->detail->sender_name,
+            'receiver_name' => $data->detail->receiver_name,
+            'phone_number' => $data->detail->phone_number,
+            'address' => $data->detail->address,
+            'courier_service' => $data->detail->courier_service,
+            'price' => json_decode($data->detail->price),
+            'destination' => $data->detail->country == null ? $data->detail->subdistrict.', '.$data->detail->city : $data->detail->country,
             'status' => $data->status,
         ];
 
         return response()->json($res);
     }
 
-    public function reject(Request $req){
+    public function cancel(Request $req){
         Sending::find($req->id)->delete();
     }
 
-    public function sendingRequest(Request $req){
-        $data = Sending::all();
-        $res = [];
-        foreach ($data as $item) {
-            $res[] = [
-                'id' => $item->id,
-                'tanggal' => substr($item->created_at, 0, 10),
-                'member' => $item->user->email,
-                'nama_produk' => $item->product->name,
-                'jumlah' => $item->qty,
-                'status' => $item->status,
-                'berat' => $item->product->weight
-            ];
-        }
-
-        return response()->json($res);        
-    }
-
-    public function pricing(Request $req){
+    public function reject(Request $req){
         $data = Sending::find($req->id);
+        $data->status = '4';
+        $data->save();
         Mail::getInstance()->write([
             'flag_sender' => 'S',
             'sender_mail' => 'System',
@@ -131,11 +127,26 @@ class SendingController extends Controller
             'receiper_id' => $data->user_id,
             'sender_name' => 'System',
             'receiper_name' => $data->user->name,
-            'subject' => "Pembayaran Pengiriman ". $data->id,
-            'text' => "Segera selesaikan pembayaran anda untuk Pengiriman ".$data->id. " dengan melakukan transfer ke nomer rekening BCA 6300730777 dengan nominal Rp ".$req->harga
-        ]);  
-        $data->status = '2';
-        $data->save();
+            'subject' => "Pengiriman ". $data->id." ditolak",
+            'text' => "Permintaan Pengiriman dengan ID $data->id ditolak oleh admin, silahkan hubungi admin untuk lebih lanjut."
+        ]);          
+    }
+
+    public function sendingRequest(Request $req){
+        $data = Sending::where('status', '1')->orWhere('status', '2')->get();
+        $res = [];
+        foreach ($data as $item) {
+            $res[] = [
+                'id' => $item->id,
+                'tanggal' => substr($item->created_at, 0, 16),
+                'member' => $item->user->email,
+                'nama_produk' => $item->product->name,
+                'status' => $item->status,
+                'tujuan' => $item->detail->country == null ? $item->detail->subdistrict.', '.$item->detail->city : $item->detail->country,
+            ];
+        }
+
+        return response()->json($res);        
     }
 
     public function changeStatus(Request $req){
