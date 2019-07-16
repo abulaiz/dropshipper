@@ -29,6 +29,16 @@ class FileController extends Controller
     						  // ->header('Content-Type', 'image/png'));
     }
 
+    public function infoAttachment($filename){
+    	// ob_start();
+    	$path = 'attachment/info/'.$filename;
+    	$file = Storage::get($path);
+    	
+    	ob_end_clean();
+    	return response($file)->header('Content-Type', 'image/jpeg');
+    						  // ->header('Content-Type', 'image/png'));
+    }
+
     public function mailAttachment($owner_id, $tagged_id, $filename){
 
     	$scr = new SimpleCry();

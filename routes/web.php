@@ -20,12 +20,8 @@ Auth::routes(['reset' => false]);
 // Route untuk semua jenis role yang telah login
 Route::group(['middleware' => ['auth']], function () {
 	// Root Home
-	Route::get('/', function () {
-	    return view('front_end.layout.home');
-	});
-	Route::get('/home', function () {
-	    return view('front_end.layout.home');
-	});	
+	Route::get('/', 'InfoController@index');
+	Route::get('/home', 'InfoController@index');	
 
 	Route::get('/profile', 'UserController@profile');
 	Route::post('/changePassword', 'UserController@update_password')->name('changePassword');

@@ -6,6 +6,9 @@
             </li>
             
             @hasrole('member')
+            <!-- Stok Product -->
+            <li class="nav-item @yield('stok_produk')"><a class="nav-link" href="/stokProduk"><i class="icon-list"></i>Stok Produk</a>
+            </li>            
             <!-- Order -->
             <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="icon-note"></i>Order</a>
             <ul class="dropdown-menu">

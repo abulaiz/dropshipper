@@ -1,6 +1,9 @@
 <?php 
 
-// Menu Order Member
+Route::get('/stokProduk', function(){
+	return view('front_end/layout/member/stokProduk');
+});
+
 Route::get('/order', function () {
     return view('front_end/layout/member/order');
 });

@@ -9,6 +9,8 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
+                <button class="pull-right btn btn-danger btn-sm" onclick="window.open('/stokBarang/print');"><i class="fa fa-print mr-1"></i>Cetak Data</button>
+
                     <h4>Stok Produk</h4>
                     <small class="text-mutted">Last updated at {* last_updated *}</small>
                 </div>

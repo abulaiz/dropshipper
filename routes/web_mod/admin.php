@@ -1,6 +1,8 @@
 <?php 
 
-// Menu admin Member
+Route::post('info/store', 'InfoController@store');
+Route::post('info/delete', 'InfoController@delete');
+
 Route::get('/orderRequest', function () {
     return view('front_end/layout/admin/orderRequest');
 });
@@ -16,4 +18,6 @@ Route::get('/stokBarang', function(){
 Route::get('/detailProduk', function(){
 	return view('front_end/layout/admin/detailProduk');
 });
+
+Route::get('/stokBarang/print', 'ProductController@print_stock');
 

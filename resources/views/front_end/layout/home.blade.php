@@ -2,143 +2,120 @@
 @section('home', 'active')
 @section('page_title', 'Home')
 
+@section('customHead')
+<link href="../../../filepond/dist/filepond.css" rel="stylesheet">
+<link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../../../css/additional/page-info/news.css">
+<link rel="stylesheet" type="text/css" href="../../../css/additional/page-info/page.css">
+<link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugins/loaders/loaders.min.css">
+<link rel="stylesheet" type="text/css" href="../../../app-assets/css/core/colors/palette-loader.css"> 
+@endsection
+
 @section('content')
-
-@if(!Auth::user()->hasRole('member'))
-    <!-- Sales stats -->
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-content">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-lg-3 col-sm-12 border-right-blue-grey border-right-lighten-5">
-                                <div class="pb-1">
-                                    <div class="clearfix mb-1">
-                                        <i class="icon-star font-large-1 blue-grey float-left mt-1"></i>
-                                        <span class="font-large-2 text-bold-300 info float-right">5,879</span>
-                                    </div>
-                                    <div class="clearfix">
-                                        <span class="text-muted">Products</span>
-                                        <span class="info float-right"><i class="ft-arrow-up info"></i> 16.89%</span>
-                                    </div>
-                                </div>
-                                <div class="progress mb-0" style="height: 7px;">
-                                    <div class="progress-bar bg-info" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-sm-12 border-right-blue-grey border-right-lighten-5">
-                                <div class="pb-1">
-                                    <div class="clearfix mb-1">
-                                        <i class="icon-user font-large-1 blue-grey float-left mt-1"></i>
-                                        <span class="font-large-2 text-bold-300 danger float-right">423</span>
-                                    </div>
-                                    <div class="clearfix">
-                                        <span class="text-muted">Orders</span>
-                                        <span class="danger float-right"><i class="ft-arrow-up danger"></i> 5.14%</span>
-                                    </div>
-                                </div>
-                                <div class="progress mb-0" style="height: 7px;">
-                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 45%" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-sm-12 border-right-blue-grey border-right-lighten-5">
-                                <div class="pb-1">
-                                    <div class="clearfix mb-1">
-                                        <i class="icon-shuffle font-large-1 blue-grey float-left mt-1"></i>
-                                        <span class="font-large-2 text-bold-300 success float-right">61%</span>
-                                    </div>
-                                    <div class="clearfix">
-                                        <span class="text-muted">Conversion</span>
-                                        <span class="success float-right"><i class="ft-arrow-down success"></i> 2.24%</span>
-                                    </div>
-                                </div>
-                                <div class="progress mb-0" style="height: 7px;">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-sm-12">
-                                <div class="pb-1">
-                                    <div class="clearfix mb-1">
-                                        <i class="icon-wallet font-large-1 blue-grey float-left mt-1"></i>
-                                        <span class="font-large-2 text-bold-300 warning float-right">$6,87M</span>
-                                    </div>
-                                    <div class="clearfix">
-                                        <span class="text-muted">Profit</span>
-                                        <span class="warning float-right"><i class="ft-arrow-up warning"></i> 43.84%</span>
-                                    </div>
-                                </div>
-                                <div class="progress mb-0" style="height: 7px;">
-                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+@unlessrole('member')
+<h3 class="content-header-title mb-2">Buat Info</h3>
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <form class="form"  method="POST" action="/info/store">
+          @csrf
+          <div class="form-group">
+            <label>Judul / Subjek</label>
+            <input type="text" autocomplete="off" name="subject" class="form-control" placeholder="Judul atau subjek info">
+          </div>
+          <div class="form-group">
+            <label>Isi Info</label>
+            <textarea name="text" autocomplete="off" class="form-control" placeholder="Isi info (text)"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Sisipkan Gambar</label>
+            <input type="file" name="attachment" multiple max="10">
+          </div>
+          <input type="hidden" name="imgs">
+          <div class="form-group">
+            <button class="btn btn-primary pull-right" type="button" id="post_button"><i class="fa fa-share-square-o"></i>  Post</button>
+          </div>
+        </form>
+      </div>
     </div>
-    <!--/ Sales stats -->
-@else
-    <!-- Custom view start -->
-    <section id="select-inputs" ng-controller='table'>
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">List View Barang</h4><br>
-                        <button class="ui-button ui-widget ui-corner-all btn-danger mb-2" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#tambahorder"><i class="fa fa-plus"></i>  Order</button>
-                        <div class="card-content collapse show">
-                            <div class="table-responsive" style="display: none;">
-                                <table class="table table-striped table-bordered dt-responsive" id="example">
-                                    <thead>
-                                        <tr>
-                                            <th>Nama Produk</th>
-                                            <th>Stok</th>
-                                            <th>Harga</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr ng-repeat='x in datas'>
-                                            <td>{* x.name *}</td>
-                                            <td>{* x.qty *} {* x.type *}</td>
-                                            <td>{* x.price *}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="loader-wrapper" id="table-loader">
-                              <div class="loader-container">
-                                <div class="ball-beat loader-info">
-                                  <div></div>
-                                  <div></div>
-                                  <div></div>
-                                </div>
-                              </div>
-                            </div>                            
-                        </div>
-                    </div>
-                </div>
+  </div>
+</div>
+<hr>
+@endunlessrole
+<h3 class="content-header-title mb-2">Beranda Info</h3>
+<div class="row">
+    @unlessrole('member')
+      <form method="POST" action="/info/delete" id="delete_form">
+        @csrf
+      </form>
+    @endunlessrole
+    @php $color = ['primary', 'danger', 'success', 'info'];@endphp
+    @foreach($data as $item)
+    @php $r = rand(0,3); @endphp
+    <div class="col-12">
+        <div class="card border-{{ $color[$r] }}">
+            <div class="card-header">
+              <h4 class="card-title">{{ $item->subject }}</h4>
+              <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+              @unlessrole('member')
+              <div class="heading-elements">
+                <ul class="list-inline mb-0">
+                  <li><button data-id="{{ $item->id }}" class="btn btn-sm btn-danger delete"><i class="fa fa-trash mr-1"></i>Hapus</button></li>
+                </ul>
+              </div>  
+              @endunlessrole
             </div>
-        </div>
-    </section>
-    <!-- Custom view end -->
-    @include('modals.addOrder')
-@endif
-
+            <div class="card-content">
+              <div class="card-body" style="padding-top: unset !important;">
+                @if(count($item->attachment) > 0)
+                <div class="card-img mb-1 img-slide">
+                    <div class="slideshow-container">
+                        <a class="prev">&#10094;</a>
+                        <a class="next">&#10095;</a>
+                        @php $i = 1; @endphp
+                        @foreach($item->attachment as $img)
+                        <div class="mySlides">
+                          <div class="numbertext">{{ $i++ }} / {{ count($item->attachment) }}</div>
+                          <img height="300" class="img-rounded" src="infoAttachment/{{$img}}" style="width:100%">
+                        </div>
+                        @endforeach
+                    </div>
+                    <div style="text-align:center" class="mt-1">
+                    </div>                        
+                </div>
+                @endif
+                <div class="card-text  border-top border-top-{{ $color[$r] }} border-top-lighten-2" style="padding-top: 10px;">
+                  <p class="card-text">
+                    @php
+                      $t = str_replace("\r\n","<br>",$item->text);
+                      $txt = explode('<br>', $t); 
+                    @endphp
+                    @foreach($txt as $text)
+                      {{ $text }} <br>
+                    @endforeach
+                  </p>
+                </div>
+              </div>
+            </div>
+        </div>            
+    </div>        
+    @endforeach
+</div>
+    @if(count($data) == 0)
+      <p class="text-mutted">-- Belum ada info --</p>
+    @endif
 @endsection
 
 @section('customJS')
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugins/loaders/loaders.min.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/core/colors/palette-loader.css">
+<script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
+<script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+<script src="../../../filepond/dist/filepond.min.js"></script>
 
-    <!-- DataTables -->
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/tables/datatable/datatables.min.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/tables/extensions/responsive.dataTables.min.css">
-    <script src="../../../app-assets/vendors/js/tables/datatable/datatables.min.js"></script>
-    <script src="../../../app-assets/vendors/js/tables/datatable/dataTables.responsive.min.js"></script>
-    
-    <script src="../../../js/view/memberHome/modalController.js" type="text/javascript"></script>
-    <script src="../../../js/view/memberHome/tableController.js" type="text/javascript"></script>
+<script src="../../../app-assets/vendors/js/extensions/sweetalert.min.js" type="text/javascript"></script>
+<script src="../../../js/plugin/confirmDialog.js" type="text/javascript"></script>
+<script src="../../../js/plugin/leftToastr.js" type="text/javascript"></script>
 
+<script src="../../../js/view/info/news.js"></script>
+<script src="../../../js/view/info/page.js"></script>
 @endsection
